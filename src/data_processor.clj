@@ -1,7 +1,46 @@
 (ns data-processor)
 
+(defn elementos-map-counter [rule]
+;Devuelve un array con el nombre y contador, inicialmente en 0, de la regla.
+    (let [nombre (nth rule 1)]
+    (identity [nombre 0])) 
+    
+)
+
+(defn elementos-map-rules [rule]
+;Devuelve un array con el nombre y lista con parametros y condiciones de la regla.
+    (let [nombre (nth rule 1)
+          parametros (nth rule 2)
+          condicion (nth rule 3)]
+    (identity [nombre [parametros condicion]])) 
+    
+)
+
+(defn generar-counter [rules]
+;Genera un hashmap con el nombre de la regla como key y un contador inicialmente en 0 como value.
+     (into {} (map elementos-map-counter rules))
+  )
+
+
+(defn generar-rules [rules]
+;Genera un hashmap con el nombre de la regla como key y una lista con paramtros y condiciones como value.
+     (into {} (map elementos-map-rules rules))
+  )
+
+(defn solo-counter [rule]
+;Devuelve true si la regla es define-counter o false en caso contrario
+  (def tipo (str (nth rule 0)))
+  (= tipo "define-counter") 
+  )
+
 (defn initialize-processor [rules]
-  nil)
+  ;rules es una lista de reglas. Cada regla tiene:
+  ;   define-counter/ define-signal nombre parametro condicion
+  ;Devuelve un array con dos hashmap, el primero con los contadores el segundo con las reglas
+  (let [new-rules (filter solo-counter rules) ]
+  
+  [(generar-counter new-rules) (generar-rules new-rules)])
+)
 
 
   ;datos que definen state
