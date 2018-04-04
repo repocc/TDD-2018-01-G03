@@ -6,7 +6,6 @@
   [rule]
   (= 4 (count rule))) ;TODO: improve fn
 
-
 (defn is-valid-signal
     "Returns true if the rule is valid, if not returns false"
     [rule]
@@ -27,9 +26,19 @@
 	[rule]
   (if (is-rule-a-counter rule)
     (nth rule 1)
-    (subs (clojure.string/join " " (nth rule 1)) 2  (- (clojure.string/index-of (nth rule 1) " " ) 1)))
-)
+    (subs (string/join " " (nth rule 1)) 2  (- (string/index-of (nth rule 1) " " ) 1))))
 
+(defn parse-counter-params
+  "Returns the params of a counter"
+  [rule]
+  (nth rule 2))
 
-; (defn parse-rule-params)
-; (defn parse-rule-condition)
+(defn parse-signal-operation
+  "Returns operation to do to get result of a signal"
+  [rule]
+  (subs (string/join " " (nth rule 1)) (string/index-of (nth rule 1) "(") (string/index-of (nth rule 1) "}")))
+
+(defn parse-rule-condition
+  "Returns the condition of a rule"
+  [rule]
+  (last rule))

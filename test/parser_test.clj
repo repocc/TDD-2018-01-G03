@@ -17,19 +17,16 @@
 (def signal-2 '(define-signal {"repeated" (current "value")}
                                     (= (current "value") (past "value"))))
 
-
 (deftest is-valid-counter-test
   (testing "counter-validation"
       (is (parser/is-valid-counter counter-1))
       (is (parser/is-valid-counter counter-2))
-      (is (parser/is-valid-counter counter-3))
-           ))
+      (is (parser/is-valid-counter counter-3))))
 
 (deftest is-valid-signal-test
  (testing "signal-validation"
      (is (parser/is-valid-signal signal-1))
-     (is (parser/is-valid-signal signal-2))
-          ))
+     (is (parser/is-valid-signal signal-2))))
 
 (deftest is-rule-a-counter-test
   (testing "is rule a counter"
@@ -37,16 +34,15 @@
       (is (parser/is-rule-a-counter counter-2))
       (is (parser/is-rule-a-counter counter-3))
       (is (not (parser/is-rule-a-counter signal-1)))
-      (is (not (parser/is-rule-a-counter signal-2)))
-           ))
+      (is (not (parser/is-rule-a-counter signal-2)))))
+
 (deftest is-rule-a-signal-test
  (testing "is rule a signal"
      (is (not (parser/is-rule-a-signal counter-1)))
      (is (not (parser/is-rule-a-signal counter-2)))
      (is (not (parser/is-rule-a-signal counter-3)))
      (is (parser/is-rule-a-signal signal-1))
-     (is (parser/is-rule-a-signal signal-2))
-          ))
+     (is (parser/is-rule-a-signal signal-2))))
 
 (deftest parse-rule-name-test
   (testing "Get name from rule"
@@ -61,5 +57,4 @@
       (is (= "repeated"
             (parser/parse-rule-name signal-2)))
       (is (not (= "spam-fraction"
-            (parser/parse-rule-name signal-2))))
-           ))
+            (parser/parse-rule-name signal-2))))))
