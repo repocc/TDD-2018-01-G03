@@ -45,7 +45,7 @@
      (is (parser/is-rule-a-signal signal-2))))
 
 (deftest parse-rule-name-test
-  (testing "Get name from rule"
+  (testing "parse name from rule"
       (is (= "email-count"
            (parser/parse-rule-name counter-1)))
       (is (= "spam-count"

@@ -10,7 +10,6 @@
     "Returns an array with counter name and initial value of the counter"
     (identity [( parser/parse-rule-name rule) (initialize-counter (parser/parse-counter-params rule))]))
 
-
 (defn name-and-counter-rule [rule]
     "Returns an array with counter name and with an array with rule elements"
     (identity [(parser/parse-rule-name rule)
@@ -30,20 +29,16 @@
      (into {} (map name-and-counter-rule (filter parser/is-rule-a-counter rules))))
 
 (defn save-signal-rules [rules]
-
   "Returns a hashmap where every key is the rule name and as value
   a list with operation and condition"
      (into {} (map name-and-signal-rule (filter parser/is-rule-a-signal rules))))
 
 (defn initialize-processor [rules]
-  ; TODO def como son las reglas
-  ;Devuelve un array con dos hashmap, el primero con los contadores inicializados el segundo con las reglas
-  ; [(initialize-counters rules) (save-counter-rules rules) (save-signal-rules rules)]
-  )
+  "Returns an array with 3 hashmaps. 1 counters initilized, 2 counter rules
+  and 3 signal rules"
+  [(initialize-counters rules) (save-counter-rules rules) (save-signal-rules rules)])
 
 
-
-;
 ;   ;datos que definen state
 ;   (def condition '(current "spam"))
 ;   (def counter {:email-count :0  :spam-count :0})
@@ -74,5 +69,8 @@
 ;     (for [rule (nth state 1)]
 ;        (applyRule new-data rule)))
 ;
-; (defn query-counter [state counter-name counter-args]
-;   0)
+(defn query-counter [state counter-name counter-args]
+  ; (get counter-name (nth state 0)) diferenciar si es un num o {}
+  ; en caso de ser {}, con counter-args entrar a la llave correspondiente
+  ; si no fue inicializada crear la llave y asignarle valor 1
+  )

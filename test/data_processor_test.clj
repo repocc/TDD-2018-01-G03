@@ -17,8 +17,16 @@
 (def signal-2 '(define-signal {"repeated" (current "value")}
                                     (= (current "value") (past "value"))))
 
-(def rules '(counter-1 counter-2 counter-3 signal-1 signal-2))
-
+(def rules '((define-counter "email-count" []
+               true)
+             (define-counter "spam-count" []
+               (current "spam"))
+             (define-signal {"spam-fraction" (/ (counter-value "spam-count" [])
+                                                (counter-value "email-count" []))}
+               true)
+             (define-counter "spam-important-table" [(current "spam")
+                                                     (current "important")]
+               true)))
 
 
 (deftest counter-name-and-initial-value-test
@@ -40,9 +48,13 @@
   ; TODO
   ))
 
+(deftest initialize-counters-test
+  (testing "hashmap with every counter initialized"
+    (is (= {"email-count" 0, "spam-count" 0, "spam-important-table" {}} (initialize-counters rules)))
+  ))
+
 (deftest save-counter-rules-test
   (testing ""
-  ; TODO
   ; (is (= {"email-count" [[] true], "spam-count" [[] (current "spam")], "spam-important-table" [[(current "spam") (current "important")] true]} (save-counter-rules rules)))
 ))
 
@@ -51,3 +63,8 @@
   ; TODO
   ; (is (= {"spam-fraction" ["(/ (counter-value \"spam-count\" []) (counter-value \"email-count\" []))" true]} (save-signal-rules rules)))
 ))
+
+(deftest initialize-processor-test
+  (testing "initialize processor"
+  ; (is (= '({"email-count" 0, "spam-count" 0, "spam-important-table" {}} {"email-count" [[] true], "spam-count" [[] (current "spam")], "spam-important-table" [[(current "spam") (current "important")] true]} {"spam-fraction" ["(/ (counter-value \"spam-count\" []) (counter-value \"email-count\" []))" true}))
+  ))
