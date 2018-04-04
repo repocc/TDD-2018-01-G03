@@ -1,89 +1,78 @@
-(ns data-processor)
+(ns data-processor
+  (:require [parser :as parser]))
 
-(defn elementos-map-counter [rule]
-;Devuelve un array con el nombre y contador, inicialmente en 0, de la regla.
-    (let [nombre (nth rule 1)]
-    (identity [nombre 0])) 
-    
-)
+(defmulti initialize-counter (fn [params] (count params)))
+(defmethod initialize-counter 0 [params] 0)
+(defmethod initialize-counter 1 [params] 0)
+(defmethod initialize-counter :default [params] {})
 
-(defn elementos-map-rules [rule]
-;Devuelve un array con el nombre y lista con parametros y condiciones de la regla.
-    (let [nombre (nth rule 1)
-          parametros (nth rule 2)
-          condicion (nth rule 3)]
-    (identity [nombre [parametros condicion]])) 
-    
-)
-
-(defn generar-counter [rules]
-;Genera un hashmap con el nombre de la regla como key y un contador inicialmente en 0 como value.
-     (into {} (map elementos-map-counter rules))
-  )
+(defn counter-name-and-initial-value[rule]
+    "Returns an array with counter name and initial value of the counter"
+    (identity [( parser/parse-rule-name rule) (initialize-counter (parser/parse-counter-params rule))]))
 
 
-(defn generar-rules [rules]
-;Genera un hashmap con el nombre de la regla como key y una lista con paramtros y condiciones como value.
-     (into {} (map elementos-map-rules rules))
-  )
+(defn name-and-counter-rule [rule]
+    "Returns an array with counter name and with an array with rule elements"
+    (identity [(parser/parse-rule-name rule)
+              [(parser/parse-counter-params rule) (parser/parse-rule-condition rule)]]))
 
-(defn solo-counter [rule]
-;Devuelve true si la regla es define-counter o false en caso contrario
-  (def tipo (str (nth rule 0)))
-  (= tipo "define-counter") 
-  )
+(defn name-and-signal-rule [rule]
+    "Returns an array with signal name and with an array with rules elements"
+    (identity [(parser/parse-rule-name rule) [(parser/parse-signal-operation rule) (parser/parse-rule-condition rule)]]))
+
+(defn initialize-counters [rules]
+  "Returns a hashmap where every key is a counter name and as value the initial counter value"
+     (into {} (map counter-name-and-initial-value (filter parser/is-rule-a-counter rules))))
+
+(defn save-counter-rules [rules]
+  "Returns a hashmap where every key is the rule name and as value
+  a list with params and condition"
+     (into {} (map name-and-counter-rule (filter parser/is-rule-a-counter rules))))
+
+(defn save-signal-rules [rules]
+
+  "Returns a hashmap where every key is the rule name and as value
+  a list with operation and condition"
+     (into {} (map name-and-signal-rule (filter parser/is-rule-a-signal rules))))
 
 (defn initialize-processor [rules]
-  ;rules es una lista de reglas. Cada regla tiene:
-  ;   define-counter/ define-signal nombre parametro condicion
-  ;Devuelve un array con dos hashmap, el primero con los contadores el segundo con las reglas
-  (let [new-rules (filter solo-counter rules) ]
-  
-  [(generar-counter new-rules) (generar-rules new-rules)])
-)
-
-
-  ;datos que definen state
-  (def condition '(current "spam"))
-  (def counter {:email-count :0  :spam-count :0})
-  (def rules {:spam-count [[2] condition] :email-count [[] true]} )
-  (def state [counter rules])
-  ;datos a procesar
-  (def new-data {"spam" true})
-
-(defn evaluateConditions [data conditions]
-  true
-
+  ; TODO def como son las reglas
+  ;Devuelve un array con dos hashmap, el primero con los contadores inicializados el segundo con las reglas
+  ; [(initialize-counters rules) (save-counter-rules rules) (save-signal-rules rules)]
   )
 
-(defn applyRule [data rule]
-
-  ;rule
-  (def conditions (nth (nth rule 1) 1))
-  ; (def parameters (nth (nth rule 1) 0))
-  ; (def name (nth rule 0))
-  ; (def counter-to-update {:key :0})
-
-    ;en funcion a los parametros se a cual contador aumentar.
-    ;(if (empty? parameters) "vacio" "lleno")
-
-      (evaluateConditions data conditions)
-
-    )
-
-(defn update-counters [counters]
-  (prn counters)
-  )
-
-(defn process-data [state new-data]
-  ;aplico cada rule al dato a procesar.
-  ;devolverá un hashmap como el de counters para luego sumar los contadores en true. ej {:email-count :true , :spam-count :false}
-    (for [rule (nth state 1)]
-       (applyRule new-data rule)
-       
-     )
 
 
-    )
-(defn query-counter [state counter-name counter-args]
-  0)
+;
+;   ;datos que definen state
+;   (def condition '(current "spam"))
+;   (def counter {:email-count :0  :spam-count :0})
+;   (def rules {:spam-count [[2] condition] :email-count [[] true]} )
+;   (def state [counter rules])
+;   ;datos a procesar
+;   (def new-data {"spam" true})
+;
+; (defn evaluateConditions [data conditions]
+;   true)
+;
+; (defn applyRule [data rule]
+;   ;rule
+;   (def conditions (nth (nth rule 1) 1))
+;   ; (def params (nth (nth rule 1) 0))
+;   ; (def name (nth rule 0))
+;   ; (def counter-to-update {:key :0})
+;     ;en funcion a los parameter se a cual contador aumentar.
+;     ;(if (empty? params) "vacio" "lleno")
+;       (evaluateConditions data conditions))
+;
+; (defn update-counters [counters]
+;   (prn counters))
+;
+; (defn process-data [state new-data]
+;   ;aplico cada rule al dato a procesar.
+;   ;devolverá un hashmap como el de counters para luego sumar los contadores en true. ej {:email-count :true , :spam-count :false}
+;     (for [rule (nth state 1)]
+;        (applyRule new-data rule)))
+;
+; (defn query-counter [state counter-name counter-args]
+;   0)
