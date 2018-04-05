@@ -38,6 +38,27 @@
   and 3 signal rules"
   [(initialize-counters rules) (save-counter-rules rules) (save-signal-rules rules)])
 
+(defn get-status [state]
+  "Return the status list of the state list."
+    (first state))
+
+(defn get-signals [state]
+  "Return the signal map of the state list."
+  (last state))
+
+(defn get-counter-map [status-list]
+
+  (first (get-status status-list))
+  )
+
+
+
+(defmulti get-value-counter (fn [valor counter-args] (type valor)))
+(defmethod get-value-counter clojure.lang.PersistentArrayMap [valor counter-args]
+  (get valor counter-args))
+(defmethod get-value-counter java.lang.Long [valor counter-args] valor)
+(defmethod get-value-counter :default [valor counter-args] 0)
+
 
 ;   ;datos que definen state
 ;   (def condition '(current "spam"))
@@ -73,4 +94,6 @@
   ; (get counter-name (nth state 0)) diferenciar si es un num o {}
   ; en caso de ser {}, con counter-args entrar a la llave correspondiente
   ; si no fue inicializada crear la llave y asignarle valor 1
-  )
+  (let [valor (get (get-counter-map state) counter-name)]
+    (get-value-counter valor counter-args)
+  ))

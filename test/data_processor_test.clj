@@ -68,3 +68,14 @@
   (testing "initialize processor"
   ; (is (= '({"email-count" 0, "spam-count" 0, "spam-important-table" {}} {"email-count" [[] true], "spam-count" [[] (current "spam")], "spam-important-table" [[(current "spam") (current "important")] true]} {"spam-fraction" ["(/ (counter-value \"spam-count\" []) (counter-value \"email-count\" []))" true}))
   ))
+
+(deftest query-counter-get-value-counter-no-conditions
+  (testing "get-value-counter should return the correct value."
+   (is (= 2 (get-value-counter 2 []) ))))
+
+
+(deftest query-counter-get-value-counter-with-conditions
+  (testing "get-value-counter should return the correct value."
+   (is (= 1 (get-value-counter {[true false] 1} [true false]) ))))
+
+
