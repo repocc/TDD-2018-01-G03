@@ -60,36 +60,60 @@
 (defmethod get-value-counter :default [valor counter-args] 0)
 
 
-;   ;datos que definen state
-;   (def condition '(current "spam"))
-;   (def counter {:email-count :0  :spam-count :0})
-;   (def rules {:spam-count [[2] condition] :email-count [[] true]} )
-;   (def state [counter rules])
-;   ;datos a procesar
-;   (def new-data {"spam" true})
+
+(defn get-counters-state [state]
+  "returns counter map from state"
+  (nth state 0)
+  )
+
+(defn get-rules-state [state]
+  "returns a collectioon of rules from state"
+  (nth state 1)
+  )
+
+(defn get-condition [rule]
+  "returns condition of a rule previously parsed"
+ (nth (parser/parse-rule-condition rule) 1)
+)
+(def operators {"+" +
+                "true" true})
+
+(defn applyRule [data rule]
+  "return true if the data fullfile the condition of the rule"
+
+   ;(get-condition rule)
+   ;(= "true" (str(get-condition rule)))
+  )
+
+
+(defn process-data [state new-data]
+  ;todo :
+  ;defn apply rule signals - > has to return a cole
+
+   (applyRule new-data (first (get-rules-state state)))
+
+  ; (for [rule (get-rules-state state)]
+  ;
+  ;   (if (applyRule new-data rule) "succes" "failure")
+  ;   ;fijarme en contador va y aumentarlo.
+  ;
+  ;
+  ;   )
+)
 ;
-; (defn evaluateConditions [data conditions]
-;   true)
 ;
-; (defn applyRule [data rule]
-;   ;rule
-;   (def conditions (nth (nth rule 1) 1))
-;   ; (def params (nth (nth rule 1) 0))
-;   ; (def name (nth rule 0))
-;   ; (def counter-to-update {:key :0})
-;     ;en funcion a los parameter se a cual contador aumentar.
-;     ;(if (empty? params) "vacio" "lleno")
-;       (evaluateConditions data conditions))
 ;
-; (defn update-counters [counters]
-;   (prn counters))
 ;
-; (defn process-data [state new-data]
-;   ;aplico cada rule al dato a procesar.
-;   ;devolverá un hashmap como el de counters para luego sumar los contadores en true. ej {:email-count :true , :spam-count :false}
-;     (for [rule (nth state 1)]
-;        (applyRule new-data rule)))
 ;
+;
+;
+;
+;
+;
+;
+;
+;
+
 (defn query-counter [state counter-name counter-args]
   ; (get counter-name (nth state 0)) diferenciar si es un num o {}
   ; en caso de ser {}, con counter-args entrar a la llave correspondiente
