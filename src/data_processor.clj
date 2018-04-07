@@ -92,12 +92,10 @@
 
 (defn inc-counter [rule counters]
  ;(prn rule)
- (def keyCounter (get-rule-name rule))
-
- ; (update counters keyCounter inc)
- ;add segun parametros
- (update counters keyCounter inc)
- ;(counters)
+  (def keyCounter (get-rule-name rule))
+   ;add segun parametros
+   (update counters keyCounter inc)
+   ;(counters)
 )
 
 (defn get-counter-state [state]
@@ -105,26 +103,39 @@
   (nth state 0)
 )
 
+(defn get-signal-rules
+  "Return the signal rules map from the state list."
+  [state]
+  (last state))
 
-(defn process-data [state new-data]
-  ;todo :
-  ;defn apply rule signals - > has to return a cole
+(defn name-and-signal-evaluation
+  "Returns the result of signal rule evaluation"
+  [counters-state signal-rule]
+    (identity [(parser/parse-rule-name signal-rule) 0]))
 
-(def counters (get-counter-state state))
+(defn get-signal
+  "Returns signal evaluation"
+  [state]
+  (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (get-signal-rules state))))
 
-(doseq [rule (get-rules-state state)]
-    (prn rule)
-    (if (applyRule new-data rule)
-      (def counters (inc-counter rule counters ))
-        (prn counters)
-  ;  (prn "false, es decir, no cumplio ninguna regla")
+(defn evaluate-counters-rules [state new-data]
+
+  (def counters (get-counter-state state))
+    (doseq [rule (get-rules-state state)]
+      (if (applyRule new-data rule)
+        (def counters (inc-counter rule counters ))
+    ;  (prn "false, es decir, no cumplio ninguna regla")
+      )
     )
   )
 
-  (def signal [])
+(defn process-data
+  "Returns new state after evaluate every rule"
+  [old-state new-data]
+  (def sg (get-signal old-state))
+  (def new-state (evaluate-counters-rules old-state new-data))
 
- [state signal]
-)
+  [new-state sg])
 ;
 ;
 ;
