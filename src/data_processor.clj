@@ -73,31 +73,55 @@
 
 (defn get-condition [rule]
   "returns condition of a rule previously parsed"
-
   (str(nth (nth rule 1) 1))
 )
+(defn get-rule-name [rule]
+  "get the name of a rule parsed from state"
+  (str(nth rule 0))
+  )
 
 (defn applyRule [data rule]
   "return true if the data fullfile the condition of the rule"
 
-   (prn (get-condition rule))
-   ;(= "true" (str(get-condition rule)))
+  (if (= "true" (get-condition rule))
+  true ;sumar contador
+  (prn "evaluar condicion pasandole data") ; evaluar condicion no true
   )
+)
+
+
+(defn inc-counter [rule counters]
+ (def keyCounter (keyword (get-rule-name rule)))
+ (prn keyCounter)
+ ;add segun parametros
+   ;(update counters keyCounter inc)
+
+;(counters)
+)
+
+(defn get-counter-state [state]
+  "returns counter-map from state"
+  (nth state 0)
+)
 
 
 (defn process-data [state new-data]
   ;todo :
   ;defn apply rule signals - > has to return a cole
 
-  ; (applyRule new-data (first (get-rules-state state)))
+(def counters (get-counter-state state))
+    (doseq [rule (get-rules-state state)]
+        (if (applyRule new-data rule)
+          (def counters
+            (inc-counter rule counters )
+          )
+        (prn "false, es decir, no cumplio ninguna regla")
+        )
+      )
 
-  ; (for [rule (get-rules-state state)]
-  ;
-  ;   (if (applyRule new-data rule) "succes" "failure")
-  ;   ;fijarme en contador va y aumentarlo.
-  ;
-  ;
-  ;   )
+  (def signal [])
+  (prn counters)
+ [state signal]
 )
 ;
 ;
