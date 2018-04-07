@@ -8,16 +8,16 @@
 
 (defn counter-name-and-initial-value[rule]
     "Returns an array with counter name and initial value of the counter"
-    (identity [( parser/parse-rule-name rule) (initialize-counter (parser/parse-counter-params rule))]))
+    (identity [ (keyword (parser/parse-rule-name rule)) (initialize-counter (parser/parse-counter-params rule))]))
 
 (defn name-and-counter-rule [rule]
     "Returns an array with counter name and with an array with rule elements"
-    (identity [(parser/parse-rule-name rule)
+    (identity [(keyword (parser/parse-rule-name rule))
               [(parser/parse-counter-params rule) (parser/parse-rule-condition rule)]]))
 
 (defn name-and-signal-rule [rule]
     "Returns an array with signal name and with an array with rules elements"
-    (identity [(parser/parse-rule-name rule) [(parser/parse-signal-operation rule) (parser/parse-rule-condition rule)]]))
+    (identity [(keyword (parser/parse-rule-name rule)) [(parser/parse-signal-operation rule) (parser/parse-rule-condition rule)]]))
 
 (defn initialize-counters [rules]
   "Returns a hashmap where every key is a counter name and as value the initial counter value"
@@ -73,11 +73,11 @@
 
 (defn get-condition [rule]
   "returns condition of a rule previously parsed"
-  (str(nth (nth rule 1) 1))
+  (str (nth (nth rule 1) 1))
 )
 (defn get-rule-name [rule]
   "get the name of a rule parsed from state"
-  (str(nth rule 0))
+  (nth rule 0)
   )
 
 (defn applyRule [data rule]
@@ -85,18 +85,19 @@
 
   (if (= "true" (get-condition rule))
   true ;sumar contador
-  (prn "evaluar condicion pasandole data") ; evaluar condicion no true
+  ;(prn "evaluar condicion pasandole data") ; evaluar condicion no true
   )
 )
 
 
 (defn inc-counter [rule counters]
- (def keyCounter (keyword (get-rule-name rule)))
- (prn keyCounter)
- ;add segun parametros
-   ;(update counters keyCounter inc)
+ ;(prn rule)
+ (def keyCounter (get-rule-name rule))
 
-;(counters)
+ ; (update counters keyCounter inc)
+ ;add segun parametros
+ (update counters keyCounter inc)
+ ;(counters)
 )
 
 (defn get-counter-state [state]
@@ -110,17 +111,18 @@
   ;defn apply rule signals - > has to return a cole
 
 (def counters (get-counter-state state))
-    (doseq [rule (get-rules-state state)]
-        (if (applyRule new-data rule)
-          (def counters
-            (inc-counter rule counters )
-          )
-        (prn "false, es decir, no cumplio ninguna regla")
-        )
-      )
+
+(doseq [rule (get-rules-state state)]
+    (prn rule)
+    (if (applyRule new-data rule)
+      (def counters (inc-counter rule counters ))
+        (prn counters)
+  ;  (prn "false, es decir, no cumplio ninguna regla")
+    )
+  )
 
   (def signal [])
-  (prn counters)
+
  [state signal]
 )
 ;
