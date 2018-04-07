@@ -73,15 +73,14 @@
 
 (defn get-condition [rule]
   "returns condition of a rule previously parsed"
- (nth (parser/parse-rule-condition rule) 1)
+
+  (str(nth (nth rule 1) 1))
 )
-(def operators {"+" +
-                "true" true})
 
 (defn applyRule [data rule]
   "return true if the data fullfile the condition of the rule"
 
-   ;(get-condition rule)
+   (prn (get-condition rule))
    ;(= "true" (str(get-condition rule)))
   )
 
@@ -90,7 +89,7 @@
   ;todo :
   ;defn apply rule signals - > has to return a cole
 
-   (applyRule new-data (first (get-rules-state state)))
+  ; (applyRule new-data (first (get-rules-state state)))
 
   ; (for [rule (get-rules-state state)]
   ;
