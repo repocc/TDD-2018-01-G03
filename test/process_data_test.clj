@@ -2,32 +2,26 @@
    (:require [clojure.test :refer :all]
      [data-processor :refer :all]))
 
- (def counter-1 '(define-counter "email-count" []
-                                           true))
- (def counter-2 '(define-counter "spam-count" []
-                                     (current "spam")))
- (def counter-3 '(define-counter "spam-important-table"
-                                     [(current "spam")]
-                                     (current "important")
-                                     true))
- (def signal-1 '(define-signal {"spam-fraction"
-                                     (/ (counter-value "spam-count" []))
-                                     (counter-value "email-count" [])
-                                     true}))
- (def signal-2 '(define-signal {"repeated" (current "value")
-                                     (= (current "value") (past "value"))}))
+(def counter-1 '(define-counter "email-count" []
+                                         true))
+(def counter-2 '(define-counter "spam-count" []
+                                   (current "spam")))
+(def counter-3 '(define-counter "spam-important-table"
+                                   [(current "spam")]
+                                   (current "important")
+                                   true))
+(def signal-1 '(define-signal {"spam-fraction"
+                                   (/ (counter-value "spam-count" []))
+                                   (counter-value "email-count" [])
+                                   true}))
+(def signal-2 '(define-signal {"repeated" (current "value")
+                                   (= (current "value") (past "value"))}))
 
- (def rules (list counter-1 counter-2 counter-3 signal-1 signal-2))
-
-
- (def signals (save-signal-rules rules))
- (def counters-rules (save-counter-rules rules))
- (def rules2 '((define-counter "email-count" [] true)
-                   (define-counter "spam-count" [] (= (current "spam") (current "spam")))))
-
+(def rules (list counter-1 counter-2 counter-3 signal-1 signal-2))
+(def signals (save-signal-rules rules))
+(def counters-rules (save-counter-rules rules))
+(def rules2 (list counter-1  (define-counter "spam-count" [] (= (current "spam") (current "spam")))))
 (def counter-state (initialize-counters rules))
-
-
 (def email-count-rule ["email-count" (get counter-rules "email-count" )])
 
 
@@ -55,7 +49,8 @@
 
  (deftest name-and-signal-evaluation-test
    (testing "evaluate a signal rule")
-   (is (= )))
+   ; (is (= )
+   ))
 
 
  (deftest update-signal-test)
