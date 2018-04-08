@@ -17,16 +17,7 @@
 (def signal-2 '(define-signal {"repeated" (current "value")}
                                     (= (current "value") (past "value"))))
 
-(def rules '((define-counter "email-count" []
-               true)
-             (define-counter "spam-count" []
-               (current "spam"))
-             (define-signal {"spam-fraction" (/ (counter-value "spam-count" [])
-                                                (counter-value "email-count" []))}
-               true)
-             (define-counter "spam-important-table" [(current "spam")
-                                                     (current "important")]
-               true)))
+(def rules (list counter-1 counter-2 counter-3 signal-1 signal-2))
 
 
 (deftest counter-name-and-initial-value-test
@@ -77,5 +68,3 @@
 (deftest query-counter-get-value-counter-with-conditions
   (testing "get-value-counter should return the correct value."
    (is (= 1 (get-value-counter {[true false] 1} [true false]) ))))
-
-
