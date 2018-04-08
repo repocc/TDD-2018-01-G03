@@ -162,27 +162,27 @@
 
 
 ;Distingue las condiciones que tienen 1 parametro a evaluar de las que tienen 2.
-(defmulti evaluate-conditions (fn [data rules] (str(nth rules 0))))
-(defmethod evaluate-conditions "past" [data rules] true)
-(defmethod evaluate-conditions "current" [data rules] 
+(defmulti evaluate-conditions (fn [state data rules] (str(nth rules 0))))
+(defmethod evaluate-conditions "past" [state data rules] true)
+(defmethod evaluate-conditions "current" [state data rules] 
          (= (nth rules 1) (first(keys data))))
-(defmethod evaluate-conditions :default [data rules] 
+(defmethod evaluate-conditions :default [state data rules] 
          ;cuando es mas de 2 parametros         
-         (apply-operador (str(nth rules 0)) (evaluate-conditions data (nth rules 1)) (evaluate-conditions data (nth rules 2)))
+         (apply-operador (str(nth rules 0)) (evaluate-conditions state data (nth rules 1)) (evaluate-conditions state data (nth rules 2)))
          
 )
 
 ;Distingue las condiciones booleanas a las que son funciones a determinar su verdad.
-(defmulti conditions (fn [data rules] rules))
-(defmethod conditions true [data rules] rules)
-(defmethod conditions false [data rules] rules)
-(defmethod conditions :default [data rules] 
+(defmulti conditions (fn [state data rules] rules))
+(defmethod conditions true [state data rules] rules)
+(defmethod conditions false [state data rules] rules)
+(defmethod conditions :default [state data rules] 
          
-          (evaluate-conditions data rules))
+          (evaluate-conditions state data rules))
 
 
-(defn evaluate-conditions-from-rule [data rule]
- (conditions data (nth rule 3))
+(defn evaluate-conditions-from-rule [state data rule]
+ (conditions state data (nth rule 3))
  
  )
 

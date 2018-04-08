@@ -32,14 +32,14 @@
 
 (deftest evaluate-condition-true-from-rule
   (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
-     (is (evaluate-conditions-from-rule {"spam" true} (nth rules 0)))))
+     (is (evaluate-conditions-from-rule [] {"spam" true} (nth rules 0)))))
 
 
 (deftest evaluate-condition-current-from-rule
   (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
-     (is (evaluate-conditions-from-rule {"spam" true} (nth rules 1)))))
+     (is (evaluate-conditions-from-rule [] {"spam" true} (nth rules 1)))))
 
 
 (deftest evaluate-condition-operators-from-rule
   (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
-     (is (evaluate-conditions-from-rule {"spam" true} (nth rules2 1)))))
+     (is (evaluate-conditions-from-rule [] {"spam" true} (nth rules2 1)))))
