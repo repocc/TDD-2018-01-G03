@@ -20,6 +20,7 @@
     (def email-count-rule [:email-count (get rules :email-count )])
 
  (deftest name-and-signal-evaluation-test
-
     (testing "increment counter"
     (is (= (inc-counter email-count-rule counter-state) {:email-count 1, :spam-count 0}))))
+
+ 
