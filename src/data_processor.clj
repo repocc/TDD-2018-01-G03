@@ -138,19 +138,7 @@
   (vector (vector new-counter-state (nth old-state 1) (nth old-state 2) ) sg)
 
   )
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
+
 
 (defn query-counter [state counter-name counter-args]
   ; (get counter-name (nth state 0)) diferenciar si es un num o {}
@@ -160,3 +148,41 @@
   (let [valor (get (get-counter-map state) counter-name)]
     (get-value-counter valor  counter-args)
   ))
+;Faltan operators que me tiran error, por lo cual habria que hacer una funcion para cada una.
+(def operators {"=" = "+" + "-" - "*" * "/" / "mod" mod "<" < ">" > "<=" <= ">=" >= "concat" str})  
+
+(defn get-operator [operator]   
+  ;Toma el operador pasado como parametro y llama a la funcion correspondiente
+ (get operators operator))
+
+(defn apply-operador [opr par1 par2]
+  ;Aplica la funcion correspondiente del opr a los parametros par1 y par2.
+(apply (get-operator opr) [par1 par2]))
+
+
+
+;Distingue las condiciones que tienen 1 parametro a evaluar de las que tienen 2.
+(defmulti evaluate-conditions (fn [data rules] (str(nth rules 0))))
+(defmethod evaluate-conditions "past" [data rules] true)
+(defmethod evaluate-conditions "current" [data rules] 
+         (= (nth rules 1) (first(keys data))))
+(defmethod evaluate-conditions :default [data rules] 
+         ;cuando es mas de 2 parametros         
+         (apply-operador (str(nth rules 0)) (evaluate-conditions data (nth rules 1)) (evaluate-conditions data (nth rules 2)))
+         
+)
+
+;Distingue las condiciones booleanas a las que son funciones a determinar su verdad.
+(defmulti conditions (fn [data rules] rules))
+(defmethod conditions true [data rules] rules)
+(defmethod conditions false [data rules] rules)
+(defmethod conditions :default [data rules] 
+         
+          (evaluate-conditions data rules))
+
+
+(defn evaluate-conditions-from-rule [data rule]
+ (conditions data (nth rule 3))
+ 
+ )
+
