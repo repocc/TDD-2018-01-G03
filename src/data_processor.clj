@@ -108,15 +108,26 @@
   [state]
   (last state))
 
-(defn name-and-signal-evaluation
-  "Returns the result of signal rule evaluation"
+(defn evaluate-signal-condition
+  "Returns the result of the evaluation of signal condition"
   [counters-state signal-rule]
-    (identity [(parser/parse-rule-name signal-rule) 0]))
+  
+)
 
-(defn get-signal
+(defn name-and-signal-evaluation
+  "Returns an array with name of the signal to eval
+  and the result of signal rule evaluation if there is
+  not possible result return nil"
+  [counters-state signal-rule]
+  (if (evaluate-signal-condition counters-state signal-rule)
+    (signal-result counters-state signal-rule)
+  )
+)
+
+(defn update-signal
   "Returns signal evaluation"
   [state]
-  (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (get-signal-rules state))))
+  (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (get-signal-rules state)))))
 
 (defn evaluate-counters-rules [state new-data]
 
@@ -133,7 +144,7 @@
 (defn process-data
   "Returns new state after evaluate every rule"
   [old-state new-data]
-  (def sg (get-signal old-state))
+  (def sg (update-signal old-state))
   (def new-counter-state (evaluate-counters-rules old-state new-data))
   (vector (vector new-counter-state (nth old-state 1) (nth old-state 2) ) sg)
 
