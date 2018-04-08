@@ -19,23 +19,45 @@
 
  (def rules (list counter-1 counter-2 counter-3 signal-1 signal-2))
 
- (def initial-state (initialize-counters rules))
+
  (def signals (save-signal-rules rules))
- (def rules (save-counter-rules rules))
+ (def counters-rules (save-counter-rules rules))
+ (def rules2 '((define-counter "email-count" [] true)
+                   (define-counter "spam-count" [] (= (current "spam") (current "spam")))))
 
- (def email-count-rule {"email-count" (get rules "email-count")})
- (deftest increment-counter-test
-    (testing "increment counter"
-     (is (= (inc-counter email-count-rule initial-state) {"email-count" 1, "spam-count" 0}))))
-
-(deftest evaluate-counters-rules-test
-  (testing ""))
-
-(deftest name-and-signal-evaluation-test
-  (testing "evaluate a signal rule")
-  (is (= )))
+(def counter-state (initialize-counters rules))
 
 
-(deftest update-signal-test)
-(testing "update signal, evaluates every signal rule with a new given state"
- (is (= (update-signal initial-state)) '({"spam-fraction" 0})))
+(def email-count-rule ["email-count" (get counter-rules "email-count" )])
+
+
+(deftest increment-counter-test-test
+   (testing "increment counter"
+   (is (= (inc-counter email-count-rule counter-state) {"email-count" 1, "spam-count" 0}))))
+
+
+(deftest evaluate-condition-true-from-rule
+  (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
+     (is (evaluate-conditions-from-rule {"spam" true} (nth rules 0)))))
+
+
+(deftest evaluate-condition-current-from-rule
+  (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
+     (is (evaluate-conditions-from-rule {"spam" true} (nth rules 1)))))
+
+
+(deftest evaluate-condition-operators-from-rule
+  (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
+     (is (evaluate-conditions-from-rule {"spam" true} (nth rules2 1)))))
+
+ (deftest evaluate-counters-rules-test
+   (testing ""))
+
+ (deftest name-and-signal-evaluation-test
+   (testing "evaluate a signal rule")
+   (is (= )))
+
+
+ (deftest update-signal-test)
+ (testing "update signal, evaluates every signal rule with a new given state"
+  (is (= (update-signal initial-state)) '({"spam-fraction" 0})))
