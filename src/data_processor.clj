@@ -200,7 +200,11 @@
 (defmulti evaluate-conditions (fn [state data rules] (str(nth rules 0))))
 (defmethod evaluate-conditions "past" [state data rules] true)
 (defmethod evaluate-conditions "current" [state data rules]
-         (= (nth rules 1) (first(keys data))))
+         (def value-condition (get data (nth rules 1)))
+          (if-not (contains? data (nth rules 1) )
+            (def value-condition false))
+         value-condition)
+
 (defmethod evaluate-conditions :default [state data rules]
          ;cuando es mas de 2 parametros
          (apply-operador (str(nth rules 0)) (evaluate-conditions state data (nth rules 1)) (evaluate-conditions state data (nth rules 2)))
@@ -230,6 +234,7 @@
 
     (doseq [rule (get-rules-state state)]
       (if (evaluate-condition state new-data (nth (nth rule 1) 1))
+
         (def counters (inc-counter rule counters new-data))
     ;  (prn "false, es decir, no cumplio ninguna regla")
       )
@@ -244,7 +249,7 @@
   ;(def sg (update-signal old-state))
   (def sg [])
   (def new-counter-state (evaluate-counters-rules old-state new-data))
-  (prn "llegue aca")
+
   (vector (vector new-counter-state (nth old-state 1) (nth old-state 2) ) sg)
 
   )
