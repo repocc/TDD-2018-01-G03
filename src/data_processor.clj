@@ -26,7 +26,7 @@
 (defn save-counter-rules [rules]
   "Returns a hashmap where every key is the rule name and as value
   a list with params and condition"
-     (into {} (map name-and-counter-rule (filter parser/is-rule-a-counter rules))))
+  (into {} (map name-and-counter-rule (filter parser/is-rule-a-counter rules))))
 
 (defn save-signal-rules [rules]
   "Returns a hashmap where every key is the rule name and as value
@@ -79,6 +79,9 @@
   "get the name of a rule parsed from state"
    (nth rule 0)
   )
+(defn get-parameters [rule]
+  (nth (nth rule 1) 0)
+  )
 
 (defn applyRule [data rule]
   "return true if the data fullfile the condition of the rule"
@@ -89,14 +92,29 @@
   )
 )
 
+(defn make-key-data [data]
+  "returns values from the data hashmap"
+   (into [] (vals data) )
+  )
 
-(defn inc-counter [rule counters]
- ;(prn rule)
-  (def key-counter (get-rule-name rule))
-   ;add segun parametros
-   (update counters key-counter inc)
-   ;(counters)
+(defn inc-counter [rule counters data]
+
+ (def key-counter (get-rule-name rule))
+ (def parameters (get-parameters rule))
+ (def data-key (make-key-data data))
+
+ (if-not (empty? parameters)
+  (if (contains? (get counters key-counter) data-key)
+   (update-in counters
+             [key-counter
+             (make-key-data data)]
+             inc)
+   (assoc-in counters [key-counter data-key] 1)
+  )
+  (update counters key-counter inc)
+  )
 )
+
 
 (defn get-counter-state [state]
   "returns counter-map from state"
@@ -142,7 +160,7 @@
   (def counters (get-counter-state state))
     (doseq [rule (get-rules-state state)]
       (if (applyRule new-data rule)
-        (def counters (inc-counter rule counters ))
+        (def counters (inc-counter rule counters new-data))
     ;  (prn "false, es decir, no cumplio ninguna regla")
       )
     )
