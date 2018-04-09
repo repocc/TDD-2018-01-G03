@@ -51,8 +51,7 @@
 
 (deftest save-signal-rules-test
   (testing ""
-  ; TODO
-  ; (is (= {"spam-fraction" ["(/ (counter-value \"spam-count\" []) (counter-value \"email-count\" []))" true]} (save-signal-rules rules)))
+  ; (is (= {"spam-fraction" [(/ (counter-value "spam-count" []) (counter-value "email-count" [])) true]} (save-signal-rules rules)))
 ))
 
 (deftest initialize-processor-test
