@@ -97,22 +97,28 @@
    (into [] (vals data) )
   )
 
+
+(defn assoc-if-new [coll k v]
+"associate key-value tuple if not exists in the current collection"
+  (merge {k v} coll)
+)
+
+
 (defn inc-counter [rule counters data]
 
  (def key-counter (get-rule-name rule))
  (def parameters (get-parameters rule))
  (def data-key (make-key-data data))
+ (def coll-key (get counters key-counter))
 
  (if-not (empty? parameters)
-  (if (contains? (get counters key-counter) data-key)
-   (update-in counters
-             [key-counter
-             (make-key-data data)]
-             inc)
-   (assoc-in counters [key-counter data-key] 1)
-  )
+  (update-in
+    (assoc-in counters [key-counter]
+      (assoc-if-new coll-key data-key 0))
+        [key-counter data-key] inc)
   (update counters key-counter inc)
   )
+
 )
 
 (defn get-counter-state [state]
@@ -182,7 +188,8 @@
 (defn process-data
   "Returns new state after evaluate every rule"
   [old-state new-data]
-  (def sg (update-signal old-state))
+  ;(def sg (update-signal old-state))
+  (def sg [])
   (def new-counter-state (evaluate-counters-rules old-state new-data))
   (vector (vector new-counter-state (nth old-state 1) (nth old-state 2) ) sg)
 
