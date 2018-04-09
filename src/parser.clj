@@ -33,10 +33,10 @@
   [rule]
   (nth rule 2))
 
-(defn parse-signal-operation
+(defn parse-signal-result
   "Returns operation to do to get result of a signal"
   [rule]
-  (subs (string/join " " (nth rule 1)) (string/index-of (nth rule 1) "(") (string/index-of (nth rule 1) "}")))
+  (get (nth rule 1) (parse-rule-name rule)))
 
 (defn parse-rule-condition
   "Returns the condition of a rule"
