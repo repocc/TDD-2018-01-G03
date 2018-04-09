@@ -17,7 +17,7 @@
 
 (defn name-and-signal-rule [rule]
     "Returns an array with signal name and with an array with rules elements"
-    (identity [ (parser/parse-rule-name rule) [(parser/parse-signal-operation rule) (parser/parse-rule-condition rule)]]))
+    (identity [ (parser/parse-rule-name rule) [(parser/parse-signal-result rule) (parser/parse-rule-condition rule)]]))
 
 (defn initialize-counters [rules]
   "Returns a hashmap where every key is a counter name and as value the initial counter value"
@@ -111,27 +111,31 @@
 (defn evaluate-signal-condition
   "Returns the result of the evaluation of signal condition"
   [counters-state signal-rule]
-
+  true
 )
 
 (defn signal-result
   [counters-state signal-rule]
+  true
 )
 
 (defn name-and-signal-evaluation
   "Returns an array with name of the signal to eval
   and the result of signal rule evaluation if there is
   not possible result return nil"
-  [counters-state signal-rule]
-  (if (evaluate-signal-condition counters-state signal-rule)
-    (signal-result counters-state signal-rule)
-  )
-)
+  [state signal-rule]
+  ((prn signal-rule))
+  (prn ((nth signal-rule) 0) 0))
 
+  ; (if (evaluate-signal-condition state signal-rule)
+  ;   (list (nth signal-rule 0) (signal-result state signal-rule))
+  ; )
+)
+(map name-and-signal-evaluation [1 2] (seq signals-rule))
 (defn update-signal
   "Returns signal evaluation"
   [state]
-  (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (get-signal-rules state)))))
+  ; (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (get-signal-rules state)))))
 
 (defn evaluate-counters-rules [state new-data]
 
@@ -164,9 +168,9 @@
     (get-value-counter valor  counter-args)
   ))
 ;Faltan operators que me tiran error, por lo cual habria que hacer una funcion para cada una.
-(def operators {"=" = "+" + "-" - "*" * "/" / "mod" mod "<" < ">" > "<=" <= ">=" >= "concat" str})  
+(def operators {"=" = "+" + "-" - "*" * "/" / "mod" mod "<" < ">" > "<=" <= ">=" >= "concat" str})
 
-(defn get-operator [operator]   
+(defn get-operator [operator]
   ;Toma el operador pasado como parametro y llama a la funcion correspondiente
  (get operators operator))
 
@@ -184,7 +188,7 @@
 (defmethod evaluate-conditions :default [state data rules]
          ;cuando es mas de 2 parametros
          (apply-operador (str(nth rules 0)) (evaluate-conditions state data (nth rules 1)) (evaluate-conditions state data (nth rules 2)))
-         
+
 )
 
 ;Distingue las condiciones booleanas a las que son funciones a determinar su verdad.
@@ -198,7 +202,7 @@
 
 (defn evaluate-conditions-from-rule [state data rule]
  (conditions state data (nth rule 3))
- 
+
  )
 (defn evaluate-condition
   [state data condition]
