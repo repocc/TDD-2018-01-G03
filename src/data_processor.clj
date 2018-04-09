@@ -173,27 +173,7 @@
 )
 
 
-(defn evaluate-counters-rules [state new-data]
 
-  (def counters (get-counter-state state))
-    (doseq [rule (get-rules-state state)]
-      (if (applyRule new-data rule)
-        (def counters (inc-counter rule counters new-data))
-    ;  (prn "false, es decir, no cumplio ninguna regla")
-      )
-    )
-  counters
-  )
-
-(defn process-data
-  "Returns new state after evaluate every rule"
-  [old-state new-data]
-  ;(def sg (update-signal old-state))
-  (def sg [])
-  (def new-counter-state (evaluate-counters-rules old-state new-data))
-  (vector (vector new-counter-state (nth old-state 1) (nth old-state 2) ) sg)
-
-  )
 
 
 (defn query-counter [state counter-name counter-args]
@@ -240,7 +220,31 @@
  (conditions state data (nth rule 3))
 
  )
-(defn evaluate-condition
-  [state data condition]
-  (condition state data condition)
+(defn evaluate-condition  [state data condition]
+  (conditions state data condition)
 )
+
+(defn evaluate-counters-rules [state new-data]
+
+  (def counters (get-counter-state state))
+
+    (doseq [rule (get-rules-state state)]
+      (if (evaluate-condition state new-data (nth (nth rule 1) 1))
+        (def counters (inc-counter rule counters new-data))
+    ;  (prn "false, es decir, no cumplio ninguna regla")
+      )
+    )
+  counters
+  )
+
+
+(defn process-data
+  "Returns new state after evaluate every rule"
+  [old-state new-data]
+  ;(def sg (update-signal old-state))
+  (def sg [])
+  (def new-counter-state (evaluate-counters-rules old-state new-data))
+  (prn "llegue aca")
+  (vector (vector new-counter-state (nth old-state 1) (nth old-state 2) ) sg)
+
+  )
