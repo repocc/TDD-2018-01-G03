@@ -6,7 +6,7 @@
 (defmethod initialize-counter 1 [params] 0)
 (defmethod initialize-counter :default [params] {})
 
-(defn counter-name-and-initial-value[rule]
+(defn counter-name-and-initial-value [rule]
     "Returns an array with counter name and initial value of the counter"
     (identity [  (parser/parse-rule-name rule) (initialize-counter (parser/parse-counter-params rule))]))
 
@@ -115,7 +115,6 @@
   )
 )
 
-
 (defn get-counter-state [state]
   "returns counter-map from state"
   (nth state 0)
@@ -128,12 +127,12 @@
 
 (defn evaluate-signal-condition
   "Returns the result of the evaluation of signal condition"
-  [counters-state signal-rule]
+  [signal-condition state]
   true
 )
 
-(defn signal-result
-  [counters-state signal-rule]
+(defn calculate-signal-result
+  [signal-result state]
   true
 )
 
@@ -142,18 +141,31 @@
   and the result of signal rule evaluation if there is
   not possible result return nil"
   [state signal-rule]
-  ((prn signal-rule))
-  (prn ((nth signal-rule) 0) 0))
 
-  ; (if (evaluate-signal-condition state signal-rule)
-  ;   (list (nth signal-rule 0) (signal-result state signal-rule))
-  ; )
+  (def signal-name (nth signal-rule 0))
+  (def signal-result (nth (nth signal-rule 1) 0))
+  (def signal-condition (nth (nth signal-rule 1) 1))
+
+  ;Si recibe ["spam-fraction" [(/ (counter-value "spam-count" []) (counter-value "email-count" [])) true]]
+  ;signal-name = "spam-fraction"
+  ;signal-result = (/ (counter-value "spam-count" []) (counter-value "email-count" []))
+  ;signal-condition = true
+
+  ;Si recibe ["repeated" [(current "value") (= (current "value") (past "value"))]
+  ;signal-name = "repeated"
+  ;signal-result = (current "value")
+  ;signal-condition = (= (current "value") (past "value"))
+
+  (if (evaluate-signal-condition signal-condition state)
+    (list signal-name (calculate-signal-result signal-result state)))
 )
-(map name-and-signal-evaluation [1 2] (seq signals-rule))
+
 (defn update-signal
   "Returns signal evaluation"
   [state]
-  ; (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (get-signal-rules state)))))
+  (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (seq (get-signal-rules state)))))
+)
+
 
 (defn evaluate-counters-rules [state new-data]
 
@@ -181,7 +193,6 @@
   ; (get counter-name (nth state 0)) diferenciar si es un num o {}
   ; en caso de ser {}, con counter-args entrar a la llave correspondiente
   ; si no fue inicializada crear la llave y asignarle valor 1
-
   (let [valor (get (get-counter-map state) counter-name)]
     (get-value-counter valor  counter-args)
   ))
