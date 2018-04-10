@@ -7,6 +7,43 @@
 (defmethod initialize-counter :default [params] {})
 
 
+;------------------------------------------------------------------------------------------
+;FUNCIONES DE OPERADORES
+;------------------------------------------------------------------------------------------
+(defn includes [coll value]
+  (let [s (seq coll)]
+    (if s (if (= (first s) value) true (recur (rest s) value)) false)))
+
+
+(defn starts-with [coll value]
+  (= (first coll) value))
+
+(defn ends-with [coll value]
+  (= (last coll) value))
+
+(defn new-or [value1 value2]
+  (or value1 value2))
+
+(defn new-and [value1 value2]
+  (and value1 value2))
+
+(defn new-not [value1 value2]
+  (not value1 value2))
+
+
+(def operators {"=" = "+" + "-" - "*" * "/" / "mod" mod "<" < ">" > "<=" <= ">=" >= "concat" str "!=" distinct? "includes?" includes "starts-with?" starts-with "ends-with?" ends-with "or" new-or "and" new-and "not" new-not})
+
+(defn get-operator [operator]
+  ;Toma el operador pasado como parametro y llama a la funcion correspondiente
+ (get operators operator))
+
+ (defn apply-operador [opr par1 par2]
+   ;Aplica la funcion correspondiente del opr a los parametros par1 y par2.
+ (apply (get-operator opr) [par1 par2]))
+
+;------------------------------------------------------------------------------------------
+
+
 (defn counter-name-and-initial-value [rule]
     "Returns an array with counter name and initial value of the counter"
     (identity [  (parser/parse-rule-name rule) (initialize-counter (parser/parse-counter-params rule))]))
@@ -82,6 +119,7 @@
 (defn get-parameters [rule]
   (nth (nth rule 1) 0)
   )
+
   (defn contains-data-in-map-data [data map-data]
     (def is-data false)
     (if (contains? map-data (first data))
@@ -149,78 +187,10 @@ value
     (get-value-counter valor  counter-args)
   ))
 
-;------------------------------------------------------------------------------------------
-;FUNCIONES DE OPERADORES
-;------------------------------------------------------------------------------------------
-(defn includes [coll value]
-  (let [s (seq coll)]
-    (if s (if (= (first s) value) true (recur (rest s) value)) false)))
-
-
-(defn starts-with [coll value]
-  (= (first coll) value))
-
-(defn ends-with [coll value]
-  (= (last coll) value))
-
-(defn new-or [value1 value2]
-  (or value1 value2))
-
-(defn new-and [value1 value2]
-  (and value1 value2))
-
-(defn new-not [value1 value2]
-  (not value1 value2))
-
-
-(def operators {"=" = "+" + "-" - "*" * "/" / "mod" mod "<" < ">" > "<=" <= ">=" >= "concat" str "!=" distinct? "includes?" includes "starts-with?" starts-with "ends-with?" ends-with "or" new-or "and" new-and "not" new-not})
-
-(defn get-operator [operator]
-  ;Toma el operador pasado como parametro y llama a la funcion correspondiente
- (get operators operator))
-
- (defn apply-operador [opr par1 par2]
-   ;Aplica la funcion correspondiente del opr a los parametros par1 y par2.
- (apply (get-operator opr) [par1 par2]))
 
 ;------------------------------------------------------------------------------------------
 ;FUNCIONES PARA EVALUAR EL PAST
 ;------------------------------------------------------------------------------------------
-
-
-;Distingue las condiciones que tienen 1 parametro a evaluar de las que tienen 2.
-(defmulti evaluate-conditions (fn [state data condi] (str(nth condi 0))))
-(defmethod evaluate-conditions "past" [state data condi] true)
-(defmethod evaluate-conditions "current" [state data condi]
-         (def value-condition (get data (nth condi 1)))
-          (if-not (contains? data (nth condi 1) )
-            (def value-condition false))
-         value-condition)
-
-(defmethod evaluate-conditions :default [state data condi]
-         ;cuando es mas de 2 parametros
-         (apply-operador (str(nth condi 0)) (evaluate-conditions state data (nth condi 1)) (evaluate-conditions state data (nth condi 2)))
-
-)
-
-;Distingue las condiciones booleanas a las que son funciones a determinar su verdad.
-(defmulti conditions (fn [state data condi] condi))
-(defmethod conditions true [state data condi] condi)
-(defmethod conditions false [state data condi] condi)
-(defmethod conditions :default [state data condi]
-
-          (evaluate-conditions state data condi))
-
-
-(defn evaluate-conditions-from-rule [state data rule]
- (conditions state data (nth rule 3))
-
- )
-(defn evaluate-condition  [state data condition]
-  (conditions state data condition)
-)
-
-
 
 
 (defn add-value-map-data [data map-data]
@@ -309,6 +279,8 @@ value
       )
     )
   counters)
+
+
 
 
 (defn get-signal-rules
