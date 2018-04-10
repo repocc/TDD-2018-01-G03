@@ -34,9 +34,8 @@
      (into {} (map name-and-signal-rule (filter parser/is-rule-a-signal rules))))
 
 (defn initialize-processor [rules]
-  "Returns an array with 3 hashmaps. 1 counters initilized, 2 counter rules
-  and 3 signal rules"
-  [(initialize-counters rules) (save-counter-rules rules) (save-signal-rules rules)])
+  "Returns an array with 4 hashmaps. 1 counters initilized, 2 counter rules, 3 signal rules and the last one is for the 'past -data'"
+  [(initialize-counters rules) (save-counter-rules rules) (save-signal-rules rules) {}])
 
 (defn get-status [state]
   "Return the status list of the state list."
@@ -44,7 +43,7 @@
 
 (defn get-signals [state]
   "Return the signal map of the state list."
-  (last state))
+  (nth state 2))
 
 (defn get-counter-map [status-list]
 
@@ -92,10 +91,30 @@
   )
 )
 
-(defn make-key-data [data]
+
+(defmulti evaluate-parameters (fn [state data parameter] (str ( nth parameter 0))))
+(defmethod evaluate-parameters "past" [state data parameter] true)
+(defmethod evaluate-parameters "current" [state data parameter]
+    (def value-condition (get data (nth parameter 1)))
+     (if-not (contains? data (nth parameter 1) )
+       (def value-condition false))
+    value-condition)
+(defmethod evaluate-parameters :default [state data parameter] 0)
+
+
+(defn make-key-data [state data parameters]
   "returns values from the data hashmap"
-   (into [] (vals data) )
-  )
+  (def key-data [])
+    (if-not (empty? parameters)
+
+      (doseq [parameter parameters]
+        (def key-data (conj key-data (evaluate-parameters state data parameter)))
+      )
+    )
+   key-data
+)
+
+
 
 
 (defn assoc-if-new [coll k v]
@@ -104,11 +123,11 @@
 )
 
 
-(defn inc-counter [rule counters data]
+(defn inc-counter [state rule counters data]
 
  (def key-counter (get-rule-name rule))
  (def parameters (get-parameters rule))
- (def data-key (make-key-data data))
+ (def data-key (make-key-data state data parameters))
  (def coll-key (get counters key-counter))
 
  (if-not (empty? parameters)
@@ -129,7 +148,7 @@
 (defn get-signal-rules
   "Return the signal rules map from the state list."
   [state]
-  (last state))
+  (nth state 2))
 
 (defn evaluate-signal-condition
   "Returns the result of the evaluation of signal condition"
@@ -196,6 +215,7 @@
 
 
 
+
 ;Distingue las condiciones que tienen 1 parametro a evaluar de las que tienen 2.
 (defmulti evaluate-conditions (fn [state data rules] (str(nth rules 0))))
 (defmethod evaluate-conditions "past" [state data rules] true)
@@ -228,24 +248,28 @@
   (conditions state data condition)
 )
 
+
+(defn add-data [data map-data]
+
+  )
+
 (defn evaluate-counters-rules [state new-data]
 
   (def counters (get-counter-state state))
-
     (doseq [rule (get-rules-state state)]
       (if (evaluate-condition state new-data (nth (nth rule 1) 1))
-
-        (def counters (inc-counter rule counters new-data))
-    ;  (prn "false, es decir, no cumplio ninguna regla")
+        (def counters (inc-counter state rule counters new-data))
       )
     )
   counters
-  )
+)
 
 
 (defn process-data
   "Returns new state after evaluate every rule"
   [old-state new-data]
+  ;(def map-data (add-data new-data (nth state 3)))
+
   ;(def sg (update-signal old-state))
   (def sg [])
   (def new-counter-state (evaluate-counters-rules old-state new-data))
