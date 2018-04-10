@@ -67,3 +67,66 @@
 (deftest query-counter-get-value-counter-with-conditions
   (testing "get-value-counter should return the correct value."
    (is (= 1 (get-value-counter {[true false] 1} [true false]) ))))
+
+(deftest query-add-value-map-data-no-exist 
+  (testing "add-value-map-data should add the value to the key already created in the map"
+    (def data-test (conj () true "spam"))
+    (def map-data-test {"spam" (conj () false)})
+    (is (= (add-value-map-data data-test map-data-test) {"spam" (conj () false true)}))
+    ))
+
+(deftest query-add-value-map-data-exist
+  (testing "add-value-map-data should add the value to the key already created in the map"
+    (def data-test (conj () true "spam"))
+    (def map-data-test {"spam" (conj () true)})
+    (is (= (add-value-map-data data-test map-data-test) {"spam" (conj () true)}))
+    ))
+
+(deftest query-add-data-map-data
+  (testing "add-data-map-data should add the key value to the map"
+    (def data-test (conj () true "important"))
+    (def map-data-test {"spam" (conj () true)})
+    (is (= (add-value-map-data data-test map-data-test) {"spam" (conj () true) "important" (conj () true)}))
+    ))
+
+(deftest query-update-map-data-exist-key-and-value
+  (testing "update-map-data should update the key value to the map"
+    (def data-test (conj () false "spam"))
+    (def map-data-test {"spam" (conj () false)})
+    (is (= (add-value-map-data data-test map-data-test) {"spam" (conj () false)}))
+    ))
+
+(deftest query-update-map-data-exist-key-not-value
+  (testing "update-map-data should update the key value to the map"
+    (def data-test (conj () false "spam"))
+    (def map-data-test {"spam" (conj () true)})
+    (is (= (add-value-map-data data-test map-data-test) {"spam" (conj () true false) }))
+    ))
+
+(deftest query-update-map-data-not-exist-key-and-value
+  (testing "update-map-data should update the key value to the map"
+    (def data-test (conj () false "spam"))
+    (def map-data-test {"important" (conj () true)})
+    (is (= (add-value-map-data data-test map-data-test) {"important" (conj () true) "spam" (conj () false)}))
+    ))
+
+(deftest query-contains-data-in-map-data-true
+  (testing "Return true is map-data contains the data or false otherwise"
+    (def data-test (conj () true "spam"))
+    (def map-data-test {"spam" (conj () true)})
+    (is (= (contains-data-in-map-data data-test map-data-test) true))
+    ))
+
+(deftest query-contains-data-in-map-data-false-value
+  (testing "Return true is map-data contains the data or false otherwise"
+    (def data-test (conj () false "spam"))
+    (def map-data-test {"spam" (conj () true)})
+    (is (= (contains-data-in-map-data data-test map-data-test) false))
+    ))
+
+(deftest query-contains-data-in-map-data-false-key
+  (testing "Return true is map-data contains the data or false otherwise"
+    (def data-test (conj () true "important"))
+    (def map-data-test {"spam" (conj () true)})
+    (is (= (contains-data-in-map-data data-test map-data-test) false))
+    ))

@@ -269,9 +269,38 @@
   (conditions state data condition)
 )
 
+(defn contains-data-in-map-data [data map-data]
+  (def is-data false)
+  (if (contains? map-data (first data))
+    (if (includes (get map-data (first data)) (last data))
+      (def is-data true)))
+  is-data
+  )
 
-(defn add-data [data map-data]
+(defn add-value-map-data [data map-data]
+  (def new-map-data map-data)
+    (if-not (includes (get map-data (first data)) (last data)) 
+      (def new-map-data (assoc map-data (first data) (conj (get map-data (first data)) (last data) ))))
+    new-map-data
 
+)
+
+(defn add-data-map-data [data map-data]
+  (assoc  map-data (first data) (conj () (last data)))
+  )
+
+(defn update-map-data [data map-data]
+  ;Check if the map-data contains the data key. If si, check if map-data contains 
+  ;the data value of the data key- If not, the data is added to the data-map correctly.
+  ;Return the map-data update
+  ;Format map-data: {key [value1 value2..] ..} 
+  ;Format data: (key value)
+    (def new-map-data map-data)
+    (if (contains? map-data (first data)) 
+      (def new-map-data (add-value-map-data data map-data)))
+    (if-not (contains? map-data (first data)) 
+      (def new-map-data (add-data-map-data data map-data)))
+    new-map-data
   )
 
 (defn evaluate-counters-rules [state new-data]
