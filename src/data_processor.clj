@@ -223,7 +223,7 @@
     (get-value-counter valor  counter-args)
   ))
 
-;Faltan operators que me tiran error, por lo cual habria que hacer una funcion para cada una.
+
 (def operators {"=" = "+" + "-" - "*" * "/" / "mod" mod "<" < ">" > "<=" <= ">=" >= "concat" str "!=" distinct? "includes?" includes "starts-with?" starts-with "ends-with?" ends-with "or" new-or "and" new-and "not" new-not})
 
 (defn get-operator [operator]
@@ -318,12 +318,15 @@
 (defn process-data
   "Returns new state after evaluate every rule"
   [old-state new-data]
-  ;(def map-data (add-data new-data (nth state 3)))
+
+  (def map-data (nth old-state 3))
+  (doseq [data new-data]
+    (def map-data (update-map-data (map identity data) map-data)))
 
   ;(def sg (update-signal old-state))
   (def sg [])
   (def new-counter-state (evaluate-counters-rules old-state new-data))
 
-  (vector (vector new-counter-state (nth old-state 1) (nth old-state 2) ) sg)
+  (vector (vector new-counter-state (nth old-state 1) (nth old-state 2) map-data) sg)
 
   )
