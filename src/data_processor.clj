@@ -125,18 +125,11 @@
    key-data
 )
 
-
-
-
 (defn assoc-if-new [coll k v]
 "associate key-value tuple if not exists in the current collection"
   (merge {k v} coll)
 )
 
-(defn get-counter-state [state]
-  "returns counter-map from state"
-  (nth state 0)
-)
 (defn inc-counter [state rule data counters]
 
  (def key-counter (get-rule-name rule))
@@ -153,58 +146,6 @@
   )
 
 )
-
-
-
-(defn get-signal-rules
-  "Return the signal rules map from the state list."
-  [state]
-  (nth state 2))
-
-(defn evaluate-signal-condition
-  "Returns the result of the evaluation of signal condition"
-  [signal-condition state]
-  true
-)
-
-(defn calculate-signal-result
-  [signal-result state]
-  true
-)
-
-(defn name-and-signal-evaluation
-  "Returns an array with name of the signal to eval
-  and the result of signal rule evaluation if there is
-  not possible result return nil"
-  [state signal-rule]
-
-  (def signal-name (nth signal-rule 0))
-  (def signal-result (nth (nth signal-rule 1) 0))
-  (def signal-condition (nth (nth signal-rule 1) 1))
-
-  ;Si recibe ["spam-fraction" [(/ (counter-value "spam-count" []) (counter-value "email-count" [])) true]]
-  ;signal-name = "spam-fraction"
-  ;signal-result = (/ (counter-value "spam-count" []) (counter-value "email-count" []))
-  ;signal-condition = true
-
-  ;Si recibe ["repeated" [(current "value") (= (current "value") (past "value"))]
-  ;signal-name = "repeated"
-  ;signal-result = (current "value")
-  ;signal-condition = (= (current "value") (past "value"))
-
-  (if (evaluate-signal-condition signal-condition state)
-    (list signal-name (calculate-signal-result signal-result state)))
-)
-
-(defn update-signal
-  "Returns signal evaluation"
-  [state]
-  (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (seq (get-signal-rules state)))))
-)
-
-
-
-
 
 (defn query-counter [state counter-name counter-args]
   ; (get counter-name (nth state 0)) diferenciar si es un num o {}
@@ -264,7 +205,7 @@
 
 ;Distingue las condiciones que tienen 1 parametro a evaluar de las que tienen 2.
 (defmulti evaluate-conditions (fn [state data condi] (str(nth condi 0))))
-(defmethod evaluate-conditions "past" [state data condi] 
+(defmethod evaluate-conditions "past" [state data condi]
    (contains-data-in-map-data  (conj () (get data (nth condi 1)) (nth condi 1)) (nth state 3)))
 (defmethod evaluate-conditions "current" [state data condi]
          (def value-condition (get data (nth condi 1)))
@@ -293,21 +234,68 @@
 
  )
 (defn evaluate-condition  [state data condition]
-  (conditions state data condition)
-)
-
-
+  (conditions state data condition))
 (defn evaluate-counters-rules [state new-data]
 
-  (def counters (get-counter-state state))
+  (def counters (get-counters-state state))
     (doseq [rule (get-rules-state state)]
       (if (evaluate-condition state new-data (nth (nth rule 1) 1))
         (def counters (inc-counter state rule new-data counters))
       )
     )
-  counters
+  counters)
+
+(defn get-signal-rules
+  "Return the signal rules map from the state list."
+  [state]
+  (nth state 2))
+
+(defn evaluate-signal-condition
+  "Returns the result of the evaluation of signal condition"
+  [signal-condition state]
+  (evaluate-condition state [] signal-condition)
 )
 
+(defn calculate-signal-result
+  [signal-result state]
+  ;Ej1: signal-result = (/ (counter-value "spam-count" []) (counter-value "email-count" []))
+  ;Ej2: signal-result = (current "value")
+  0
+)
+
+(defn name-and-signal-evaluation
+  "Returns an array with name of the signal to eval
+  and the result of signal rule evaluation if there is
+  not possible result return nil"
+  [state signal-rule]
+
+  (def signal-name (nth signal-rule 0))
+  (def signal-result (nth (nth signal-rule 1) 0))
+  (def signal-condition (nth (nth signal-rule 1) 1))
+
+  ;Si recibe ["spam-fraction" [(/ (counter-value "spam-count" []) (counter-value "email-count" [])) true]]
+  ;signal-name = "spam-fraction"
+  ;signal-result = (/ (counter-value "spam-count" []) (counter-value "email-count" []))
+  ;signal-condition = true
+
+  ;Si recibe ["repeated" [(current "value") (= (current "value") (past "value"))]
+  ;signal-name = "repeated"
+  ;signal-result = (current "value")
+  ;signal-condition = (= (current "value") (past "value"))
+
+  (if (evaluate-signal-condition signal-condition state)
+    ; (prn (list signal-name (calculate-signal-result signal-result state)))
+    (list signal-name (calculate-signal-result signal-result state)))
+
+)
+
+(defn update-signal
+  "Returns signal evaluation"
+  [state]
+
+  ; (prn (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (seq (get-signal-rules state))))))
+  (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (seq (get-signal-rules state)))))
+)
 
 (defn process-data
   "Returns new state after evaluate every rule"
@@ -321,6 +309,4 @@
   (def sg [])
   (def new-counter-state (evaluate-counters-rules old-state new-data))
 
-  (vector (vector new-counter-state (nth old-state 1) (nth old-state 2) map-data) sg)
-
-  )
+  (vector (vector new-counter-state (nth old-state 1) (nth old-state 2) map-data) sg))
