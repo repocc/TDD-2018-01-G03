@@ -264,38 +264,24 @@
 )
 
 (defn name-and-signal-evaluation
+  [state signal-rule]
   "Returns an array with name of the signal to eval
   and the result of signal rule evaluation if there is
   not possible result return nil"
-  [state signal-rule]
 
   (def signal-name (nth signal-rule 0))
   (def signal-result (nth (nth signal-rule 1) 0))
   (def signal-condition (nth (nth signal-rule 1) 1))
 
-  ;Si recibe ["spam-fraction" [(/ (counter-value "spam-count" []) (counter-value "email-count" [])) true]]
-  ;signal-name = "spam-fraction"
-  ;signal-result = (/ (counter-value "spam-count" []) (counter-value "email-count" []))
-  ;signal-condition = true
-
-  ;Si recibe ["repeated" [(current "value") (= (current "value") (past "value"))]
-  ;signal-name = "repeated"
-  ;signal-result = (current "value")
-  ;signal-condition = (= (current "value") (past "value"))
-
   (if (evaluate-signal-condition signal-condition state)
-    ; (prn (list signal-name (calculate-signal-result signal-result state)))
-    (list signal-name (calculate-signal-result signal-result state)))
-
+    {signal-name (calculate-signal-result signal-result state)}
+  )
 )
 
 (defn update-signal
-  "Returns signal evaluation"
   [state]
-
-  ; (prn (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (seq (get-signal-rules state))))))
-  (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (seq (get-signal-rules state)))))
-)
+  "Returns signal evaluation"
+  (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (seq (get-signal-rules state))))))
 
 (defn process-data
   "Returns new state after evaluate every rule"
