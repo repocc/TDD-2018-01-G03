@@ -101,14 +101,26 @@
 (defn get-parameters [rule]
   (nth (nth rule 1) 0)
   )
-
+  (defn contains-data-in-map-data [data map-data]
+    (def is-data false)
+    (if (contains? map-data (first data))
+      (if (includes (get map-data (first data)) (last data))
+        (def is-data true)))
+    is-data
+    )
 
 (defmulti evaluate-parameters (fn [state data parameter] (str ( nth parameter 0))))
-(defmethod evaluate-parameters "past" [state data parameter] true)
+(defmethod evaluate-parameters "past" [state data parameter]
+ (if (contains-data-in-map-data  (conj () (get data (nth parameter 1)) (nth parameter 1)) (nth state 3))
+ (def value (get data (nth parameter 1)))
+ (def value "NOEXISTEP")
+ )
+value
+ )
 (defmethod evaluate-parameters "current" [state data parameter]
     (def value-condition (get data (nth parameter 1)))
      (if-not (contains? data (nth parameter 1) )
-       (def value-condition {"NOEXISTE" 0}))
+       (def value-condition "NOEXISTEC"))
     value-condition)
 (defmethod evaluate-parameters :default [state data parameter] 0)
 
@@ -143,6 +155,7 @@
  (def parameters (get-parameters rule))
  (def data-key (make-key-data state data parameters))
  (def coll-key (get counters key-counter))
+ 
 
  (if-not (empty? parameters)
   (update-in
@@ -260,13 +273,8 @@
   (conditions state data condition)
 )
 
-(defn contains-data-in-map-data [data map-data]
-  (def is-data false)
-  (if (contains? map-data (first data))
-    (if (includes (get map-data (first data)) (last data))
-      (def is-data true)))
-  is-data
-  )
+
+
 
 (defn add-value-map-data [data map-data]
   (def new-map-data map-data)
