@@ -6,25 +6,6 @@
 (defmethod initialize-counter 1 [params] 0)
 (defmethod initialize-counter :default [params] {})
 
-(defn includes [coll value]
-  (let [s (seq coll)]
-    (if s (if (= (first s) value) true (recur (rest s) value)) false)))
-
-
-(defn starts-with [coll value]
-  (= (first coll) value))
-
-(defn ends-with [coll value]
-  (= (last coll) value))
-
-(defn new-or [value1 value2]
-  (or value1 value2))
-
-(defn new-and [value1 value2]
-  (and value1 value2))
-
-(defn new-not [value1 value2]
-  (not value1 value2))
 
 (defn counter-name-and-initial-value [rule]
     "Returns an array with counter name and initial value of the counter"
@@ -155,6 +136,29 @@
     (get-value-counter valor  counter-args)
   ))
 
+;------------------------------------------------------------------------------------------
+;FUNCIONES DE OPERADORES
+;------------------------------------------------------------------------------------------
+(defn includes [coll value]
+  (let [s (seq coll)]
+    (if s (if (= (first s) value) true (recur (rest s) value)) false)))
+
+
+(defn starts-with [coll value]
+  (= (first coll) value))
+
+(defn ends-with [coll value]
+  (= (last coll) value))
+
+(defn new-or [value1 value2]
+  (or value1 value2))
+
+(defn new-and [value1 value2]
+  (and value1 value2))
+
+(defn new-not [value1 value2]
+  (not value1 value2))
+
 
 (def operators {"=" = "+" + "-" - "*" * "/" / "mod" mod "<" < ">" > "<=" <= ">=" >= "concat" str "!=" distinct? "includes?" includes "starts-with?" starts-with "ends-with?" ends-with "or" new-or "and" new-and "not" new-not})
 
@@ -166,8 +170,9 @@
    ;Aplica la funcion correspondiente del opr a los parametros par1 y par2.
  (apply (get-operator opr) [par1 par2]))
 
-
-
+;------------------------------------------------------------------------------------------
+;FUNCIONES PARA EVALUAR EL PAST
+;------------------------------------------------------------------------------------------
 
 (defn contains-data-in-map-data [data map-data]
   (def is-data false)
@@ -202,6 +207,25 @@
       (def new-map-data (add-data-map-data data map-data)))
     new-map-data
   )
+
+;------------------------------------------------------------------------------------------
+;FUNCIONES PARA EVALUAR LAS EXPRESIONES
+;------------------------------------------------------------------------------------------
+
+;Evalua la expresion dentro del parentesis.
+(defmulti evaluate-expression (fn [state data expre] (str(nth expre 0))))
+(defmethod evaluate-expression "past" [state data expre]
+   (contains-data-in-map-data  (conj () (get data (nth expre 1)) (nth expre 1)) (nth state 3)))
+(defmethod evaluate-expression "current" [state data expre]
+         (get data (nth expre 1)))
+(defmethod evaluate-expression "counter-value" [state data expre]
+         (query-counter state (nth expre 1) (nth expre 2)))
+
+(defmethod evaluate-expression :default [state data condi]
+         ;cuando es mas de 2 parametros
+         (apply-operador (str(nth condi 0)) (evaluate-expression state data (nth condi 1)) (evaluate-expression state data (nth condi 2)))
+
+)
 
 ;Distingue las condiciones que tienen 1 parametro a evaluar de las que tienen 2.
 (defmulti evaluate-conditions (fn [state data condi] (str(nth condi 0))))
@@ -244,6 +268,7 @@
       )
     )
   counters)
+
 
 (defn get-signal-rules
   "Return the signal rules map from the state list."

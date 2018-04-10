@@ -193,6 +193,25 @@
     (is (= (evaluate-conditions state data-test condi) false))
     ))
 
+
+(deftest query-evaluate-expression-current-match-bool
+  (testing "Return true if the current value exist on the data map or false otherwise"
+    (def data-test {"spam" true})
+    (def condi '(current "spam"))
+    (def state [{} {} {} {}])
+    (is (= (evaluate-expression state data-test condi) true))
+    ))
+
+
+(deftest query-evaluate-expression-current-match-value
+  (testing "Return true if the current value exist on the data map or false otherwise"
+    (def data-test {"value" 2})
+    (def condi '(current "value"))
+    (def state [{} {} {} {}])
+    (is (= (evaluate-expression state data-test condi) 2))
+    ))
+
+
 ;(deftest query-evaluate-multi-conditions-match
  ; (testing "Return true if the current value exist on the data map or false otherwise"
   ;  (def data-test {"spam" true "value" 2 "subject" "tp-tecnicas"})
