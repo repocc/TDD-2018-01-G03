@@ -133,56 +133,6 @@
     is-data
     )
 
-(defmulti evaluate-parameters (fn [state data parameter] (str ( nth parameter 0))))
-(defmethod evaluate-parameters "past" [state data parameter]
- (if (contains-data-in-map-data  (conj () (get data (nth parameter 1)) (nth parameter 1)) (nth state 3))
- (def value (get data (nth parameter 1)))
- (def value "NOEXISTEP")
- )
-value
- )
-(defmethod evaluate-parameters "current" [state data parameter]
-    (def value-condition (get data (nth parameter 1)))
-     (if-not (contains? data (nth parameter 1) )
-       (def value-condition "NOEXISTEC"))
-    value-condition)
-(defmethod evaluate-parameters :default [state data parameter] 0)
-
-
-(defn make-key-data [state data parameters]
-  "returns values from the data hashmap"
-  (def key-data [])
-    (if-not (empty? parameters)
-
-      (doseq [parameter parameters]
-        (def key-data (conj key-data (evaluate-parameters state data parameter)))
-      )
-    )
-   key-data
-)
-
-(defn assoc-if-new [coll k v]
-"associate key-value tuple if not exists in the current collection"
-  (merge {k v} coll)
-)
-
-(defn inc-counter [state rule data counters]
-
- (def key-counter (get-rule-name rule))
- (def parameters (get-parameters rule))
- (def data-key (make-key-data state data parameters))
- (def coll-key (get counters key-counter))
-
-
- (if-not (empty? parameters)
-  (update-in
-    (assoc-in counters [key-counter]
-      (assoc-if-new coll-key data-key 0))
-        [key-counter data-key] inc)
-  (update counters key-counter inc)
-  )
-
-)
 
 (defn query-counter [state counter-name counter-args]
   ; (get counter-name (nth state 0)) diferenciar si es un num o {}
@@ -238,7 +188,7 @@ value
 (defn value-past-function [list-values expre old-operator old-par1 old-par2]
 
     (def ret-value (nth list-values 0))
-    (doseq [value list-values] 
+    (doseq [value list-values]
       (if (apply-operador-with-past old-operator old-par1 old-par2 value) (def ret-value value))
 
       )
@@ -260,7 +210,7 @@ value
     (def old-par2 (nth old-expre 2))
     (if (distinct? (str(nth old-par2 0)) "past") (def old-par2  (conj () (evaluate-expression state data old-par2 0) (nth '(nopast) 0))))
 
-    (if (contains? map-data key-dato) 
+    (if (contains? map-data key-dato)
         (def ret-value (value-past-function (get map-data key-dato) expre old-operator old-par1 old-par2))
       )
     ret-value
@@ -311,15 +261,6 @@ value
  )
 (defn evaluate-condition  [state data condition]
   (conditions state data condition))
-(defn evaluate-counters-rules [state new-data]
-
-  (def counters (get-counters-state state))
-    (doseq [rule (get-rules-state state)]
-      (if (evaluate-condition state new-data (nth (nth rule 1) 1))
-        (def counters (inc-counter state rule new-data counters))
-      )
-    )
-  counters)
 
 
 
@@ -361,6 +302,51 @@ value
   [state]
   "Returns signal evaluation"
   (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (seq (get-signal-rules state))))))
+
+
+    (defn make-key-data [state data parameters]
+      "returns values from the data hashmap"
+      (def key-data [])
+        (if-not (empty? parameters)
+          (doseq [parameter parameters]
+            (def key-data (conj key-data (evaluate-expression state data parameter 0)))
+          )
+        )
+       key-data
+    )
+
+    (defn assoc-if-new [coll k v]
+    "associate key-value tuple if not exists in the current collection"
+      (merge {k v} coll)
+    )
+
+    (defn inc-counter [state rule data counters]
+
+     (def key-counter (get-rule-name rule))
+     (def parameters (get-parameters rule))
+     (def data-key (make-key-data state data parameters))
+     (def coll-key (get counters key-counter))
+
+
+     (if-not (empty? parameters)
+      (update-in
+        (assoc-in counters [key-counter]
+          (assoc-if-new coll-key data-key 0))
+            [key-counter data-key] inc)
+      (update counters key-counter inc)
+      )
+
+    )
+
+    (defn evaluate-counters-rules [state new-data]
+
+      (def counters (get-counters-state state))
+        (doseq [rule (get-rules-state state)]
+          (if (evaluate-condition state new-data (nth (nth rule 1) 1))
+            (def counters (inc-counter state rule new-data counters))
+          )
+        )
+      counters)
 
 (defn process-data
   "Returns new state after evaluate every rule"
