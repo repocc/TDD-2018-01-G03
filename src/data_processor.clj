@@ -6,6 +6,10 @@
 (defmethod initialize-counter 1 [params] 0)
 (defmethod initialize-counter :default [params] {})
 
+(defn list-contains? [coll value] 
+  (let [s (seq coll)] 
+    (if s (if (= (first s) value) true (recur (rest s) value)) false)))
+
 (defn counter-name-and-initial-value [rule]
     "Returns an array with counter name and initial value of the counter"
     (identity [  (parser/parse-rule-name rule) (initialize-counter (parser/parse-counter-params rule))]))
