@@ -6,24 +6,24 @@
 (defmethod initialize-counter 1 [params] 0)
 (defmethod initialize-counter :default [params] {})
 
-(defn includes [coll value] 
-  (let [s (seq coll)] 
+(defn includes [coll value]
+  (let [s (seq coll)]
     (if s (if (= (first s) value) true (recur (rest s) value)) false)))
 
 
-(defn starts-with [coll value] 
+(defn starts-with [coll value]
   (= (first coll) value))
 
-(defn ends-with [coll value] 
+(defn ends-with [coll value]
   (= (last coll) value))
 
-(defn new-or [value1 value2] 
+(defn new-or [value1 value2]
   (or value1 value2))
 
-(defn new-and [value1 value2] 
+(defn new-and [value1 value2]
   (and value1 value2))
 
-(defn new-not [value1 value2] 
+(defn new-not [value1 value2]
   (not value1 value2))
 
 (defn counter-name-and-initial-value [rule]
@@ -102,22 +102,13 @@
   (nth (nth rule 1) 0)
   )
 
-(defn applyRule [data rule]
-  "return true if the data fullfile the condition of the rule"
-
-  (if (= "true" (get-condition rule))
-  true ;sumar contador
-  ;(prn "evaluar condicion pasandole data") ; evaluar condicion no true
-  )
-)
-
 
 (defmulti evaluate-parameters (fn [state data parameter] (str ( nth parameter 0))))
 (defmethod evaluate-parameters "past" [state data parameter] true)
 (defmethod evaluate-parameters "current" [state data parameter]
     (def value-condition (get data (nth parameter 1)))
      (if-not (contains? data (nth parameter 1) )
-       (def value-condition false))
+       (def value-condition {"NOEXISTE" 0}))
     value-condition)
 (defmethod evaluate-parameters :default [state data parameter] 0)
 
@@ -142,8 +133,11 @@
   (merge {k v} coll)
 )
 
-
-(defn inc-counter [state rule counters data]
+(defn get-counter-state [state]
+  "returns counter-map from state"
+  (nth state 0)
+)
+(defn inc-counter [state rule data counters]
 
  (def key-counter (get-rule-name rule))
  (def parameters (get-parameters rule))
@@ -160,10 +154,7 @@
 
 )
 
-(defn get-counter-state [state]
-  "returns counter-map from state"
-  (nth state 0)
-)
+
 
 (defn get-signal-rules
   "Return the signal rules map from the state list."
@@ -247,7 +238,7 @@
 
 (defn add-value-map-data [data map-data]
   (def new-map-data map-data)
-    (if-not (includes (get map-data (first data)) (last data)) 
+    (if-not (includes (get map-data (first data)) (last data))
       (def new-map-data (assoc map-data (first data) (conj (get map-data (first data)) (last data) ))))
     new-map-data
 
@@ -258,15 +249,15 @@
   )
 
 (defn update-map-data [data map-data]
-  ;Check if the map-data contains the data key. If si, check if map-data contains 
+  ;Check if the map-data contains the data key. If si, check if map-data contains
   ;the data value of the data key- If not, the data is added to the data-map correctly.
   ;Return the map-data update
-  ;Format map-data: {key [value1 value2..] ..} 
+  ;Format map-data: {key [value1 value2..] ..}
   ;Format data: (key value)
     (def new-map-data map-data)
-    (if (contains? map-data (first data)) 
+    (if (contains? map-data (first data))
       (def new-map-data (add-value-map-data data map-data)))
-    (if-not (contains? map-data (first data)) 
+    (if-not (contains? map-data (first data))
       (def new-map-data (add-data-map-data data map-data)))
     new-map-data
   )
@@ -310,7 +301,7 @@
   (def counters (get-counter-state state))
     (doseq [rule (get-rules-state state)]
       (if (evaluate-condition state new-data (nth (nth rule 1) 1))
-        (def counters (inc-counter state rule counters new-data))
+        (def counters (inc-counter state rule new-data counters))
       )
     )
   counters
