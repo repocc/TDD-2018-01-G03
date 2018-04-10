@@ -108,7 +108,7 @@
 (defmethod evaluate-parameters "current" [state data parameter]
     (def value-condition (get data (nth parameter 1)))
      (if-not (contains? data (nth parameter 1) )
-       (def value-condition false))
+       (def value-condition {"NOEXISTE" 0}))
     value-condition)
 (defmethod evaluate-parameters :default [state data parameter] 0)
 
@@ -137,9 +137,8 @@
   "returns counter-map from state"
   (nth state 0)
 )
-(defn inc-counter [state rule data]
+(defn inc-counter [state rule data counters]
 
- (def counters (get-counter-state state))
  (def key-counter (get-rule-name rule))
  (def parameters (get-parameters rule))
  (def data-key (make-key-data state data parameters))
@@ -297,10 +296,10 @@
 
 (defn evaluate-counters-rules [state new-data]
 
-
+  (def counters (get-counter-state state))
     (doseq [rule (get-rules-state state)]
       (if (evaluate-condition state new-data (nth (nth rule 1) 1))
-        (def counters (inc-counter state rule new-data))
+        (def counters (inc-counter state rule new-data counters))
       )
     )
   counters
