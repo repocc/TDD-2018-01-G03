@@ -6,6 +6,10 @@
 (defmethod initialize-counter 1 [params] 0)
 (defmethod initialize-counter :default [params] {})
 
+
+;------------------------------------------------------------------------------------------
+;FUNCIONES DE OPERADORES
+;------------------------------------------------------------------------------------------
 (defn includes [coll value]
   (let [s (seq coll)]
     (if s (if (= (first s) value) true (recur (rest s) value)) false)))
@@ -25,6 +29,20 @@
 
 (defn new-not [value1 value2]
   (not value1 value2))
+
+
+(def operators {"=" = "+" + "-" - "*" * "/" / "mod" mod "<" < ">" > "<=" <= ">=" >= "concat" str "!=" distinct? "includes?" includes "starts-with?" starts-with "ends-with?" ends-with "or" new-or "and" new-and "not" new-not})
+
+(defn get-operator [operator]
+  ;Toma el operador pasado como parametro y llama a la funcion correspondiente
+ (get operators operator))
+
+ (defn apply-operador [opr par1 par2]
+   ;Aplica la funcion correspondiente del opr a los parametros par1 y par2.
+ (apply (get-operator opr) [par1 par2]))
+
+;------------------------------------------------------------------------------------------
+
 
 (defn counter-name-and-initial-value [rule]
     "Returns an array with counter name and initial value of the counter"
@@ -101,6 +119,7 @@
 (defn get-parameters [rule]
   (nth (nth rule 1) 0)
   )
+
   (defn contains-data-in-map-data [data map-data]
     (def is-data false)
     (if (contains? map-data (first data))
@@ -169,53 +188,9 @@ value
   ))
 
 
-(def operators {"=" = "+" + "-" - "*" * "/" / "mod" mod "<" < ">" > "<=" <= ">=" >= "concat" str "!=" distinct? "includes?" includes "starts-with?" starts-with "ends-with?" ends-with "or" new-or "and" new-and "not" new-not})
-
-(defn get-operator [operator]
-  ;Toma el operador pasado como parametro y llama a la funcion correspondiente
- (get operators operator))
-
- (defn apply-operador [opr par1 par2]
-   ;Aplica la funcion correspondiente del opr a los parametros par1 y par2.
- (apply (get-operator opr) [par1 par2]))
-
-
-
-
-
-;Distingue las condiciones que tienen 1 parametro a evaluar de las que tienen 2.
-(defmulti evaluate-conditions (fn [state data condi] (str(nth condi 0))))
-(defmethod evaluate-conditions "past" [state data condi] true)
-(defmethod evaluate-conditions "current" [state data condi]
-         (def value-condition (get data (nth condi 1)))
-          (if-not (contains? data (nth condi 1) )
-            (def value-condition false))
-         value-condition)
-
-(defmethod evaluate-conditions :default [state data condi]
-         ;cuando es mas de 2 parametros
-         (apply-operador (str(nth condi 0)) (evaluate-conditions state data (nth condi 1)) (evaluate-conditions state data (nth condi 2)))
-
-)
-
-;Distingue las condiciones booleanas a las que son funciones a determinar su verdad.
-(defmulti conditions (fn [state data condi] condi))
-(defmethod conditions true [state data condi] condi)
-(defmethod conditions false [state data condi] condi)
-(defmethod conditions :default [state data condi]
-
-          (evaluate-conditions state data condi))
-
-
-(defn evaluate-conditions-from-rule [state data rule]
- (conditions state data (nth rule 3))
-
- )
-(defn evaluate-condition  [state data condition]
-  (conditions state data condition)
-)
-
-
+;------------------------------------------------------------------------------------------
+;FUNCIONES PARA EVALUAR EL PAST
+;------------------------------------------------------------------------------------------
 
 
 (defn add-value-map-data [data map-data]
@@ -243,6 +218,25 @@ value
       (def new-map-data (add-data-map-data data map-data)))
     new-map-data
   )
+
+;------------------------------------------------------------------------------------------
+;FUNCIONES PARA EVALUAR LAS EXPRESIONES
+;------------------------------------------------------------------------------------------
+
+;Evalua la expresion dentro del parentesis.
+(defmulti evaluate-expression (fn [state data expre] (str(nth expre 0))))
+(defmethod evaluate-expression "past" [state data expre]
+   (contains-data-in-map-data  (conj () (get data (nth expre 1)) (nth expre 1)) (nth state 3)))
+(defmethod evaluate-expression "current" [state data expre]
+         (get data (nth expre 1)))
+(defmethod evaluate-expression "counter-value" [state data expre]
+         (query-counter state (nth expre 1) (nth expre 2)))
+
+(defmethod evaluate-expression :default [state data condi]
+         ;cuando es mas de 2 parametros
+         (apply-operador (str(nth condi 0)) (evaluate-expression state data (nth condi 1)) (evaluate-expression state data (nth condi 2)))
+
+)
 
 ;Distingue las condiciones que tienen 1 parametro a evaluar de las que tienen 2.
 (defmulti evaluate-conditions (fn [state data condi] (str(nth condi 0))))
@@ -286,6 +280,9 @@ value
     )
   counters)
 
+
+
+
 (defn get-signal-rules
   "Return the signal rules map from the state list."
   [state]
@@ -305,38 +302,24 @@ value
 )
 
 (defn name-and-signal-evaluation
+  [state signal-rule]
   "Returns an array with name of the signal to eval
   and the result of signal rule evaluation if there is
   not possible result return nil"
-  [state signal-rule]
 
   (def signal-name (nth signal-rule 0))
   (def signal-result (nth (nth signal-rule 1) 0))
   (def signal-condition (nth (nth signal-rule 1) 1))
 
-  ;Si recibe ["spam-fraction" [(/ (counter-value "spam-count" []) (counter-value "email-count" [])) true]]
-  ;signal-name = "spam-fraction"
-  ;signal-result = (/ (counter-value "spam-count" []) (counter-value "email-count" []))
-  ;signal-condition = true
-
-  ;Si recibe ["repeated" [(current "value") (= (current "value") (past "value"))]
-  ;signal-name = "repeated"
-  ;signal-result = (current "value")
-  ;signal-condition = (= (current "value") (past "value"))
-
   (if (evaluate-signal-condition signal-condition state)
-    ; (prn (list signal-name (calculate-signal-result signal-result state)))
-    (list signal-name (calculate-signal-result signal-result state)))
-
+    {signal-name (calculate-signal-result signal-result state)}
+  )
 )
 
 (defn update-signal
-  "Returns signal evaluation"
   [state]
-
-  ; (prn (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (seq (get-signal-rules state))))))
-  (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (seq (get-signal-rules state)))))
-)
+  "Returns signal evaluation"
+  (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (seq (get-signal-rules state))))))
 
 (defn process-data
   "Returns new state after evaluate every rule"
