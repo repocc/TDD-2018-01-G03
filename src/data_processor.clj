@@ -1,5 +1,6 @@
 (ns data-processor
   (:require [parser :as parser]))
+(use '[clojure.string :as s])
 
 (defmulti initialize-counter (fn [params] (count params)))
 (defmethod initialize-counter 0 [params] 0)
@@ -14,12 +15,16 @@
   (let [s (seq coll)]
     (if s (if (= (first s) value) true (recur (rest s) value)) false)))
 
+(defn includes-otra [substr s]
+(s/includes? s substr))
 
-(defn starts-with [coll value]
-  (= (first coll) value))
 
-(defn ends-with [coll value]
-  (= (last coll) value))
+
+(defn starts-with [s substr]
+  (s/starts-with? s substr))
+
+(defn ends-with [s substr]
+  (s/ends-with? s substr))
 
 (defn new-or [value1 value2]
   (or value1 value2))
@@ -31,7 +36,7 @@
   (not value1 value2))
 
 
-(def operators {"=" = "+" + "-" - "*" * "/" / "mod" mod "<" < ">" > "<=" <= ">=" >= "concat" str "!=" distinct? "includes?" includes "starts-with?" starts-with "ends-with?" ends-with "or" new-or "and" new-and "not" new-not})
+(def operators {"=" = "+" + "-" - "*" * "/" / "mod" mod "<" < ">" > "<=" <= ">=" >= "concat" str "!=" distinct? "includes?" includes-otra "starts-with?" starts-with "ends-with?" ends-with "or" new-or "and" new-and "not" new-not})
 
 (defn get-operator [operator]
   ;Toma el operador pasado como parametro y llama a la funcion correspondiente
@@ -222,21 +227,57 @@ value
 ;------------------------------------------------------------------------------------------
 ;FUNCIONES PARA EVALUAR LAS EXPRESIONES
 ;------------------------------------------------------------------------------------------
+(defn apply-operador-with-past [old-operator old-par1 old-par2 value-past]
+  (def par1 (nth old-par1 1))
+  (if (= (str(nth old-par1 0)) "past") (def par1 value-past) )
+  (def par2 (nth old-par2 1))
+  (if (= (str(nth old-par2 0)) "past") (def par2 value-past) )
+  (apply-operador old-operator par1 par2)
+  )
+
+(defn value-past-function [list-values expre old-operator old-par1 old-par2]
+
+    (def ret-value (nth list-values 0))
+    (doseq [value list-values] 
+      (if (apply-operador-with-past old-operator old-par1 old-par2 value) (def ret-value value))
+
+      )
+    ret-value
+  )
 
 ;Evalua la expresion dentro del parentesis.
-(defmulti evaluate-expression (fn [state data expre] (str(nth expre 0))))
-(defmethod evaluate-expression "past" [state data expre]
-   (contains-data-in-map-data  (conj () (get data (nth expre 1)) (nth expre 1)) (nth state 3)))
-(defmethod evaluate-expression "current" [state data expre]
+(defmulti evaluate-expression (fn [state data expre old-expre] (str(nth expre 0))))
+(defmethod evaluate-expression "past" [state data expre old-expre]
+   ;chequeo para cada dato del historial, cual me cumple expre y devuelvo ese dato. Si ninguno cumple devuelvo cualquiera.
+   ;Si no hay datos en el historial para ese valor retorno "NOEXISTE"
+
+    (def map-data (nth state 3))
+    (def key-dato (nth expre 1))
+    (def ret-value "NOEXISTE")
+    (def old-operator (str(nth old-expre 0)))
+    (def old-par1 (nth old-expre 1))
+    (if (distinct? (str(nth old-par1 0)) "past") (def old-par1  (conj () (evaluate-expression state data old-par1 0) (nth '(nopast) 0))))
+    (def old-par2 (nth old-expre 2))
+    (if (distinct? (str(nth old-par2 0)) "past") (def old-par2  (conj () (evaluate-expression state data old-par2 0) (nth '(nopast) 0))))
+
+    (if (contains? map-data key-dato) 
+        (def ret-value (value-past-function (get map-data key-dato) expre old-operator old-par1 old-par2))
+      )
+    ret-value
+  )
+(defmethod evaluate-expression "current" [state data expre old-expre]
          (get data (nth expre 1)))
-(defmethod evaluate-expression "counter-value" [state data expre]
+(defmethod evaluate-expression "counter-value" [state data expre old-expre]
          (query-counter state (nth expre 1) (nth expre 2)))
 
-(defmethod evaluate-expression :default [state data condi]
+(defmethod evaluate-expression :default [state data expre old-expre]
          ;cuando es mas de 2 parametros
-         (apply-operador (str(nth condi 0)) (evaluate-expression state data (nth condi 1)) (evaluate-expression state data (nth condi 2)))
+         (apply-operador (str(nth expre 0)) (evaluate-expression state data (nth expre 1) expre) (evaluate-expression state data (nth expre 2) expre))
 
 )
+
+
+
 
 ;Distingue las condiciones que tienen 1 parametro a evaluar de las que tienen 2.
 (defmulti evaluate-conditions (fn [state data condi] (str(nth condi 0))))
