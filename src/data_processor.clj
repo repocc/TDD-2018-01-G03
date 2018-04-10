@@ -272,6 +272,7 @@
             (def value-condition false))
          value-condition)
 
+
 (defmethod evaluate-conditions :default [state data condi]
          ;cuando es mas de 2 parametros
          (apply-operador (str(nth condi 0)) (evaluate-conditions state data (nth condi 1)) (evaluate-conditions state data (nth condi 2)))
