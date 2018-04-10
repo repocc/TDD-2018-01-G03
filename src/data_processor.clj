@@ -237,38 +237,6 @@
 
 
 
-;Distingue las condiciones que tienen 1 parametro a evaluar de las que tienen 2.
-(defmulti evaluate-conditions (fn [state data condi] (str(nth condi 0))))
-(defmethod evaluate-conditions "past" [state data condi] true)
-(defmethod evaluate-conditions "current" [state data condi]
-         (def value-condition (get data (nth condi 1)))
-          (if-not (contains? data (nth condi 1) )
-            (def value-condition false))
-         value-condition)
-
-(defmethod evaluate-conditions :default [state data condi]
-         ;cuando es mas de 2 parametros
-         (apply-operador (str(nth condi 0)) (evaluate-conditions state data (nth condi 1)) (evaluate-conditions state data (nth condi 2)))
-
-)
-
-;Distingue las condiciones booleanas a las que son funciones a determinar su verdad.
-(defmulti conditions (fn [state data condi] condi))
-(defmethod conditions true [state data condi] condi)
-(defmethod conditions false [state data condi] condi)
-(defmethod conditions :default [state data condi]
-
-          (evaluate-conditions state data condi))
-
-
-(defn evaluate-conditions-from-rule [state data rule]
- (conditions state data (nth rule 3))
-
- )
-(defn evaluate-condition  [state data condition]
-  (conditions state data condition)
-)
-
 (defn contains-data-in-map-data [data map-data]
   (def is-data false)
   (if (contains? map-data (first data))
@@ -302,6 +270,40 @@
       (def new-map-data (add-data-map-data data map-data)))
     new-map-data
   )
+
+;Distingue las condiciones que tienen 1 parametro a evaluar de las que tienen 2.
+(defmulti evaluate-conditions (fn [state data condi] (str(nth condi 0))))
+(defmethod evaluate-conditions "past" [state data condi] 
+   (contains-data-in-map-data  (conj () (get data (nth condi 1)) (nth condi 1)) (nth state 3)))
+(defmethod evaluate-conditions "current" [state data condi]
+         (def value-condition (get data (nth condi 1)))
+          (if-not (contains? data (nth condi 1) )
+            (def value-condition false))
+         value-condition)
+
+(defmethod evaluate-conditions :default [state data condi]
+         ;cuando es mas de 2 parametros
+         (apply-operador (str(nth condi 0)) (evaluate-conditions state data (nth condi 1)) (evaluate-conditions state data (nth condi 2)))
+
+)
+
+;Distingue las condiciones booleanas a las que son funciones a determinar su verdad.
+(defmulti conditions (fn [state data condi] condi))
+(defmethod conditions true [state data condi] condi)
+(defmethod conditions false [state data condi] condi)
+(defmethod conditions :default [state data condi]
+
+          (evaluate-conditions state data condi))
+
+
+(defn evaluate-conditions-from-rule [state data rule]
+ (conditions state data (nth rule 3))
+
+ )
+(defn evaluate-condition  [state data condition]
+  (conditions state data condition)
+)
+
 
 (defn evaluate-counters-rules [state new-data]
 

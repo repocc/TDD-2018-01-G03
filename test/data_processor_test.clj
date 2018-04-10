@@ -111,22 +111,41 @@
     ))
 
 (deftest query-contains-data-in-map-data-true
-  (testing "Return true is map-data contains the data or false otherwise"
+  (testing "Return true if map-data contains the data or false otherwise"
     (def data-test (conj () true "spam"))
     (def map-data-test {"spam" (conj () true)})
     (is (= (contains-data-in-map-data data-test map-data-test) true))
     ))
 
 (deftest query-contains-data-in-map-data-false-value
-  (testing "Return true is map-data contains the data or false otherwise"
+  (testing "Return true if map-data contains the data or false otherwise"
     (def data-test (conj () false "spam"))
     (def map-data-test {"spam" (conj () true)})
     (is (= (contains-data-in-map-data data-test map-data-test) false))
     ))
 
 (deftest query-contains-data-in-map-data-false-key
-  (testing "Return true is map-data contains the data or false otherwise"
+  (testing "Return true if map-data contains the data or false otherwise"
     (def data-test (conj () true "important"))
     (def map-data-test {"spam" (conj () true)})
     (is (= (contains-data-in-map-data data-test map-data-test) false))
+    ))
+
+(deftest query-evaluate-conditions-past-exist
+  (testing "Return true if the value exist on the map-data or false otherwise"
+    (def data-test {"value" 2})
+    (def condi '(past "value"))
+    (def map-data-test {"value" (conj () 2)})
+    (def state [{} {} {} map-data-test])
+    (is (= (evaluate-conditions state data-test condi) true))
+    ))
+
+
+(deftest query-evaluate-conditions-past-not-exist
+  (testing "Return true if the value exist on the map-data or false otherwise"
+    (def data-test {"value" 2})
+    (def condi '(past "value"))
+    (def map-data-test {"value" (conj () 1)})
+    (def state [{} {} {} map-data-test])
+    (is (= (evaluate-conditions state data-test condi) false))
     ))
