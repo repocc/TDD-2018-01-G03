@@ -37,18 +37,25 @@
 
 (defn get-operator [operator]
   ;Toma el operador pasado como parametro y llama a la funcion correspondiente
- (get operators operator))
+(get operators operator))
 
- (defn apply-operador [opr par1 par2]
+(defn apply-operador [opr par1 par2]
    ;Aplica la funcion correspondiente del opr a los parametros par1 y par2.
- (apply (get-operator opr) [par1 par2]))
+(apply (get-operator opr) [par1 par2]))
 
+
+;------------------------------------------------------------------------------------------
+;FUNCION PARA INICIALIZAR EL ESTADO
 ;------------------------------------------------------------------------------------------
 
 
 (defn initialize-processor [rules]
   "Returns an array with 4 hashmaps. 1 counters initilized, 2 counter rules, 3 signal rules and the last one is for the 'past -data'"
   [(initializer/initialize-counters rules) (initializer/save-counter-rules rules) (initializer/save-signal-rules rules) {}])
+
+;------------------------------------------------------------------------------------------
+;FUNCIONES GET/SETs
+;------------------------------------------------------------------------------------------
 
 (defn get-status [state]
   "Return the status list of the state list."
@@ -93,6 +100,9 @@
       (def is-data true)))
   is-data)
 
+;------------------------------------------------------------------------------------------
+;FUNCION QUERY-COUNTER
+;------------------------------------------------------------------------------------------
 (defn query-counter [state counter-name counter-args]
   ; (get counter-name (nth state 0)) diferenciar si es un num o {}
   ; en caso de ser {}, con counter-args entrar a la llave correspondiente
@@ -180,6 +190,10 @@
 (defn evaluate-condition  [state data condition]
   (conditions state data condition ))
 
+;------------------------------------------------------------------------------------------
+;FUNCIONES PARA COMPLETAR LOS SIGNALS
+;------------------------------------------------------------------------------------------
+
 (defn get-signal-rules [state]
   "Return the signal rules map from the state list."
   (nth state 2))
@@ -211,6 +225,12 @@
   (def res-value (list (into {} lista-signals)))
   (if (= res-value '({}) ) (def res-value []))
    res-value)
+
+
+;------------------------------------------------------------------------------------------
+;FUNCIONES PARA INCREMENTAR CONTADORES
+;------------------------------------------------------------------------------------------
+
 
 (defn make-key-data [state data parameters]
   "returns values from the data hashmap"
@@ -244,20 +264,11 @@
       (def counters (inc-counter state rule new-data counters))))
   counters)
 
-(defmulti empty-value (fn [valor] (type valor)))
-(defmethod empty-value clojure.lang.PersistentArrayMap [valor]
- (def resu-value true)
-(doseq [[name value]  valor ] (if-not (empty-value value) (def resu-value false) ))
-resu-value)
-(defmethod empty-value java.lang.Long [valor] (not (> valor 0)))
-(defmethod empty-value :default [valor] true)
 
+;------------------------------------------------------------------------------------------
+;FUNCION PROCESS DATA
+;------------------------------------------------------------------------------------------
 
-(defn empty-process-data [state]
-  (def map-counter (get-counters-state state))
-  (def resu-value true)
-  (doseq [[name value]  map-counter ] (if-not (empty-value value) (def resu-value false) ))
-  resu-value)
 
 (defn process-data [old-state new-data]
   "Returns new state after evaluate every rule"
