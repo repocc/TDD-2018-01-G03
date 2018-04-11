@@ -64,17 +64,31 @@
     (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
        (is (evaluate-conditions-from-rule [] {"spam" true} counter-3))))
 
-   (deftest evaluate-counters-rules-test
-     (testing ""))
+
+  (deftest query-calculate-signal-result
+    (testing "calculate the signal result."
+      (def data-test {"spam" true})
+     (def signal-rule '(/ (counter-value "spam-count" []) (counter-value "email-count" [])))
+     (def state [{"spam-count" 1 "email-count" 2} {} {} {}])
+       (is (=(calculate-signal-result  signal-rule state data-test) 1/2))))
+
+
+   ;(deftest evaluate-counters-rules-test
+   ;  (testing ""))
 
    (deftest name-and-signal-evaluation-test
      (testing "evaluate a signal rule")
-     ; (is (= )
+     (def data-test {"spam" true})
+     (def signal-rule '(/ (counter-value "spam-count" []) (counter-value "email-count" [])))
+     (def state [{"spam-count" 1 "email-count" 2} {} {} {}])
+       (is (=(name-and-signal-evaluation  signal-rule state data-test) 1/2))))
      )
-  (deftest evaluate-signal-condition-test
-    (testing "evaluate signal condition true"
-      (is (= (evaluate-signal-condition true initial-state) true ))
-    ))
+
+
+ ; (deftest evaluate-signal-condition-test
+  ;  (testing "evaluate signal condition true"
+   ;   (is (= (evaluate-signal-condition true initial-state) true ))
+   ; ))
 
   ; (deftest evaluate-signal-condition-test
   ;   (testing "evaluate signal condition true"

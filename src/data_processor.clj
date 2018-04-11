@@ -35,8 +35,14 @@
 (defn new-not [value1 value2]
   (not value1 value2))
 
+(defn division [value1 value2]
+  (def res nil)
+  (if-not (= value2 0) (def res (/ value1 value2)))
+  res
+  )
 
-(def operators {"=" = "+" + "-" - "*" * "/" / "mod" mod "<" < ">" > "<=" <= ">=" >= "concat" str "!=" distinct? "includes?" includes-otra "starts-with?" starts-with "ends-with?" ends-with "or" new-or "and" new-and "not" new-not})
+
+(def operators {"=" = "+" + "-" - "*" * "/" division "mod" mod "<" < ">" > "<=" <= ">=" >= "concat" str "!=" distinct? "includes?" includes-otra "starts-with?" starts-with "ends-with?" ends-with "or" new-or "and" new-and "not" new-not})
 
 (defn get-operator [operator]
   ;Toma el operador pasado como parametro y llama a la funcion correspondiente
@@ -138,8 +144,10 @@
   ; (get counter-name (nth state 0)) diferenciar si es un num o {}
   ; en caso de ser {}, con counter-args entrar a la llave correspondiente
   ; si no fue inicializada crear la llave y asignarle valor 1
+
   (let [valor (get (get-counter-map state) counter-name)]
-    (get-value-counter valor  counter-args)
+
+    (get-value-counter valor counter-args)
   ))
 
 
@@ -149,6 +157,7 @@
 
 
 (defn add-value-map-data [data map-data]
+
   (def new-map-data map-data)
     (if-not (includes (get map-data (first data)) (last data))
       (def new-map-data (assoc map-data (first data) (conj (get map-data (first data)) (last data) ))))
@@ -157,6 +166,7 @@
 )
 
 (defn add-data-map-data [data map-data]
+
   (assoc  map-data (first data) (conj () (last data)))
   )
 
@@ -166,7 +176,9 @@
   ;Return the map-data update
   ;Format map-data: {key [value1 value2..] ..}
   ;Format data: (key value)
+
     (def new-map-data map-data)
+
     (if (contains? map-data (first data))
       (def new-map-data (add-value-map-data data map-data)))
     (if-not (contains? map-data (first data))
@@ -218,7 +230,7 @@
 (defmethod evaluate-expression "current" [state data expre old-expre]
          (get data (nth expre 1)))
 (defmethod evaluate-expression "counter-value" [state data expre old-expre]
-         (query-counter state (nth expre 1) (nth expre 2)))
+          (query-counter state (nth expre 1) (nth expre 2)))
 
 (defmethod evaluate-expression :default [state data expre old-expre]
          ;cuando es mas de 2 parametros
@@ -248,6 +260,7 @@
 
 
 
+
 (defn get-signal-rules
   "Return the signal rules map from the state list."
   [state]
@@ -255,19 +268,20 @@
 
 (defn evaluate-signal-condition
   "Returns the result of the evaluation of signal condition"
-  [signal-condition state]
-  (evaluate-condition state [] signal-condition)
+  [signal-condition state data]
+  (evaluate-condition state data signal-condition)
 )
 
 (defn calculate-signal-result
-  [signal-result state]
+  [signal-result state data]
   ;Ej1: signal-result = (/ (counter-value "spam-count" []) (counter-value "email-count" []))
   ;Ej2: signal-result = (current "value")
-  0
+
+  (evaluate-expression state data signal-result 0)
 )
 
 (defn name-and-signal-evaluation
-  [state signal-rule]
+  [state data signal-rule ]
   "Returns an array with name of the signal to eval
   and the result of signal rule evaluation if there is
   not possible result return nil"
@@ -275,28 +289,35 @@
   (def signal-name (nth signal-rule 0))
   (def signal-result (nth (nth signal-rule 1) 0))
   (def signal-condition (nth (nth signal-rule 1) 1))
-
-  (if (evaluate-signal-condition signal-condition state)
-    {signal-name (calculate-signal-result signal-result state)}
+  (def res-value {})
+  (if (evaluate-signal-condition signal-condition state data)
+    (if-not (= nil (calculate-signal-result signal-result state data)) 
+          (def res-value {signal-name (calculate-signal-result signal-result state data)}))
   )
+
+  res-value
 )
 
 (defn update-signal
-  [state]
+  [state data]
   "Returns signal evaluation"
-  (list (into {} (map name-and-signal-evaluation (repeat (get-counter-map state)) (seq (get-signal-rules state))))))
+
+  (def lista-signals (map name-and-signal-evaluation (repeat state) (repeat data) (seq (get-signal-rules state)) ))
+  (def res-value (list (into {} lista-signals)))
+  (if (= res-value '({}) ) (def res-value []))
+   res-value)
 
 
-    (defn make-key-data [state data parameters]
-      "returns values from the data hashmap"
-      (def key-data [])
-        (if-not (empty? parameters)
-          (doseq [parameter parameters]
-            (def key-data (conj key-data (evaluate-expression state data parameter 0)))
-          )
-        )
-       key-data
-    )
+(defn make-key-data [state data parameters]
+    "returns values from the data hashmap"
+   (def key-data [])
+   (if-not (empty? parameters)
+   (doseq [parameter parameters]
+       (def key-data (conj key-data (evaluate-expression state data parameter 0)))
+   )
+   )
+   key-data
+)
 
     (defn assoc-if-new [coll k v]
     "associate key-value tuple if not exists in the current collection"
@@ -331,16 +352,32 @@
         )
       counters)
 
+(defmulti empty-value (fn [valor] (type valor)))
+(defmethod empty-value clojure.lang.PersistentArrayMap [valor]
+ (def resu-value true)
+(doseq [[name value]  valor ] (if-not (empty-value value) (def resu-value false) ))
+resu-value)
+(defmethod empty-value java.lang.Long [valor] (not (> valor 0)))
+(defmethod empty-value :default [valor] true)
+
+
+(defn empty-process-data [state]
+  (def map-counter (get-counters-state state))
+  (def resu-value true)
+  (doseq [[name value]  map-counter ] (if-not (empty-value value) (def resu-value false) ))
+  resu-value
+  )
+
 (defn process-data
   "Returns new state after evaluate every rule"
   [old-state new-data]
-
-  (def map-data (nth old-state 3))
+  ;(def sg [])
+  (def new-map-data (nth old-state 3))
   (doseq [data new-data]
-    (def map-data (update-map-data (map identity data) map-data)))
-
-  ;(def sg (update-signal old-state))
-  (def sg [])
+    (def new-map-data (update-map-data (map identity data) new-map-data)))
+  
+  ;(if-not (empty-process-data old-state) (def sg (update-signal old-state new-data)))
+  (def sg (update-signal old-state new-data))
   (def new-counter-state (evaluate-counters-rules old-state new-data))
 
-  (vector (vector new-counter-state (nth old-state 1) (nth old-state 2) map-data) sg))
+  (vector (vector new-counter-state (nth old-state 1) (nth old-state 2) new-map-data) sg))
