@@ -89,8 +89,3 @@
     (testing "evaluate signal initial state"
       (def data-test {"spam" true})
       (is (= (evaluate-signal-condition '(= (current "value") (past "value")) initial-state data-test) false ))))
-
-  (deftest update-signal-test
-    (testing "update signal, evaluates every signal rule with a new given state"
-      (def data-test {"spam" true})
-      (is (= (update-signal initial-state data-test) '({"spam-fraction" 0})))))

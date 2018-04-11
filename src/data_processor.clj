@@ -38,7 +38,6 @@
 (defn division [value1 value2]
   (def res nil)
   (if-not (= value2 0) (def res (/ value1 value2)))
-  (if (and (= value2 0) (= value1 0)) (def res 0))
   res
   )
 
