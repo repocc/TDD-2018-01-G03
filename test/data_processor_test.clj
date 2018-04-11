@@ -22,16 +22,16 @@
 
 (deftest counter-name-and-initial-value-test
    (testing "get an array with counter name and initial value"
-     (is (=  '("email-count" 0) (counter-name-and-initial-value counter-1)))
-     (is (=  '("spam-count" 0) (counter-name-and-initial-value counter-2)))
-     (is (=  '("spam-important-table" {}) (counter-name-and-initial-value counter-3)))
+     (is (=  '("email-count" 0) (initializer/counter-name-and-initial-value counter-1)))
+     (is (=  '("spam-count" 0) (initializer/counter-name-and-initial-value counter-2)))
+     (is (=  '("spam-important-table" {}) (initializer/counter-name-and-initial-value counter-3)))
 ))
 
 (deftest name-and-counter-rule-test
   (testing "get an array with counter name and rule elements"
-    (is (=  '("email-count" [[] true]) (name-and-counter-rule counter-1)))
-    (is (=  '("spam-count" [[] (current "spam")]) (name-and-counter-rule counter-2)))
-    (is (=  '("spam-important-table" [[(current "spam") (current "important")] true]) (name-and-counter-rule counter-3)))
+    (is (=  '("email-count" [[] true]) (initializer/name-and-counter-rule counter-1)))
+    (is (=  '("spam-count" [[] (current "spam")]) (initializer/name-and-counter-rule counter-2)))
+    (is (=  '("spam-important-table" [[(current "spam") (current "important")] true]) (initializer/name-and-counter-rule counter-3)))
 ))
 
 (deftest name-and-signal-rule-test
@@ -41,7 +41,7 @@
 
 (deftest initialize-counters-test
   (testing "hashmap with every counter initialized"
-    (is (= {"email-count" 0, "spam-count" 0, "spam-important-table" {}} (initialize-counters rules)))
+    (is (= {"email-count" 0, "spam-count" 0, "spam-important-table" {}} (initializer/initialize-counters rules)))
   ))
 
 (deftest save-counter-rules-test
@@ -68,7 +68,7 @@
   (testing "get-value-counter should return the correct value."
    (is (= 1 (get-value-counter {[true false] 1} [true false]) ))))
 
-(deftest query-add-value-map-data-no-exist 
+(deftest query-add-value-map-data-no-exist
   (testing "add-value-map-data should add the value to the key already created in the map"
     (def data-test (conj () true "spam"))
     (def map-data-test {"spam" (conj () false)})
@@ -154,7 +154,7 @@
   (testing "Apply the operator for a especific value of the parameter past"
     (def test-par1 (nth '((past "value") 0) 0))
     (def test-par2 '(nopast true))
-  
+
     (is (= (apply-operador-with-past "and" test-par1 test-par2 true) true))
     ))
 
@@ -166,7 +166,7 @@
     (def test-expre (nth '((past "value") 0) 0))
     (def test-par1 (nth '((past "value") 0) 0))
     (def test-par2 '(nopast 2))
-  
+
     (is (= (value-past-function list-values-test test-expre "=" test-par1 test-par2) 2))
     ))
 
