@@ -19,11 +19,11 @@
 
   (def rules (list counter-1 counter-2 counter-3 signal-1 ))
   (def initial-state (initialize-processor rules))
-  (def signals (save-signal-rules rules))
-  (def counters-rules (save-counter-rules rules))
+  (def signals (initializer/save-signal-rules rules))
+  (def counters-rules (initializer/save-counter-rules rules))
   (def rules2 '((define-counter "email-count" [] true) (define-counter "spam-count" []
                                                 (= (current "spam") (current "spam")))))
-  (def counter-state (initialize-counters rules))
+  (def counter-state (initializer/initialize-counters rules))
 
   (def data {"spam" true})
   (def data-parameteres {"spam" true "important" true})
@@ -69,7 +69,7 @@
   (deftest name-and-signal-evaluation-test
     (testing "evaluate a signal rule"
     (def data-test {"spam" true})
-    (def signal-rule (seq (name-and-signal-rule signal-1)))
+    (def signal-rule (seq (initializer/name-and-signal-rule signal-1)))
     (def state [{"spam-count" 1 "email-count" 2} {} {} {}])
     (is (= ((name-and-signal-evaluation  state data-test signal-rule) "spam-fraction") 1/2))))
 
