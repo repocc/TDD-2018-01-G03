@@ -75,7 +75,7 @@
     (is (= 4
            (query-counter end-state "spam-important-table" [false false])))))
 
-;
+
 ; (deftest signal-skip-on-error-test
 ;   (let [st0 (initialize-processor rules)
 ;         [st1 sg1] (process-data st0 {})]

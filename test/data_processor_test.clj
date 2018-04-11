@@ -131,68 +131,6 @@
     (is (= (contains-data-in-map-data data-test map-data-test) false))
     ))
 
-(deftest query-evaluate-conditions-past-exist
-  (testing "Return true if the value exist on the map-data or false otherwise"
-    (def data-test {"value" 2})
-    (def condi '(past "value"))
-    (def map-data-test {"value" (conj () 2)})
-    (def state [{} {} {} map-data-test])
-    (is (= (evaluate-conditions state data-test condi) true))
-    ))
-
-
-(deftest query-evaluate-conditions-past-not-exist
-  (testing "Return true if the value exist on the map-data or false otherwise"
-    (def data-test {"value" 2})
-    (def condi '(past "value"))
-    (def map-data-test {"value" (conj () 1)})
-    (def state [{} {} {} map-data-test])
-    (is (= (evaluate-conditions state data-test condi) false))
-    ))
-
-(deftest query-evaluate-conditions-past-exist-more-data
-  (testing "Return true if the value exist on the map-data or false otherwise"
-    (def data-test {"value" 1})
-    (def condi '(past "value"))
-    (def map-data-test {"value" (conj () 1) "spam" true})
-    (def state [{} {} {} map-data-test])
-    (is (= (evaluate-conditions state data-test condi) true))
-    ))
-
-(deftest query-evaluate-conditions-past-not-exist-value-more-data
-  (testing "Return true if the value exist on the map-data or false otherwise"
-    (def data-test {"value" 1})
-    (def condi '(past "value"))
-    (def map-data-test {"value" (conj () 2) "spam" true})
-    (def state [{} {} {} map-data-test])
-    (is (= (evaluate-conditions state data-test condi) false))
-    ))
-
-(deftest query-evaluate-conditions-past-not-exist-key-more-data
-  (testing "Return true if the value exist on the map-data or false otherwise"
-    (def data-test {"other-value" 1})
-    (def condi '(past "value"))
-    (def map-data-test {"value" (conj () 1) "spam" true})
-    (def state [{} {} {} map-data-test])
-    (is (= (evaluate-conditions state data-test condi) false))
-    ))
-
-(deftest query-evaluate-conditions-current-match
-  (testing "Return true if the current value exist on the data map or false otherwise"
-    (def data-test {"spam" true})
-    (def condi '(current "spam"))
-    (def state [{} {} {} {}])
-    (is (= (evaluate-conditions state data-test condi) true))
-    ))
-
-(deftest query-evaluate-conditions-current-not-match
-  (testing "Return true if the current value exist on the data map or false otherwise"
-    (def data-test {"spam" false})
-    (def condi '(current "spam"))
-    (def state [{} {} {} {}])
-    (is (= (evaluate-conditions state data-test condi) false))
-    ))
-
 
 (deftest query-evaluate-expression-current-match-bool
   (testing "Return true if the current value exist on the data map or false otherwise"
