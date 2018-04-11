@@ -39,28 +39,25 @@
     (testing "increment counter with parameters"
     (is (= (inc-counter initial-state spam-important-count-rule  data-parameteres counter-state) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 1}}))))
 
-    (deftest increment-counter-mixed-values-test
-      (testing "increment counter mixed values"
-      (def counter-0 (inc-counter initial-state spam-important-count-rule  data-parameteres counter-state))
-      (def data-parameteres-0 {"important" true "spam" true})
-      (def data-parameteres-1 {"important" false "spam" true})
-      (is (= (inc-counter initial-state spam-important-count-rule  data-parameteres-0 counter-0) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 2}}))
-        (is (= (inc-counter initial-state spam-important-count-rule  data-parameteres-1 counter-0) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 1 [true false] 1}}))))
+  (deftest increment-counter-mixed-values-test
+    (testing "increment counter mixed values"
+    (def counter-0 (inc-counter initial-state spam-important-count-rule  data-parameteres counter-state))
+    (def data-parameteres-0 {"important" true "spam" true})
+    (def data-parameteres-1 {"important" false "spam" true})
+    (is (= (inc-counter initial-state spam-important-count-rule  data-parameteres-0 counter-0) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 2}}))
+    (is (= (inc-counter initial-state spam-important-count-rule  data-parameteres-1 counter-0) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 1 [true false] 1}}))))
 
   (deftest evaluate-condition-true-from-rule
     (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
        (is (evaluate-conditions-from-rule [] {"spam" true} counter-1))))
 
-
   (deftest evaluate-condition-current-from-rule
     (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
        (is (evaluate-conditions-from-rule [] {"spam" true} counter-2))))
 
-
   (deftest evaluate-condition-operators-from-rule
     (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
        (is (evaluate-conditions-from-rule [] {"spam" true} counter-3))))
-
 
   (deftest query-calculate-signal-result
     (testing "calculate the signal result."
@@ -68,10 +65,6 @@
       (def signal-rule '(/ (counter-value "spam-count" []) (counter-value "email-count" [])))
       (def state [{"spam-count" 1 "email-count" 2} {} {} {}])
       (is (=(calculate-signal-result  signal-rule state data-test) 1/2))))
-
-
-   ;(deftest evaluate-counters-rules-test
-   ;  (testing ""))
 
   (deftest name-and-signal-evaluation-test
     (testing "evaluate a signal rule"

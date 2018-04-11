@@ -238,8 +238,6 @@
 
 )
 
-
-
 ;Distingue las condiciones booleanas a las que son funciones a determinar su verdad.
 (defmulti conditions (fn [state data condi] condi))
 (defmethod conditions true [state data condi] condi)
@@ -274,14 +272,10 @@
 
 (defn calculate-signal-result
   [signal-result state data]
-  ;Ej1: signal-result = (/ (counter-value "spam-count" []) (counter-value "email-count" []))
-  ;Ej2: signal-result = (current "value")
-
   (evaluate-expression state data signal-result 0)
 )
 
 (defn name-and-signal-evaluation
-  ; ["spam-fraction" [(/ (counter-value "spam-count" []) (counter-value "email-count" [])) true]]
   [state data signal-rule ]
   "Returns an array with name of the signal to eval
   and the result of signal rule evaluation if there is
@@ -295,63 +289,52 @@
     (if-not (= nil (calculate-signal-result signal-result state data))
           (def res-value {signal-name (calculate-signal-result signal-result state data)}))
   )
-
   res-value
 )
 
 (defn update-signal
   [state data]
   "Returns signal evaluation"
-
   (def lista-signals (map name-and-signal-evaluation (repeat state) (repeat data) (seq (get-signal-rules state)) ))
   (def res-value (list (into {} lista-signals)))
   (if (= res-value '({}) ) (def res-value []))
    res-value)
 
 
-(defn make-key-data [state data parameters]
-    "returns values from the data hashmap"
-   (def key-data [])
-   (if-not (empty? parameters)
-   (doseq [parameter parameters]
-       (def key-data (conj key-data (evaluate-expression state data parameter 0)))
-   )
-   )
-   key-data
-)
+(defn make-key-data
+  [state data parameters]
+  "returns values from the data hashmap"
+  (def key-data [])
+  (if-not (empty? parameters)
+  (doseq [parameter parameters]
+    (def key-data (conj key-data (evaluate-expression state data parameter 0)))))
+  key-data)
 
-    (defn assoc-if-new [coll k v]
-    "associate key-value tuple if not exists in the current collection"
-      (merge {k v} coll)
-    )
+(defn assoc-if-new [coll k v]
+  "associate key-value tuple if not exists in the current collection"
+  (merge {k v} coll))
 
-    (defn inc-counter [state rule data counters]
+(defn inc-counter
+  [state rule data counters]
+  (def key-counter (get-rule-name rule))
+  (def parameters (get-parameters rule))
+  (def data-key (make-key-data state data parameters))
+  (def coll-key (get counters key-counter))
 
-     (def key-counter (get-rule-name rule))
-     (def parameters (get-parameters rule))
-     (def data-key (make-key-data state data parameters))
-     (def coll-key (get counters key-counter))
+  (if-not (empty? parameters)
+    (update-in
+    (assoc-in counters [key-counter]
+      (assoc-if-new coll-key data-key 0))
+        [key-counter data-key] inc)
+  (update counters key-counter inc)))
 
-
-     (if-not (empty? parameters)
-      (update-in
-        (assoc-in counters [key-counter]
-          (assoc-if-new coll-key data-key 0))
-            [key-counter data-key] inc)
-      (update counters key-counter inc)
-      )
-
-    )
-
-    (defn evaluate-counters-rules [state new-data]
-
-      (def counters (get-counters-state state))
-        (doseq [rule (get-rules-state state)]
-          (if (evaluate-condition state new-data (nth (nth rule 1) 1))
-            (def counters (inc-counter state rule new-data counters))
-          )
-        )
-      counters)
+(defn evaluate-counters-rules
+  [state new-data]
+  (def counters (get-counters-state state))
+  (doseq [rule (get-rules-state state)]
+    (if (evaluate-condition state new-data (nth (nth rule 1) 1))
+      (def counters (inc-counter state rule new-data counters))))
+  counters)
 
 (defmulti empty-value (fn [valor] (type valor)))
 (defmethod empty-value clojure.lang.PersistentArrayMap [valor]
@@ -362,22 +345,20 @@ resu-value)
 (defmethod empty-value :default [valor] true)
 
 
-(defn empty-process-data [state]
+(defn empty-process-data
+  [state]
   (def map-counter (get-counters-state state))
   (def resu-value true)
   (doseq [[name value]  map-counter ] (if-not (empty-value value) (def resu-value false) ))
-  resu-value
-  )
+  resu-value)
 
 (defn process-data
-  "Returns new state after evaluate every rule"
   [old-state new-data]
-  ;(def sg [])
+  "Returns new state after evaluate every rule"
   (def new-map-data (nth old-state 3))
   (doseq [data new-data]
     (def new-map-data (update-map-data (map identity data) new-map-data)))
 
-  ;(if-not (empty-process-data old-state) (def sg (update-signal old-state new-data)))
   (def sg (update-signal old-state new-data))
   (def new-counter-state (evaluate-counters-rules old-state new-data))
 
