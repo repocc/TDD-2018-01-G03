@@ -1,3 +1,4 @@
+
 (ns data-processor
   (:require [parser :as parser]
             [initializer :as initializer]))
@@ -244,18 +245,35 @@
   "associate key-value tuple if not exists in the current collection"
   (merge {k v} coll))
 
+
+(defmulti evaluate-incre (fn [expression-incr data state] expression-incr))
+(defmethod evaluate-incre java.lang.Long [expression-incr data state] expression-incr)
+(defmethod evaluate-incre :default [expression-incr data state]
+(evaluate-expression state data expression-incr 0))
+
+(defn get-expression-increment [rule]
+  (prn rule)
+   (prn (nth (nth rule 1) 2))
+   (nth (nth rule 1) 2))
+
+(defn get-increment [rule data state]
+  (def expression-incr  ( get-expression-increment rule))
+  (prn (evaluate-incre expression-incr data state))
+  (evaluate-incre expression-incr data state))
+
 (defn inc-counter [state rule data counters]
   (def key-counter (get-rule-name rule))
   (def parameters (get-parameters rule))
   (def data-key (make-key-data state data parameters))
   (def coll-key (get counters key-counter))
-
+  (def incre (get-increment rule data state))
+  (prn incre)
   (if-not (empty? parameters)
     (update-in
     (assoc-in counters [key-counter]
       (assoc-if-new coll-key data-key 0))
-        [key-counter data-key] inc)
-  (update counters key-counter inc)))
+        [key-counter data-key] + incre)
+  (update counters key-counter + incre)))
 
 (defn evaluate-counters-rules [state new-data]
   (def counters (get-counters-state state))
