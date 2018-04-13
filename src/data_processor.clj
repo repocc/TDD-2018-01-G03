@@ -246,22 +246,24 @@
   (merge {k v} coll))
 
 
-(defmulti evaluate-incre (fn [expression-incr data state] expression-incr))
-(defmethod evaluate-incre java.lang.Long [expression-incr data state] expression-incr)
-(defmethod evaluate-incre :default [expression-incr data state]
-(evaluate-expression state data expression-incr 0))
+(defmulti evaluate-inc-expression (fn [inc-expression data state] inc-expression))
+(defmethod evaluate-inc-expression java.lang.Long [inc-expression data state] inc-expression)
+(defmethod evaluate-inc-expression :default [inc-expression data state]
+(evaluate-expression state data inc-expression 0))
 
-(defn get-expression-increment [rule]
-  (prn rule)
-   (prn (nth (nth rule 1) 2))
-   (nth (nth rule 1) 2))
+(defn get-inc-expression [rule]
+  (nth (nth rule 1) 2))
 
 (defn get-increment [rule data state]
-  (def expression-incr  ( get-expression-increment rule))
-  (prn (evaluate-incre expression-incr data state))
-  (evaluate-incre expression-incr data state))
+  (prn "get increment")
+  (def inc-expression (get-inc-expression rule))
+  ;ACA ESTÁ ROMPIENDO
+  (prn (evaluate-inc-expression inc-expression data state))
+  (evaluate-inc-expression inc-expression data state))
 
 (defn inc-counter [state rule data counters]
+  (prn "inc counter")
+  (prn rule)
   (def key-counter (get-rule-name rule))
   (def parameters (get-parameters rule))
   (def data-key (make-key-data state data parameters))

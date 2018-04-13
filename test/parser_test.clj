@@ -18,6 +18,8 @@
 (def signal-2 '(define-signal {"repeated" (current "value")}
                                     (= (current "value") (past "value"))))
 
+(def step-counter-1 '(define-step-counter "new" 1 [] true))
+
 (deftest is-valid-counter-test
   (testing "counter-validation"
       (is (is-valid-counter counter-1))
@@ -59,3 +61,11 @@
             (parse-rule-name signal-2)))
       (is (not (= "spam-fraction"
             (parse-rule-name signal-2))))))
+
+(deftest parse-counter-step-rule-test
+  (testing "parse counter step rule"
+    (is (= 1 (parse-step-counter-inc step-counter-1)))
+    (is (= "new" (parse-rule-name step-counter-1)))
+    (is (= [] (parse-counter-params step-counter-1)))
+    (is (= true (parse-rule-condition step-counter-1)))
+  ))

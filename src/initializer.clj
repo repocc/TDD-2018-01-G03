@@ -19,8 +19,8 @@
 (defn name-and-step-counter-rule [rule]
     "Returns an array with counter name and with an array with rule elements"
     (identity [ (parser/parse-rule-name rule)
-              [ (parser/parse-counter-step-params rule) (parser/parse-rule-condition rule)
-              (parser/parse-counter-step-counter-inc rule)]]))
+              [ (parser/parse-counter-params rule) (parser/parse-rule-condition rule)
+              (parser/parse-step-counter-inc rule)]]))
 
 (defn name-and-signal-rule [rule]
     "Returns an array with signal name and with an array with rules elements"
@@ -42,14 +42,9 @@
 (defn save-counter-rules [rules]
   "Returns a hashmap where every key is the rule name and as value
   a list with params and condition"
-  (prn rules)
-  (def counters (counters-rules-map))
+  (def counters (counters-rules-map rules))
   (def step-counters (step-counters-rules-map rules))
   (def total (merge counters step-counters))
-  (prn counters)
-  (prn step-counters)
-  (prn total)
-
   total)
 
 (defn save-signal-rules [rules]
