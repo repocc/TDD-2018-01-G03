@@ -18,6 +18,6 @@
 )
 
 (deftest initialize-counters-test
-  (testing "hashmap with every counter initialized"
+  (testing "hashmap with every counter initialized" 
     (is (= {"new" 0} (initializer/initialize-counters '(rule))
   ))))
