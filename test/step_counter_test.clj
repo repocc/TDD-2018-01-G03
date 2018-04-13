@@ -4,8 +4,7 @@
             [clojure.string :as string]
             [parser :as parser]))
 
-(def rule '(define-step-counter "new" 1 []
-                                        true))
+(def rule '(define-step-counter "new" 1 [] true))
 (deftest get-name-rule-step-couter-test
     (testing ""
     (is (= (parser/parse-rule-name rule) "new" )))
@@ -18,6 +17,6 @@
 )
 
 (deftest initialize-counters-test
-  (testing "hashmap with every counter initialized" 
-    (is (= {"new" 0} (initializer/initialize-counters '(rule))
+  (testing "hashmap with every counter initialized"
+    (is (= {"new" 0} (initializer/initialize-counters (list rule))
   ))))
