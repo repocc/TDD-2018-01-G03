@@ -24,7 +24,9 @@
                                         true)))
           st1 (process-data-dropping-signals st0 {"delta" 2})
           st2 (process-data-dropping-signals st1 {"delta" 5.5})]
+
       (is (= 2
              (query-counter st1 "stepper" [])))
+
       (is (= 7.5
              (query-counter st2 "stepper" []))))))

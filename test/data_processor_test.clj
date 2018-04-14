@@ -29,9 +29,9 @@
 
 (deftest name-and-counter-rule-test
   (testing "get an array with counter name and rule elements"
-    (is (=  '("email-count" [[] true]) (initializer/name-and-counter-rule counter-1)))
-    (is (=  '("spam-count" [[] (current "spam")]) (initializer/name-and-counter-rule counter-2)))
-    (is (=  '("spam-important-table" [[(current "spam") (current "important")] true]) (initializer/name-and-counter-rule counter-3)))
+    (is (=  '("email-count" [[] true 1]) (initializer/name-and-counter-rule counter-1)))
+    (is (=  '("spam-count" [[] (current "spam") 1]) (initializer/name-and-counter-rule counter-2)))
+    (is (=  '("spam-important-table" [[(current "spam") (current "important")] true 1]) (initializer/name-and-counter-rule counter-3)))
 ))
 
 (deftest name-and-signal-rule-test

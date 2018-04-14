@@ -73,6 +73,7 @@
 (defmethod get-value-counter clojure.lang.PersistentArrayMap [valor counter-args]
   (get valor counter-args))
 (defmethod get-value-counter java.lang.Long [valor counter-args] valor)
+(defmethod get-value-counter java.lang.Double [valor counter-args] valor)
 (defmethod get-value-counter :default [valor counter-args] 0)
 
 (defn get-counters-state [state]
@@ -108,6 +109,7 @@
   ; (get counter-name (nth state 0)) diferenciar si es un num o {}
   ; en caso de ser {}, con counter-args entrar a la llave correspondiente
   ; si no fue inicializada crear la llave y asignarle valor 1
+
   (let [valor (get (get-counter-map state) counter-name)]
     (get-value-counter valor counter-args)))
 
@@ -246,7 +248,7 @@
   (merge {k v} coll))
 
 
-(defmulti evaluate-inc-expression (fn [inc-expression data state] inc-expression))
+(defmulti evaluate-inc-expression (fn [inc-expression data state] (type inc-expression)))
 (defmethod evaluate-inc-expression java.lang.Long [inc-expression data state] inc-expression)
 (defmethod evaluate-inc-expression :default [inc-expression data state]
 (evaluate-expression state data inc-expression 0))
@@ -255,27 +257,25 @@
   (nth (nth rule 1) 2))
 
 (defn get-increment [rule data state]
-  (prn "get increment")
+
   (def inc-expression (get-inc-expression rule))
-  ;ACA ESTÁ ROMPIENDO
-  (prn (evaluate-inc-expression inc-expression data state))
   (evaluate-inc-expression inc-expression data state))
 
 (defn inc-counter [state rule data counters]
-  (prn "inc counter")
-  (prn rule)
+
   (def key-counter (get-rule-name rule))
   (def parameters (get-parameters rule))
   (def data-key (make-key-data state data parameters))
   (def coll-key (get counters key-counter))
   (def incre (get-increment rule data state))
-  (prn incre)
   (if-not (empty? parameters)
     (update-in
     (assoc-in counters [key-counter]
       (assoc-if-new coll-key data-key 0))
         [key-counter data-key] + incre)
-  (update counters key-counter + incre)))
+  (update counters key-counter + incre))
+
+  )
 
 (defn evaluate-counters-rules [state new-data]
   (def counters (get-counters-state state))
@@ -298,5 +298,4 @@
 
   (def sg (update-signal old-state new-data))
   (def new-counter-state (evaluate-counters-rules old-state new-data))
-
   (vector (vector new-counter-state (nth old-state 1) (nth old-state 2) new-map-data) sg))

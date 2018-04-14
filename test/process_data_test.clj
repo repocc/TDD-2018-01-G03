@@ -39,7 +39,6 @@
 
   (deftest get-increment-test
     (testing "increment expresion"
-      (prn counters-rules)
       (is (= 1 (get-inc-expression email-count-rule)))
       (def step-counter-1-rule ["new" (get counters-rules "new")])
       (is (= 5 (get-inc-expression step-counter-1-rule)))
@@ -49,53 +48,52 @@
 
   (deftest increment-counter-test
      (testing "increment counter"
-     (prn "increment counter test")
      (is (= (inc-counter initial-state email-count-rule data counter-state) {"email-count" 1, "spam-count" 0, "spam-important-table" {}, "new" 0, "stepper" 0}))))
-  ;
-  ; (deftest increment-counter-with-parameters-test
-  ;   (testing "increment counter with parameters"
-  ;   (is (= (inc-counter initial-state spam-important-count-rule  data-parameteres counter-state) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 1}}))))
-  ;
-  ; (deftest increment-counter-mixed-values-test
-  ;   (testing "increment counter mixed values"
-  ;   (def counter-0 (inc-counter initial-state spam-important-count-rule  data-parameteres counter-state))
-  ;   (def data-parameteres-0 {"important" true "spam" true})
-  ;   (def data-parameteres-1 {"important" false "spam" true})
-  ;   (is (= (inc-counter initial-state spam-important-count-rule  data-parameteres-0 counter-0) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 2}}))
-  ;   (is (= (inc-counter initial-state spam-important-count-rule  data-parameteres-1 counter-0) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 1 [true false] 1}}))))
-  ;
-  ; (deftest evaluate-condition-true-from-rule
-  ;   (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
-  ;      (is (evaluate-conditions-from-rule [] {"spam" true} counter-1))))
-  ;
-  ; (deftest evaluate-condition-current-from-rule
-  ;   (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
-  ;      (is (evaluate-conditions-from-rule [] {"spam" true} counter-2))))
-  ;
-  ; (deftest evaluate-condition-operators-from-rule
-  ;   (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
-  ;      (is (evaluate-conditions-from-rule [] {"spam" true} counter-3))))
-  ;
-  ; (deftest query-calculate-signal-result
-  ;   (testing "calculate the signal result."
-  ;     (def data-test {"spam" true})
-  ;     (def signal-rule '(/ (counter-value "spam-count" []) (counter-value "email-count" [])))
-  ;     (def state [{"spam-count" 1 "email-count" 2} {} {} {}])
-  ;     (is (=(calculate-signal-result  signal-rule state data-test) 1/2))))
-  ;
-  ; (deftest name-and-signal-evaluation-test
-  ;   (testing "evaluate a signal rule"
-  ;   (def data-test {"spam" true})
-  ;   (def signal-rule (seq (initializer/name-and-signal-rule signal-1)))
-  ;   (def state [{"spam-count" 1 "email-count" 2} {} {} {}])
-  ;   (is (= ((name-and-signal-evaluation  state data-test signal-rule) "spam-fraction") 1/2))))
-  ;
-  ; (deftest evaluate-signal-condition-test
-  ;   (testing "evaluate signal condition true"
-  ;     (def data-test {"spam" true})
-  ;     (is (= (evaluate-signal-condition true initial-state data-test) true ))))
-  ;
-  ; (deftest evaluate-signal-initial-state-test
-  ;   (testing "evaluate signal initial state"
-  ;     (def data-test {"spam" true})
-  ;     (is (= (evaluate-signal-condition '(= (current "value") (past "value")) initial-state data-test) false ))))
+  
+  (deftest increment-counter-with-parameters-test
+    (testing "increment counter with parameters"
+    (is (= (inc-counter initial-state spam-important-count-rule  data-parameteres counter-state) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 1}, "new" 0, "stepper" 0}))))
+  
+  (deftest increment-counter-mixed-values-test
+    (testing "increment counter mixed values"
+    (def counter-0 (inc-counter initial-state spam-important-count-rule  data-parameteres counter-state))
+    (def data-parameteres-0 {"important" true "spam" true})
+    (def data-parameteres-1 {"important" false "spam" true})
+    (is (= (inc-counter initial-state spam-important-count-rule  data-parameteres-0 counter-0) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 2}, "new" 0, "stepper" 0}))
+    (is (= (inc-counter initial-state spam-important-count-rule  data-parameteres-1 counter-0) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 1 [true false] 1}, "new" 0, "stepper" 0}))))
+  
+  (deftest evaluate-condition-true-from-rule
+    (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
+       (is (evaluate-conditions-from-rule [] {"spam" true} counter-1))))
+  
+  (deftest evaluate-condition-current-from-rule
+    (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
+       (is (evaluate-conditions-from-rule [] {"spam" true} counter-2))))
+  
+  (deftest evaluate-condition-operators-from-rule
+    (testing "evaluate-conditions-from-rule should return true if the condition is fulfilled or false if not."
+       (is (evaluate-conditions-from-rule [] {"spam" true} counter-3))))
+  
+  (deftest query-calculate-signal-result
+    (testing "calculate the signal result."
+      (def data-test {"spam" true})
+      (def signal-rule '(/ (counter-value "spam-count" []) (counter-value "email-count" [])))
+      (def state [{"spam-count" 1 "email-count" 2} {} {} {}])
+      (is (=(calculate-signal-result  signal-rule state data-test) 1/2))))
+  
+  (deftest name-and-signal-evaluation-test
+    (testing "evaluate a signal rule"
+    (def data-test {"spam" true})
+    (def signal-rule (seq (initializer/name-and-signal-rule signal-1)))
+    (def state [{"spam-count" 1 "email-count" 2} {} {} {}])
+    (is (= ((name-and-signal-evaluation  state data-test signal-rule) "spam-fraction") 1/2))))
+  
+  (deftest evaluate-signal-condition-test
+    (testing "evaluate signal condition true"
+      (def data-test {"spam" true})
+      (is (= (evaluate-signal-condition true initial-state data-test) true ))))
+  
+  (deftest evaluate-signal-initial-state-test
+    (testing "evaluate signal initial state"
+      (def data-test {"spam" true})
+      (is (= (evaluate-signal-condition '(= (current "value") (past "value")) initial-state data-test) false ))))
