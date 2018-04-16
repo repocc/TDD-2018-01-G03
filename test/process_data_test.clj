@@ -1,7 +1,7 @@
 (ns process-data-test
   (:require [clojure.test :refer :all]
      [data-processor :refer :all]
-     [signal :refer :all]))
+     [signal-operator :refer :all]))
 
   (def counter-1 '(define-counter "email-count" []
                                            true))

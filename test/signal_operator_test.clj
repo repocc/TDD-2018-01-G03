@@ -1,6 +1,6 @@
-(ns signal-test
+(ns signal-operator-test
   (:require [clojure.test :refer :all]
-            [signal :refer :all]
+            [signal-operator :refer :all]
             [initializer :as initializer]
             [data-processor :as dp]))
 

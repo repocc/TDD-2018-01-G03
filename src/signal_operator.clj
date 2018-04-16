@@ -1,4 +1,4 @@
-(ns signal
+(ns signal-operator
   (:require [expression-evaluator :as exp_evaluator]
             [unparser :as unparser]))
 

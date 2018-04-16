@@ -1,7 +1,7 @@
 (ns data-processor
   (:require [parser :as parser]
             [initializer :as initializer]
-            [signal :as signal]
+            [signal-operator :as signal-operator]
             [unparser :as unparser]
             [expression-evaluator :as exp-evaluator]))
 (use '[clojure.string :as s])
@@ -112,6 +112,6 @@
   (doseq [data new-data]
     (def new-map-data (update-map-data (map identity data) new-map-data)))
 
-  (def sg (signal/update-signal old-state new-data))
+  (def sg (signal-operator/update-signal old-state new-data))
   (def new-counter-state (evaluate-counters-rules old-state new-data))
   (vector (vector new-counter-state (unparser/get-rules-state old-state) (unparser/get-signal-rules old-state) new-map-data) sg))
