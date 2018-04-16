@@ -167,8 +167,9 @@
 (defmethod evaluate-expression "past" [state data expre old-expre]
    ;chequeo para cada dato del historial, cual me cumple expre y devuelvo ese dato. Si ninguno cumple devuelvo cualquiera.
    ;Si no hay datos en el historial para ese valor retorno "NOEXISTE"
-    (def map-data (get-past-data state))
-    (def key-dato (nth expre 1))
+    (let [map-data (get-past-data state)
+                    key-dato (nth expre 1)]
+
     (def ret-value "NOEXISTE")
     (def old-operator (str(nth old-expre 0)))
     (def old-par1 (nth old-expre 1))
@@ -177,7 +178,7 @@
     (if (distinct? (str(nth old-par2 0)) "past") (def old-par2  (conj () (evaluate-expression state data old-par2 0) (nth '(nopast) 0))))
     (if (contains? map-data key-dato)
         (def ret-value (value-past-function (get map-data key-dato) expre old-operator old-par1 old-par2)))
-    ret-value)
+    ret-value))
 
 (defmethod evaluate-expression "current" [state data expre old-expre]
   (get data (nth expre 1)))
