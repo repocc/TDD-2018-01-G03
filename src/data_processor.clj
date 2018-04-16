@@ -57,14 +57,20 @@
 ;------------------------------------------------------------------------------------------
 ;FUNCIONES GET/SETs
 ;------------------------------------------------------------------------------------------
+(defn get-past-data [state]
+  "returns past data"
+  (nth state 3)
+  )
+
+(defn get-condition-rule [rule]
+  "gets the rule condition - non str"
+  (nth (nth rule 1) 1)
+  )
 
 (defn get-status [state]
   "Return the status list of the state list."
      (first state))
 
-(defn get-signals [state]
-  "Return the signal map of the state list."
-  (nth state 2))
 
 (defn get-counter-map [status-list]
   (first status-list))
@@ -161,7 +167,7 @@
 (defmethod evaluate-expression "past" [state data expre old-expre]
    ;chequeo para cada dato del historial, cual me cumple expre y devuelvo ese dato. Si ninguno cumple devuelvo cualquiera.
    ;Si no hay datos en el historial para ese valor retorno "NOEXISTE"
-    (def map-data (nth state 3))
+    (def map-data (get-past-data state))
     (def key-dato (nth expre 1))
     (def ret-value "NOEXISTE")
     (def old-operator (str(nth old-expre 0)))
@@ -263,24 +269,25 @@
 
 (defn inc-counter [state rule data counters]
 
-  (def key-counter (get-rule-name rule))
-  (def parameters (get-parameters rule))
-  (def data-key (make-key-data state data parameters))
-  (def coll-key (get counters key-counter))
-  (def incre (get-increment rule data state))
+  (let [key-counter (get-rule-name rule)
+        parameters (get-parameters rule)
+        data-key (make-key-data state data parameters)
+        coll-key (get counters key-counter)
+        incre (get-increment rule data state)]
+
   (if-not (empty? parameters)
     (update-in
     (assoc-in counters [key-counter]
       (assoc-if-new coll-key data-key 0))
         [key-counter data-key] + incre)
   (update counters key-counter + incre))
+  ))
 
-  )
 
 (defn evaluate-counters-rules [state new-data]
   (def counters (get-counters-state state))
   (doseq [rule (get-rules-state state)]
-    (if (evaluate-condition state new-data (nth (nth rule 1) 1))
+    (if (evaluate-condition state new-data (get-condition-rule rule))
       (def counters (inc-counter state rule new-data counters))))
   counters)
 
@@ -289,13 +296,12 @@
 ;FUNCION PROCESS DATA
 ;------------------------------------------------------------------------------------------
 
-
 (defn process-data [old-state new-data]
   "Returns new state after evaluate every rule"
-  (def new-map-data (nth old-state 3))
+  (def new-map-data (get-past-data old-state))
   (doseq [data new-data]
     (def new-map-data (update-map-data (map identity data) new-map-data)))
 
   (def sg (update-signal old-state new-data))
   (def new-counter-state (evaluate-counters-rules old-state new-data))
-  (vector (vector new-counter-state (nth old-state 1) (nth old-state 2) new-map-data) sg))
+  (vector (vector new-counter-state (get-rules-state old-state) (get-signal-rules old-state) new-map-data) sg))
