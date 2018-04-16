@@ -1,5 +1,5 @@
 (ns signal
-  (:require [data-processor :as dp]))
+  (:require [expression-evaluator :as exp_evaluator]))
 
   (defn get-signal-rules [state]
     "Return the signal rules map from the state list."
@@ -7,10 +7,10 @@
 
   (defn evaluate-signal-condition [signal-condition state data]
     "Returns the result of the evaluation of signal condition"
-    (dp/evaluate-condition state data signal-condition))
+    (exp_evaluator/evaluate-condition state data signal-condition))
 
   (defn calculate-signal-result [signal-result state data]
-    (dp/evaluate-expression state data signal-result 0))
+    (exp_evaluator/evaluate-expression state data signal-result 0))
 
   (defn name-and-signal-evaluation [state data signal-rule ]
     "Returns an array with name of the signal to eval
