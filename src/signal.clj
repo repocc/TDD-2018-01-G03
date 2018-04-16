@@ -1,9 +1,6 @@
 (ns signal
-  (:require [expression-evaluator :as exp_evaluator]))
-
-  (defn get-signal-rules [state]
-    "Return the signal rules map from the state list."
-    (nth state 2))
+  (:require [expression-evaluator :as exp_evaluator]
+            [unparser :as unparser]))
 
   (defn evaluate-signal-condition [signal-condition state data]
     "Returns the result of the evaluation of signal condition"
@@ -28,7 +25,7 @@
 
   (defn update-signal [state data]
     "Returns signal evaluation"
-    (def lista-signals (map name-and-signal-evaluation (repeat state) (repeat data) (seq (get-signal-rules state)) ))
+    (def lista-signals (map name-and-signal-evaluation (repeat state) (repeat data) (seq (unparser/get-signal-rules state)) ))
     (def res-value (list (into {} lista-signals)))
     (if (= res-value '({}) ) (def res-value []))
      res-value)

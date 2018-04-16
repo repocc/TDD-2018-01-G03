@@ -43,3 +43,7 @@
 
 (defn get-parameters [rule]
   (nth (nth rule 1) 0))
+
+(defn get-signal-rules [state]
+  "Return the signal rules map from the state list."
+  (nth state 2))

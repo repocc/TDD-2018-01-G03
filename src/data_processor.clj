@@ -114,4 +114,4 @@
 
   (def sg (signal/update-signal old-state new-data))
   (def new-counter-state (evaluate-counters-rules old-state new-data))
-  (vector (vector new-counter-state (unparser/get-rules-state old-state) (signal/get-signal-rules old-state) new-map-data) sg))
+  (vector (vector new-counter-state (unparser/get-rules-state old-state) (unparser/get-signal-rules old-state) new-map-data) sg))
