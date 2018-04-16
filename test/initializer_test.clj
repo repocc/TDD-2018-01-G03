@@ -25,21 +25,19 @@
 
   (def rules (list counter-1 counter-2 counter-3 signal-1 step-counter-1 step-counter-2))
 
-(def initialized-counters '({"email-count" [[] true 1],
-"spam-count" [[] (current "spam") 1],
-"spam-important-table" [[(current "spam") (current "important")] true 1],
-"new" [[] true 5], "stepper" [[] true (current "delta")]}))
+(deftest save-signal-rules-test
+  (testing ""
+  ; (is (= {"spam-fraction" [(/ (counter-value "spam-count" []) (counter-value "email-count" [])) true]} (save-signal-rules rules)))
+))
 
+(deftest save-counter-rules-test
+  (testing "save counter rules"
+  (is (= (name-and-counter-rule counter-1) ["email-count" [[] true 1]]))
+  (is (= (name-and-step-counter-rule step-counter-1) ["new" [[] true 1]]))
+  (is (= (name-and-step-counter-rule step-counter-2) ["stepper" [[] true '(current "delta")]]))
+  ))
 
-
-  (deftest save-counter-rules-test
-    (testing "save counter rules"
-    (is (= (name-and-counter-rule counter-1) ["email-count" [[] true 1]]))
-    (is (= (name-and-step-counter-rule step-counter-1) ["new" [[] true 1]]))
-    (is (= (name-and-step-counter-rule step-counter-2) ["stepper" [[] true '(current "delta")]]))
-    ))
-
-  (deftest step-counters-rules-map-test
-    (testing "create step counters rule map"
-      ; (is (= (step-counters-rules-map rules) '("new" [[] true 5], "stepper" [[] true '(current "delta")]))
-    ))
+(deftest step-counters-rules-map-test
+  (testing "create step counters rule map"
+    ; (is (= (step-counters-rules-map rules) '("new" [[] true 5], "stepper" [[] true '(current "delta")]))
+  ))
