@@ -1,113 +1,15 @@
-
 (ns data-processor
   (:require [parser :as parser]
             [initializer :as initializer]
-            [signal :as signal]))
+            [signal :as signal]
+            [unparser :as unparser]
+            [expression-evaluator :as exp-evaluator]))
 (use '[clojure.string :as s])
-
-;------------------------------------------------------------------------------------------
-;FUNCIONES DE OPERADORES
-;------------------------------------------------------------------------------------------
-(defn includes [coll value]
-  (let [s (seq coll)]
-    (if s (if (= (first s) value) true (recur (rest s) value)) false)))
-
-(defn includes-otra [substr s]
-(s/includes? s substr))
-
-(defn starts-with [s substr]
-  (s/starts-with? s substr))
-
-(defn ends-with [s substr]
-  (s/ends-with? s substr))
-
-(defn new-or [value1 value2]
-  (or value1 value2))
-
-(defn new-and [value1 value2]
-  (and value1 value2))
-
-(defn new-not [value1 value2]
-  (not value1 value2))
-
-(defn division [value1 value2]
-  (def res nil)
-  (if-not (= value2 0) (def res (/ value1 value2)))
-  res)
-
-(def operators {"=" = "+" + "-" - "*" * "/" division "mod" mod "<" < ">" > "<=" <= ">=" >= "concat" str "!=" distinct? "includes?" includes-otra "starts-with?" starts-with "ends-with?" ends-with "or" new-or "and" new-and "not" new-not})
-
-(defn get-operator [operator]
-  ;Toma el operador pasado como parametro y llama a la funcion correspondiente
-(get operators operator))
-
-(defn apply-operador [opr par1 par2]
-   ;Aplica la funcion correspondiente del opr a los parametros par1 y par2.
-(apply (get-operator opr) [par1 par2]))
-
-
-;------------------------------------------------------------------------------------------
-;FUNCION PARA INICIALIZAR EL ESTADO
-;------------------------------------------------------------------------------------------
 
 
 (defn initialize-processor [rules]
   "Returns an array with 4 hashmaps. 1 counters initilized, 2 counter rules, 3 signal rules and the last one is for the 'past -data'"
   [(initializer/initialize-counters rules) (initializer/save-counter-rules rules) (initializer/save-signal-rules rules) {}])
-
-;------------------------------------------------------------------------------------------
-;FUNCIONES GET/SETs
-;------------------------------------------------------------------------------------------
-(defn get-past-data [state]
-  "returns past data"
-  (nth state 3)
-  )
-
-(defn get-condition-rule [rule]
-  "gets the rule condition - non str"
-  (nth (nth rule 1) 1)
-  )
-
-(defn get-status [state]
-  "Return the status list of the state list."
-     (first state))
-
-
-(defn get-counter-map [status-list]
-  (first status-list))
-
-(defmulti get-value-counter (fn [valor counter-args] (type valor)))
-(defmethod get-value-counter clojure.lang.PersistentArrayMap [valor counter-args]
-  (get valor counter-args))
-(defmethod get-value-counter java.lang.Long [valor counter-args] valor)
-(defmethod get-value-counter java.lang.Double [valor counter-args] valor)
-(defmethod get-value-counter :default [valor counter-args] 0)
-
-(defn get-counters-state [state]
-  "returns counter map from state"
-  (nth state 0))
-
-(defn get-rules-state [state]
-  "returns a collectioon of rules from state"
-  (nth state 1))
-
-(defn get-condition [rule]
-  "returns condition of a rule previously parsed"
-  (str (nth (nth rule 1) 1)))
-
-(defn get-rule-name [rule]
-  "get the name of a rule parsed from state"
-   (nth rule 0))
-
-(defn get-parameters [rule]
-  (nth (nth rule 1) 0))
-
-(defn contains-data-in-map-data [data map-data]
-  (def is-data false)
-  (if (contains? map-data (first data))
-    (if (includes (get map-data (first data)) (last data))
-      (def is-data true)))
-  is-data)
 
 ;------------------------------------------------------------------------------------------
 ;FUNCION QUERY-COUNTER
@@ -117,8 +19,8 @@
   ; en caso de ser {}, con counter-args entrar a la llave correspondiente
   ; si no fue inicializada crear la llave y asignarle valor 1
 
-  (let [valor (get (get-counter-map state) counter-name)]
-    (get-value-counter valor counter-args)))
+  (let [valor (get (unparser/get-counter-map state) counter-name)]
+    (unparser/get-value-counter valor counter-args)))
 
 
 ;------------------------------------------------------------------------------------------
@@ -127,7 +29,7 @@
 
 (defn add-value-map-data [data map-data]
   (def new-map-data map-data)
-    (if-not (includes (get map-data (first data)) (last data))
+    (if-not (exp-evaluator/includes (get map-data (first data)) (last data))
       (def new-map-data (assoc map-data (first data) (conj (get map-data (first data)) (last data) ))))
     new-map-data)
 
@@ -148,70 +50,13 @@
     new-map-data
   )
 
-;------------------------------------------------------------------------------------------
-;FUNCIONES PARA EVALUAR LAS EXPRESIONES
-;------------------------------------------------------------------------------------------
-(defn apply-operador-with-past [old-operator old-par1 old-par2 value-past]
-  (def par1 (nth old-par1 1))
-  (if (= (str(nth old-par1 0)) "past") (def par1 value-past) )
-  (def par2 (nth old-par2 1))
-  (if (= (str(nth old-par2 0)) "past") (def par2 value-past) )
-  (apply-operador old-operator par1 par2))
-
-(defn value-past-function [list-values expre old-operator old-par1 old-par2]
-    (def ret-value (nth list-values 0))
-    (doseq [value list-values]
-      (if (apply-operador-with-past old-operator old-par1 old-par2 value) (def ret-value value)))
-    ret-value)
-
-(defmulti evaluate-expression (fn [state data expre old-expre] (str(nth expre 0))))
-(defmethod evaluate-expression "past" [state data expre old-expre]
-   ;chequeo para cada dato del historial, cual me cumple expre y devuelvo ese dato. Si ninguno cumple devuelvo cualquiera.
-   ;Si no hay datos en el historial para ese valor retorno "NOEXISTE"
-    (let [map-data (get-past-data state)
-                    key-dato (nth expre 1)]
-
-    (def ret-value "NOEXISTE")
-    (def old-operator (str(nth old-expre 0)))
-    (def old-par1 (nth old-expre 1))
-    (if (distinct? (str(nth old-par1 0)) "past") (def old-par1  (conj () (evaluate-expression state data old-par1 0) (nth '(nopast) 0))))
-    (def old-par2 (nth old-expre 2))
-    (if (distinct? (str(nth old-par2 0)) "past") (def old-par2  (conj () (evaluate-expression state data old-par2 0) (nth '(nopast) 0))))
-    (if (contains? map-data key-dato)
-        (def ret-value (value-past-function (get map-data key-dato) expre old-operator old-par1 old-par2)))
-    ret-value))
-
-(defmethod evaluate-expression "current" [state data expre old-expre]
-  (get data (nth expre 1)))
-(defmethod evaluate-expression "counter-value" [state data expre old-expre]
-  (query-counter state (nth expre 1) (nth expre 2)))
-(defmethod evaluate-expression :default [state data expre old-expre]
-  (apply-operador (str(nth expre 0)) (evaluate-expression state data (nth expre 1) expre) (evaluate-expression state data (nth expre 2) expre)))
-
-(defmulti conditions (fn [state data condi] condi))
-(defmethod conditions true [state data condi] condi)
-(defmethod conditions false [state data condi] condi)
-(defmethod conditions :default [state data condi]
-
-          (evaluate-expression state data condi 0))
-
-(defn evaluate-conditions-from-rule [state data rule]
- (conditions state data (nth rule 3)))
-
-(defn evaluate-condition  [state data condition]
-  (conditions state data condition ))
-
-;------------------------------------------------------------------------------------------
-;FUNCIONES PARA INCREMENTAR CONTADORES
-;------------------------------------------------------------------------------------------
-
 
 (defn make-key-data [state data parameters]
   "returns values from the data hashmap"
   (def key-data [])
   (if-not (empty? parameters)
   (doseq [parameter parameters]
-    (def key-data (conj key-data (evaluate-expression state data parameter 0)))))
+    (def key-data (conj key-data (exp-evaluator/evaluate-expression state data parameter 0)))))
   key-data)
 
 (defn assoc-if-new [coll k v]
@@ -222,7 +67,7 @@
 (defmulti evaluate-inc-expression (fn [inc-expression data state] (type inc-expression)))
 (defmethod evaluate-inc-expression java.lang.Long [inc-expression data state] inc-expression)
 (defmethod evaluate-inc-expression :default [inc-expression data state]
-(evaluate-expression state data inc-expression 0))
+(exp-evaluator/evaluate-expression state data inc-expression 0))
 
 (defn get-inc-expression [rule]
   (nth (nth rule 1) 2))
@@ -234,8 +79,8 @@
 
 (defn inc-counter [state rule data counters]
 
-  (let [key-counter (get-rule-name rule)
-        parameters (get-parameters rule)
+  (let [key-counter (unparser/get-rule-name rule)
+        parameters (unparser/get-parameters rule)
         data-key (make-key-data state data parameters)
         coll-key (get counters key-counter)
         incre (get-increment rule data state)]
@@ -250,9 +95,9 @@
 
 
 (defn evaluate-counters-rules [state new-data]
-  (def counters (get-counters-state state))
-  (doseq [rule (get-rules-state state)]
-    (if (evaluate-condition state new-data (get-condition-rule rule))
+  (def counters (unparser/get-counters-state state))
+  (doseq [rule (unparser/get-rules-state state)]
+    (if (exp-evaluator/evaluate-condition state new-data (unparser/get-condition-rule rule))
       (def counters (inc-counter state rule new-data counters))))
   counters)
 
@@ -263,10 +108,10 @@
 
 (defn process-data [old-state new-data]
   "Returns new state after evaluate every rule"
-  (def new-map-data (get-past-data old-state))
+  (def new-map-data (unparser/get-past-data old-state))
   (doseq [data new-data]
     (def new-map-data (update-map-data (map identity data) new-map-data)))
 
   (def sg (signal/update-signal old-state new-data))
   (def new-counter-state (evaluate-counters-rules old-state new-data))
-  (vector (vector new-counter-state (get-rules-state old-state) (get-signal-rules old-state) new-map-data) sg))
+  (vector (vector new-counter-state (unparser/get-rules-state old-state) (signal/get-signal-rules old-state) new-map-data) sg))
