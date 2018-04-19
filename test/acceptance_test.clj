@@ -65,7 +65,7 @@
         st8 (process-data-dropping-signals st7 {"spam" false, "important" false})
         st9 (process-data-dropping-signals st8 {"spam" false, "important" false})
         end-state (process-data-dropping-signals st9 {"spam" false, "important" false})]
-    
+
     (is (= 1
            (query-counter end-state "spam-important-table" [true true])))
     (is (= 2
@@ -86,7 +86,7 @@
         [st1 sg1] (process-data st0 {"spam" true})
         [st2 sg2] (process-data st1 {"spam" false})
          [st3 sg3] (process-data st2 {})]
-     
+
     (is (= 0
            (count sg1)))
     (is (= 1
