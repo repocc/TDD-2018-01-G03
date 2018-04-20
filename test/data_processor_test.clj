@@ -1,6 +1,7 @@
 (ns data-processor-test
   (:require [clojure.test :refer :all]
-            [data-processor :refer :all]))
+            [data-processor :refer :all]
+            [counter-operator :as counter-operator]))
 
 (def counter-1 '(define-counter "email-count" []
                                           true))
@@ -53,40 +54,40 @@
   (testing "add-value-map-data should add the value to the key already created in the map"
     (def data-test (conj () true "spam"))
     (def map-data-test {"spam" (conj () false)})
-    (is (= (add-value-map-data data-test map-data-test) {"spam" (conj () false true)}))
+    (is (= (counter-operator/add-value-map-data data-test map-data-test) {"spam" (conj () false true)}))
     ))
 
 (deftest query-add-value-map-data-exist
   (testing "add-value-map-data should add the value to the key already created in the map"
     (def data-test (conj () true "spam"))
     (def map-data-test {"spam" (conj () true)})
-    (is (= (add-value-map-data data-test map-data-test) {"spam" (conj () true)}))
+    (is (= (counter-operator/add-value-map-data data-test map-data-test) {"spam" (conj () true)}))
     ))
 
 (deftest query-add-data-map-data
   (testing "add-data-map-data should add the key value to the map"
     (def data-test (conj () true "important"))
     (def map-data-test {"spam" (conj () true)})
-    (is (= (add-value-map-data data-test map-data-test) {"spam" (conj () true) "important" (conj () true)}))
+    (is (= (counter-operator/add-value-map-data data-test map-data-test) {"spam" (conj () true) "important" (conj () true)}))
     ))
 
 (deftest query-update-map-data-exist-key-and-value
   (testing "update-map-data should update the key value to the map"
     (def data-test (conj () false "spam"))
     (def map-data-test {"spam" (conj () false)})
-    (is (= (add-value-map-data data-test map-data-test) {"spam" (conj () false)}))
+    (is (= (counter-operator/add-value-map-data data-test map-data-test) {"spam" (conj () false)}))
     ))
 
 (deftest query-update-map-data-exist-key-not-value
   (testing "update-map-data should update the key value to the map"
     (def data-test (conj () false "spam"))
     (def map-data-test {"spam" (conj () true)})
-    (is (= (add-value-map-data data-test map-data-test) {"spam" (conj () true false) }))
+    (is (= (counter-operator/add-value-map-data data-test map-data-test) {"spam" (conj () true false) }))
     ))
 
 (deftest query-update-map-data-not-exist-key-and-value
   (testing "update-map-data should update the key value to the map"
     (def data-test (conj () false "spam"))
     (def map-data-test {"important" (conj () true)})
-    (is (= (add-value-map-data data-test map-data-test) {"important" (conj () true) "spam" (conj () false)}))
+    (is (= (counter-operator/add-value-map-data data-test map-data-test) {"important" (conj () true) "spam" (conj () false)}))
     ))

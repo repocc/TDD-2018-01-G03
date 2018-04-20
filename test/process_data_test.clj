@@ -1,7 +1,8 @@
 (ns process-data-test
   (:require [clojure.test :refer :all]
      [data-processor :refer :all]
-     [signal-operator :refer :all]))
+     [signal-operator :refer :all]
+     [counter-operator :as counter-operator]))
 
   (def counter-1 '(define-counter "email-count" []
                                            true))
@@ -40,28 +41,28 @@
 
   (deftest get-increment-test
     (testing "increment expresion"
-      (is (= 1 (get-inc-expression email-count-rule)))
+      (is (= 1 (counter-operator/get-inc-expression email-count-rule)))
       (def step-counter-1-rule ["new" (get counters-rules "new")])
-      (is (= 5 (get-inc-expression step-counter-1-rule)))
+      (is (= 5 (counter-operator/get-inc-expression step-counter-1-rule)))
       (def step-counter-2-rule ["stepper" (get counters-rules "stepper")])
-      (is (= '(current "delta") (get-inc-expression step-counter-2-rule)))
+      (is (= '(current "delta") (counter-operator/get-inc-expression step-counter-2-rule)))
     ))
 
   (deftest increment-counter-test
      (testing "increment counter"
-     (is (= (inc-counter initial-state email-count-rule data counter-state) {"email-count" 1, "spam-count" 0, "spam-important-table" {}, "new" 0, "stepper" 0}))))
+     (is (= (counter-operator/inc-counter initial-state email-count-rule data counter-state) {"email-count" 1, "spam-count" 0, "spam-important-table" {}, "new" 0, "stepper" 0}))))
 
   (deftest increment-counter-with-parameters-test
     (testing "increment counter with parameters"
-    (is (= (inc-counter initial-state spam-important-count-rule  data-parameteres counter-state) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 1}, "new" 0, "stepper" 0}))))
+    (is (= (counter-operator/inc-counter initial-state spam-important-count-rule  data-parameteres counter-state) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 1}, "new" 0, "stepper" 0}))))
 
   (deftest increment-counter-mixed-values-test
     (testing "increment counter mixed values"
-    (def counter-0 (inc-counter initial-state spam-important-count-rule  data-parameteres counter-state))
+    (def counter-0 (counter-operator/inc-counter initial-state spam-important-count-rule  data-parameteres counter-state))
     (def data-parameteres-0 {"important" true "spam" true})
     (def data-parameteres-1 {"important" false "spam" true})
-    (is (= (inc-counter initial-state spam-important-count-rule  data-parameteres-0 counter-0) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 2}, "new" 0, "stepper" 0}))
-    (is (= (inc-counter initial-state spam-important-count-rule  data-parameteres-1 counter-0) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 1 [true false] 1}, "new" 0, "stepper" 0}))))
+    (is (= (counter-operator/inc-counter initial-state spam-important-count-rule  data-parameteres-0 counter-0) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 2}, "new" 0, "stepper" 0}))
+    (is (= (counter-operator/inc-counter initial-state spam-important-count-rule  data-parameteres-1 counter-0) {"email-count" 0, "spam-count" 0, "spam-important-table" {[true true] 1 [true false] 1}, "new" 0, "stepper" 0}))))
 
 
   (deftest query-calculate-signal-result
