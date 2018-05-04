@@ -18,48 +18,37 @@
 (def db (rdb/create "example"))
 
 ;; Finds all the cars from the database
-(defn db-find-all-cars [] (rdb/keyspace db :cars))
-
-;; Finds a car by id
-(defn db-find-car-by-id [id] (rdb/where db :cars :id (parse-number id)))
+(defn db-find-all-rules [] (rdb/keyspace db :rules))
 
 ;; Stores a new car
-(defn db-store-car [car] (rdb/insert db :cars car))
+(defn db-store-rule [rule] (rdb/insert db :rules rule))
 
 ;; Store an initial set of cars to start with
-(rdb/insert db :cars
-  {:id 1
-   :brand  "Honda"
-   :model "Civic"
-   :color "Black"})
+(rdb/insert db :rules
+  {:nombre "email-counter"
+   :parametro  ""
+   :condicion "true"})
 
-(rdb/insert db :cars
-  {:id 2
-   :brand  "Honda"
-   :model "Accord"
-   :color "Red"})
+(rdb/insert db :rules
+  {:nombre "spam-count"
+   :parametro  "Honda"
+   :condicion "current 'spam'"})
 
 (defroutes app-routes
-  (GET "/example/api/car" []
+  (GET "/example/api/rules" []
     {:headers {"Access-Control-Allow-Origin" "*"
     "Access-Control-Allow-Methods" "GET, POST, PUT, OPTIONS"}
-    :status 200 :body (db-find-all-cars)}
+    :status 200 :body (db-find-all-rules)}
   )
 
-  (GET "/example/api/car/:id" [id]
-    { :headers {"Access-Control-Allow-Origin" "*"
-      "Access-Control-Allow-Methods" "GET, POST, PUT, OPTIONS"}
-      :status 200 :body (db-find-car-by-id id)}
-  )
-
-  (POST "/example/api/car" request
+  (POST "/example/api/rules" request
     (let [id (get-in request [:params :id])
           brand (get-in request [:params :brand])
           model (get-in request [:params :model])
           color (get-in request [:params :color])
-          car {:id id :brand brand :model model :color color}]
-      (db-store-car car)
-      {:status 201 :body car}
+          rule {:id id :brand brand :model model :color color}]
+      (db-store-rule rule)
+      {:status 201 :body rule}
     )
   )
 
