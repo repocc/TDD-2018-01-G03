@@ -41,6 +41,12 @@
     :status 200 :body (db-find-all-rules)}
   )
 
+  (GET "/example/api/start" []
+    {:headers {"Access-Control-Allow-Origin" "*"
+    "Access-Control-Allow-Methods" "GET, POST, PUT, OPTIONS"}
+    :status 200 :body (db-find-all-rules)}
+  )
+
   (POST "/example/api/rules" request
     (let [nombre (get-in request [:params :nombre])
           parametro (get-in request [:params :parametro])
