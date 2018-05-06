@@ -5,6 +5,7 @@
             [ring.adapter.jetty :as jetty]
             [compojure.handler :as handler]
             [rage-db.core :as rdb]
+            [data-processor :refer :all]
             ))
 
 ;; Utility function to parse an integer
@@ -18,63 +19,85 @@
 (def db (rdb/create "example"))
 
 ;; Finds all the cars from the database
-(defn db-find-all-rules [] (rdb/keyspace db :rules))
 
-;; Stores a new car
+(defn db-find-last-state []
+  (get (last (rdb/keyspace db :state)) :nombre)
+)
+
+(defn db-find-last-rules [] (rdb/keyspace db :rules))
+
 (defn db-store-rule [rule] (rdb/insert db :rules rule))
 
-;; Store an initial set of cars to start with
-(rdb/insert db :rules
-  {:nombre "email-counter"
-   :parametro  ""
-   :condicion "true"})
-
-(rdb/insert db :rules
-  {:nombre "spam-count"
-   :parametro  "Honda"
-   :condicion "current 'spam'"})
-
-(defn get-all-formated-rules [x]
-  (def rules '((define-counter "email-count" []
-                 true)
-               (define-counter "spam-count" []
-                 (current "spam"))
-               (define-signal {"spam-fraction" (/ (counter-value "spam-count" [])
-                                                  (counter-value "email-count" []))}
-                 true)
-               (define-counter "spam-important-table" [(current "spam")
-                                                       (current "important")]
-                 true)))
-  )
-
-(defn init-rules []
-   ; (initialize-counters
-   ;        (get-all-formated-rules (db-find-all-rules)
-   ;        ))
-  )
+(def rules '((define-counter "email-counts" []
+               true)
+             (define-counter "spam-count" []
+               (current "spam"))
+             (define-signal {"spam-fraction" (/ (counter-value "spam-count" [])
+                                                (counter-value "email-count" []))}
+               true)
+             (define-counter "spam-important-table" [(current "spam")
+                                                     (current "important")]
+               true)))
 
 
+(defn save-state [state]
+   (rdb/insert db :state
+     {:nombre state})
+)
+
+(defn process-ticket [ ticket ]
+
+  (rdb/insert db :state
+    {:nombre (first (process-data (db-find-last-state) {"spam" true}))})
+
+)
+
+(defn initialize-counters []
+  (save-state (initialize-processor rules))
+)
+
+(defn query-counterss []
+(prn "aca devuelvo el query-counter")
+)
 
 (defroutes app-routes
-  (GET "/example/api/rules" []
+  (GET "/example/api/getRules" []
     {:headers {"Access-Control-Allow-Origin" "*"
     "Access-Control-Allow-Methods" "GET, POST, PUT, OPTIONS"}
     :status 200 :body (db-find-all-rules)}
   )
 
-  (GET "/example/api/start" []
-    {:headers {"Access-Control-Allow-Origin" "*"
-    "Access-Control-Allow-Methods" "GET, POST, PUT, OPTIONS"}
-    :status 200 :body (init-rules)}
+  (GET "/example/api/getState" []
+    {:status 200 :body (db-find-last-state)}
   )
 
-  (POST "/example/api/rules" request
+  (GET "/example/api/initialize-counters" []
+
+    (initialize-counters)
+    {:status 200 :body "todo bien"}
+  )
+
+
+  (GET "/example/api/GetQueryCounter" []
+    {:status 200 :body (query-counterss)}
+  )
+
+  (POST "/example/api/setRules" request
     (let [nombre (get-in request [:params :nombre])
           parametro (get-in request [:params :parametro])
           condicion (get-in request [:params :condicion])
           rule {:nombre nombre :parametro parametro :condicion condicion}]
       (db-store-rule rule)
       {:status 201 :body rule}
+    )
+  )
+
+  (POST "/example/api/processTicket" request
+    (let [nombre (get-in request [:params :nombre])
+          estado (get-in request [:params :estado])
+          ticket {:nombre nombre :estado estado}]
+      (process-ticket ticket)
+      {:status 201 :body "proceso Ok"}
     )
   )
 
