@@ -34,6 +34,27 @@
    :parametro  "Honda"
    :condicion "current 'spam'"})
 
+(defn get-all-formated-rules [x]
+  (def rules '((define-counter "email-count" []
+                 true)
+               (define-counter "spam-count" []
+                 (current "spam"))
+               (define-signal {"spam-fraction" (/ (counter-value "spam-count" [])
+                                                  (counter-value "email-count" []))}
+                 true)
+               (define-counter "spam-important-table" [(current "spam")
+                                                       (current "important")]
+                 true)))
+  )
+
+(defn init-rules []
+   ; (initialize-counters
+   ;        (get-all-formated-rules (db-find-all-rules)
+   ;        ))
+  )
+
+
+
 (defroutes app-routes
   (GET "/example/api/rules" []
     {:headers {"Access-Control-Allow-Origin" "*"
@@ -44,7 +65,7 @@
   (GET "/example/api/start" []
     {:headers {"Access-Control-Allow-Origin" "*"
     "Access-Control-Allow-Methods" "GET, POST, PUT, OPTIONS"}
-    :status 200 :body (db-find-all-rules)}
+    :status 200 :body (init-rules)}
   )
 
   (POST "/example/api/rules" request
