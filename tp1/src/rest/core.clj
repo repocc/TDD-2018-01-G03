@@ -42,11 +42,10 @@
   )
 
   (POST "/example/api/rules" request
-    (let [id (get-in request [:params :id])
-          brand (get-in request [:params :brand])
-          model (get-in request [:params :model])
-          color (get-in request [:params :color])
-          rule {:id id :brand brand :model model :color color}]
+    (let [nombre (get-in request [:params :nombre])
+          parametro (get-in request [:params :parametro])
+          condicion (get-in request [:params :condicion])
+          rule {:nombre nombre :parametro parametro :condicion condicion}]
       (db-store-rule rule)
       {:status 201 :body rule}
     )
