@@ -10,4 +10,8 @@ public abstract class User {
     public User(MonitorSystem monitorSystem) {
         this.monitorSystem = monitorSystem;
     }
+
+    public void addDashboard(Dashboard dashboard){
+        this.dashboards.add(dashboard);
+    }
 }

@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ticket {
-    private String tittle;
+    private float ID;
     private TicketState state;
     private List<TicketState> previousStates;
     private List<Comment> comments;
     private String description;
 
-    public Ticket(String tittle, TicketState initialState){
-        this.tittle = tittle;
+    public Ticket(float ID, TicketState initialState){
+        this.ID = ID;
         this.state = initialState;
         this.comments = new ArrayList<Comment>();
         this.previousStates = new ArrayList<TicketState>();
@@ -23,4 +23,8 @@ public class Ticket {
         this.state = newState;
         previousStates.add(newState);
     }
+    public boolean equals(float ID) {
+        return (ID == this.ID);
+    }
+
 }

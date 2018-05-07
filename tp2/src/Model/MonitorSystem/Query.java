@@ -9,12 +9,14 @@ public class Query {
     private Duration interval;
     private Rule rule;
     private List<String> results;
+    private QueryState state;
 
     public Query(String name, Duration interval, Rule rule){
         this.name = name;
         this.interval = interval;
         this.rule = rule;
         this.results = new ArrayList<String>();
+        this.state = QueryState.ENABLE;
     }
 
     public List<String> getResults() {
@@ -27,5 +29,17 @@ public class Query {
 
     public Duration getInterval() {
         return interval;
+    }
+
+    public boolean equals(String queryName) {
+        return (queryName == this.name);
+    }
+
+    public void enable() {
+        this.state = QueryState.ENABLE;
+    }
+
+    public void disable() {
+        this.state = QueryState.DISABLE;
     }
 }
