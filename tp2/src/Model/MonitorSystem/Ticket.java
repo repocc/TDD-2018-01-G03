@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ticket {
-    private float ID;
+    public float ID;
     private TicketState state;
     private List<TicketState> previousStates;
     private List<Comment> comments;

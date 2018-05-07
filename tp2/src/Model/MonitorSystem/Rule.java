@@ -1,5 +1,7 @@
 package tp2.src.Model.MonitorSystem;
 
 public class Rule {
-	//hola prueba
+    public Rule() {
+    }
+    //hola prueba
 }
