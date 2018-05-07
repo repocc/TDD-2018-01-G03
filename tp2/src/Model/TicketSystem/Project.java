@@ -1,5 +1,9 @@
 package tp2.src.Model.TicketSystem;
 
+import tp2.src.Model.MonitorSystem.Query;
+import tp2.src.Model.MonitorSystem.Ticket;
+import tp2.src.Model.MonitorSystem.TicketState;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

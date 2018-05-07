@@ -1,5 +1,7 @@
 package tp2.src.Model.TicketSystem;
 
+import tp2.src.Model.MonitorSystem.Query;
+
 public class AdminRol extends Rol {
     public AdminRol(Project project) {
         super(project);

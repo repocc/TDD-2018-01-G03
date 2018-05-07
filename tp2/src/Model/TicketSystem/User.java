@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 
-public class User{
+public abstract class User{
     private List<Rol> rols;
     private String name;
 
