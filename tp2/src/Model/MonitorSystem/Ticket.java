@@ -1,4 +1,5 @@
-package tp2.src.Model.TicketSystem;
+package tp2.src.Model.MonitorSystem;
+
 import java.util.ArrayList;
 import java.util.List;
 

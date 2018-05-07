@@ -1,4 +1,4 @@
-package tp2.src.Model.TicketSystem;
+package tp2.src.Model.MonitorSystem;
 
 import java.time.LocalDateTime;
 
