@@ -1,11 +1,31 @@
 package tp2.src.Model.MonitorSystem;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class Admin extends User {
 
-    public Admin(MonitorSystem monitorSystem) {
-        super(monitorSystem);
+    private List<Dashboard> dashboards;
+
+    public Admin(String name, MonitorSystem monitorSystem) {
+        super(name, monitorSystem);
+        this.dashboards = new ArrayList<Dashboard>();
+    }
+
+
+    @Override
+    public Dashboard getDashboard(String dashboardName) {
+        for (Dashboard dashboard : this.dashboards) {
+            if(dashboard.equals(dashboardName)){
+                return dashboard;
+            }
+        }
+        return null;
+    }
+
+    public void addDashboard(Dashboard dashboard){
+        this.dashboards.add(dashboard);
     }
 
     public void defineQuery(Query query, String dashboardName){
@@ -48,7 +68,9 @@ public class Admin extends User {
             }
         }
     }
-    public void addNewAssociated(){
-//        TODO: lo pide el tp?
+
+    public void addDashboard(String name) {
+        Dashboard dashboard = new Dashboard(name);
+        this.addDashboard(dashboard);
     }
 }
