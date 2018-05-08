@@ -1,4 +1,4 @@
-package tp2.src.Model.MonitorSystem;
+package tp2.src.Model.TicketSystem;
 
 public class Comment {
     private final String userName;
