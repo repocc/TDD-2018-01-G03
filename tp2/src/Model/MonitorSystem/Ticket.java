@@ -16,9 +16,6 @@ public class Ticket {
 
     public void changeState(TicketState newState){
         this.getActualState().close();
-        if(newState.isClosed()){
-            newState.close();
-        }
         states.add(newState);
     }
     public boolean equals(float ID) {

@@ -11,6 +11,9 @@ public class TicketState {
     public TicketState(String tittle){
         this.tittle = tittle;
         this.startDateTime = LocalDateTime.now();
+        if(isClosed()){
+            this.close();
+        }
     }
 
     public boolean isClosed() {
