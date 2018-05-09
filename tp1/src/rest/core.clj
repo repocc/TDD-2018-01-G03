@@ -82,11 +82,10 @@
     {:status 200 :body (query-counterss)}
   )
 
-  (POST "/example/api/setRules" request
-    (let [nombre (get-in request [:params :nombre])
-          parametro (get-in request [:params :parametro])
-          condicion (get-in request [:params :condicion])
-          rule {:nombre nombre :parametro parametro :condicion condicion}]
+  (POST "/example/api/setRule" request
+    (let [rule (get-in request [:json-params])]
+      (prn "Nueva regla")
+      (prn rule)
       (db-store-rule rule)
       {:status 201 :body rule}
     )
@@ -94,9 +93,7 @@
 
   (POST "/example/api/processTicket" request
 
-    (let [ticket (get-in request [:json-params])
-
-          ]
+    (let [ticket (get-in request [:json-params])]
             (prn ticket)
       (process-ticket ticket)
       {:status 201 :body "proceso Ok"}
