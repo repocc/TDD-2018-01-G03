@@ -18,7 +18,7 @@ public class MonitorSystemTest extends TestCase {
         this.monitorSystem = new MonitorSystem();
         this.admin = new Admin("U1",monitorSystem);
         admin.addDashboard("D1");
-        Query q1 = new Query("ticketsOpened", Duration.ofSeconds(1),new Rule());
+        Query q1 = new Query("ticketsOpened", Duration.ofSeconds(1),new Rule(" "," ", "", ""));
         admin.defineQuery(q1, "D1");
     }
 

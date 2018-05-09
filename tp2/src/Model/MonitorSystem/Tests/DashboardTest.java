@@ -19,7 +19,7 @@ public class DashboardTest extends TestCase {
     }
 
     public void testAddQuery() {
-        Rule rule = new Rule();
+        Rule rule = new Rule(" ","","","");
         Duration duration =  Duration.ofHours(1);
         Query query = new Query("countTickets", duration, rule );
         this.dummyDashboard.addQuery(query);
