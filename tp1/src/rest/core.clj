@@ -28,15 +28,17 @@
 
 (defn db-store-rule [rule] (rdb/insert db :rules rule))
 
-(def rules '((define-counter "email-counts" []
+(def rules '((define-counter "tickets-count" []
                true)
-             (define-counter "spam-count" []
-               (current "spam"))
-             (define-signal {"spam-fraction" (/ (counter-value "spam-count" [])
-                                                (counter-value "email-count" []))}
+             (define-counter "close-count" []
+               (current "CLOSE"))
+             (define-counter "open-count" []
+                 (current "OPEN"))
+             (define-signal {"open-fraction" (/ (counter-value "open-count" [])
+                                                (counter-value "tickets-count" []))}
                true)
-             (define-counter "spam-important-table" [(current "spam")
-                                                     (current "important")]
+             (define-counter "open-to-do-table" [(current "OPEN")
+                                                     (current "TO DO")]
                true)))
 
 
@@ -48,11 +50,12 @@
 (defn process-ticket [ ticket ]
 
   (rdb/insert db :state
-    {:nombre (first (process-data (db-find-last-state) {"spam" true}))})
+    {:nombre (first (process-data (db-find-last-state) ticket))})
 
 )
 
-(defn initialize-counters []
+(defn processor-initialization []
+  ; TODO: Cambiar, rules debe venir de las reglas que se guardaron en la base de datos
   (save-state (initialize-processor rules))
 )
 
@@ -71,9 +74,9 @@
     {:status 200 :body (db-find-last-state)}
   )
 
-  (GET "/example/api/initialize-counters" []
+  (GET "/example/api/processor-initialization" []
 
-    (initialize-counters)
+    (processor-initialization)
     {:status 200 :body "todo bien"}
   )
 
@@ -83,9 +86,12 @@
   )
 
   (POST "/example/api/setRule" request
-    (let [rule (get-in request [:json-params])]
-      (prn "Nueva regla")
-      (prn rule)
+    (prn request)
+    (let [name (get-in request [:params :name])
+          params (get-in request [:params :params])
+          condition (get-in request [:params :condition])
+          type (get-in request [:params :type])
+          rule {:type type :name name :condition condition :params params}]
       (db-store-rule rule)
       {:status 201 :body rule}
     )
@@ -96,7 +102,7 @@
     (let [ticket (get-in request [:json-params])]
             (prn ticket)
       (process-ticket ticket)
-      {:status 201 :body "proceso Ok"}
+      {:status 201 :body (str "Ticket procesado Ok -> " ticket)}
     )
   )
 
