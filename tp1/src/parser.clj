@@ -1,5 +1,26 @@
 (ns parser
   (:require [clojure.string :as string]))
+  (defn index-of
+    "Return index of value (string or char) in s, optionally searching
+    forward from from-index. Return nil if value not found."
+    {:added "1.8"}
+    ([^CharSequence s value]
+    (let [result ^long
+          (if (instance? Character value)
+            (.indexOf (.toString s) ^int (.charValue ^Character value))
+            (.indexOf (.toString s) ^String value))]
+      (if (= result -1)
+        nil
+        result)))
+    ([^CharSequence s value ^long from-index]
+    (let [result ^long
+          (if (instance? Character value)
+            (.indexOf (.toString s) ^int (.charValue ^Character value) (unchecked-int from-index))
+            (.indexOf (.toString s) ^String value (unchecked-int from-index)))]
+      (if (= result -1)
+        nil
+        result))))
+
 
 (defn is-valid-counter
   "Returns true if the rule is valid, if not returns false"
@@ -36,7 +57,7 @@
 	[rule]
   (if (is-rule-a-counter-or-step-counter rule)
     (nth rule 1)
-    (subs (string/join " " (nth rule 1)) 2  (- (string/index-of (nth rule 1) " " ) 1))))
+    (subs (string/join " " (nth rule 1)) 2  (- (index-of (nth rule 1) " " ) 1))))
 
 (defmulti parse-counter-params (fn [rule] (is-rule-a-step-counter rule)))
 (defmethod parse-counter-params true [rule] (nth rule 3))
