@@ -64,7 +64,7 @@
   (GET "/example/api/getRules" []
     {:headers {"Access-Control-Allow-Origin" "*"
     "Access-Control-Allow-Methods" "GET, POST, PUT, OPTIONS"}
-    :status 200 :body (db-find-all-rules)}
+    :status 200 :body (db-find-last-rules)}
   )
 
   (GET "/example/api/getState" []
@@ -93,9 +93,11 @@
   )
 
   (POST "/example/api/processTicket" request
-    (let [nombre (get-in request [:params :nombre])
-          estado (get-in request [:params :estado])
-          ticket {:nombre nombre :estado estado}]
+
+    (let [ticket (get-in request [:json-params])
+
+          ]
+            (prn ticket)
       (process-ticket ticket)
       {:status 201 :body "proceso Ok"}
     )
