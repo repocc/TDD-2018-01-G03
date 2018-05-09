@@ -21,7 +21,6 @@ public class Dashboard {
     public List<Query> getQueries() {
         return queries;
     }
-
     public void addQuery(Query query) {
         this.queries.add(query);
     }
@@ -44,5 +43,9 @@ public class Dashboard {
     }
     public void disable() {
         this.state = DashboardState.DISABLE;
+    }
+
+    public boolean isEnable() {
+        return (this.state == DashboardState.ENABLE);
     }
 }

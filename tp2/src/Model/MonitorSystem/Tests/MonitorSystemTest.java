@@ -10,14 +10,18 @@ import java.time.Duration;
 
 public class MonitorSystemTest extends TestCase {
 
+    private MonitorSystem monitorSystem;
+    private Admin admin;
+
     public void setUp() throws Exception {
         super.setUp();
-        MonitorSystem monitorSystem = new MonitorSystem();
-        Admin admin = new Admin("U1",monitorSystem);
+        this.monitorSystem = new MonitorSystem();
+        this.admin = new Admin("U1",monitorSystem);
         admin.addDashboard("D1");
         Query q1 = new Query("ticketsOpened", Duration.ofSeconds(1),new Rule());
         admin.defineQuery(q1, "D1");
     }
+
 
     public void testAddUser() {
     }

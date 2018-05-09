@@ -10,7 +10,6 @@ public class TicketTest extends TestCase {
 
     private Ticket ticket;
 
-
     public void setUp() throws Exception {
         super.setUp();
         TicketState initialState = new TicketState("OPEN");
@@ -26,7 +25,6 @@ public class TicketTest extends TestCase {
         TicketState endState = new TicketState("CLOSED");
         ticket.changeState(endState);
         assertTrue(ticket.getActualState().getTittle() == "CLOSED");
-
     }
 
     public void testIsOpen(){

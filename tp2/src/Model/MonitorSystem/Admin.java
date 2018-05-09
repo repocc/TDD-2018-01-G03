@@ -1,6 +1,7 @@
 package tp2.src.Model.MonitorSystem;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,6 +23,11 @@ public class Admin extends User {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<Dashboard> getDashboards() {
+        return this.dashboards;
     }
 
     public void addDashboard(Dashboard dashboard){

@@ -3,6 +3,7 @@ package tp2.src.Model.MonitorSystem;
 import tp2.src.Model.MonitorSystem.Exceptions.DashboardNotFoundException;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class MonitorSystem {
@@ -10,7 +11,6 @@ public class MonitorSystem {
     private Engine engine;
 
     public MonitorSystem() {
-        this.engine = new Engine();
         this.users = new ArrayList<User>();
     }
 
@@ -26,5 +26,24 @@ public class MonitorSystem {
             }
         }
         throw new DashboardNotFoundException(dashboardName);
+    }
+
+    public ArrayList<Dashboard> getDashboards(){
+        ArrayList<Dashboard> dashboards = new ArrayList<Dashboard>();
+        Iterator<User> it = this.users.iterator();
+        while (it.hasNext()) {
+            dashboards.addAll(it.next().getDashboards());
+        }
+        return dashboards;
+    }
+
+    public ArrayList<Query> getQueries() {
+
+        ArrayList<Query> queries = new ArrayList<Query>();
+        Iterator<Dashboard> it = this.getDashboards().iterator();
+        while (it.hasNext()){
+            queries.addAll(it.next().getQueries());
+        }
+        return queries;
     }
 }

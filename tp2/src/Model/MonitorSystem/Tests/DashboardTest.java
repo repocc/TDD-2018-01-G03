@@ -25,4 +25,20 @@ public class DashboardTest extends TestCase {
         this.dummyDashboard.addQuery(query);
         assertEquals(1, this.dummyDashboard.getQueries().size());
     }
+
+    public void testInitiallyEnable(){
+        assertTrue(dummyDashboard.isEnable());
+    }
+
+    public void testDisable(){
+        dummyDashboard.disable();
+        assertFalse(dummyDashboard.isEnable());
+    }
+
+    public void testEnable(){
+        dummyDashboard.disable();
+        assertFalse(dummyDashboard.isEnable());
+        dummyDashboard.enable();
+        assertTrue(dummyDashboard.isEnable());
+    }
 }
