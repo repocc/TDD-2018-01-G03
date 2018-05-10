@@ -107,6 +107,9 @@ public class EngineTest extends TestCase {
         tickets.add(t3);
         engine.sendTickets(tickets);
         this.engine.conector.calculateLastSignal();
+
+        assertEquals(1.0 , this.engine.getRuleValue("close-count"), 0);
+        assertEquals(3.0 , this.engine.getRuleValue("open-count"), 0);
         assertEquals(0.75 , this.engine.getRuleValue("open-fraction"), 0);
     }
 
