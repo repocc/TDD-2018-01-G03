@@ -68,9 +68,9 @@ public class Engine {
         this.conector.initializeProcessor();
         this.sendTickets(tickets);
         this.conector.calculateLastSignal();
-
-
-
+        for (Query query : queries) {
+            query.updateResult(getRuleValue(query.getRule().name));
+        }
     }
 
     public float getRuleValue(String ruleName) {

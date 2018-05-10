@@ -102,7 +102,6 @@
     {:status 200 :body (last rta)}
   )
 
-
   (POST "/example/api/counterValue" request
     (prn request)
     (let [counter-name (get-in request [:params :counter-name])
@@ -123,7 +122,6 @@
         (prn (rule-value :value))
         {:status 201 :body (str (rule-value :value))}
     )
-
   )
 
   (POST "/example/api/setRule" request

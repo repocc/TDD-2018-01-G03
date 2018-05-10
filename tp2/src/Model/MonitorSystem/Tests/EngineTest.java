@@ -3,6 +3,7 @@ package tp2.src.Model.MonitorSystem.Tests;
 import junit.framework.TestCase;
 import tp2.src.Model.MonitorSystem.*;
 
+import java.time.Duration;
 import java.util.ArrayList;
 
 public class EngineTest extends TestCase {
@@ -13,9 +14,6 @@ public class EngineTest extends TestCase {
         super.setUp();
         this.monitorSystem = new MonitorSystem();
         this.engine = new Engine(monitorSystem);
-    }
-
-    public void testUpdateQueries() {
     }
 
     public void testSendRules() {
@@ -30,8 +28,7 @@ public class EngineTest extends TestCase {
         System.out.println(engine.sendRules(rules));
     }
 
-    public void testSendTickets(){
-        engine.conector.initializeProcessor();
+    public ArrayList<Ticket> getListTicketsMock(){
         Ticket t0 = new Ticket(0,new TicketState("OPEN"));
         Ticket t1 = new Ticket(1,new TicketState("CLOSE"));
         Ticket t2 = new Ticket(2,new TicketState("OPEN"));
@@ -41,71 +38,39 @@ public class EngineTest extends TestCase {
         tickets.add(t1);
         tickets.add(t2);
         tickets.add(t3);
-        engine.sendTickets(tickets);
+        return tickets;
+    }
+
+    public void sendTicketsMock(){
+        engine.conector.initializeProcessor();
+        engine.sendTickets(this.getListTicketsMock());
+    }
+
+    public void testSendTickets(){
+        this.sendTicketsMock();
         System.out.println(engine.conector.getLastState());
 //        TODO: checkear
     }
 
     public void testGetLastSignal(){
-        engine.conector.initializeProcessor();
-        Ticket t0 = new Ticket(0,new TicketState("OPEN"));
-        Ticket t1 = new Ticket(1,new TicketState("CLOSE"));
-        Ticket t2 = new Ticket(2,new TicketState("OPEN"));
-        Ticket t3 = new Ticket(3,new TicketState("OPEN"));
-        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
-        tickets.add(t0);
-        tickets.add(t1);
-        tickets.add(t2);
-        tickets.add(t3);
-        engine.sendTickets(tickets);
-
+       this.sendTicketsMock();
         System.out.println(engine.conector.getLastSignal());
 //        TODO: checkear
     }
 
 
     public void testGetCounterValue(){
-        engine.conector.initializeProcessor();
-        Ticket t0 = new Ticket(0,new TicketState("OPEN"));
-        Ticket t1 = new Ticket(1,new TicketState("CLOSE"));
-        Ticket t2 = new Ticket(2,new TicketState("OPEN"));
-        Ticket t3 = new Ticket(3,new TicketState("OPEN"));
-        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
-        tickets.add(t0);
-        tickets.add(t1);
-        tickets.add(t2);
-        tickets.add(t3);
-        engine.sendTickets(tickets);
+        this.sendTicketsMock();
         assertEquals(3.0, engine.getCounterValue("open-count"), 0);
     }
 
     public void testCalculateLastSignal(){
-        engine.conector.initializeProcessor();
-        Ticket t0 = new Ticket(0,new TicketState("OPEN"));
-        Ticket t1 = new Ticket(1,new TicketState("CLOSE"));
-        Ticket t2 = new Ticket(2,new TicketState("OPEN"));
-        Ticket t3 = new Ticket(3,new TicketState("OPEN"));
-        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
-        tickets.add(t0);
-        tickets.add(t1);
-        tickets.add(t2);
-        tickets.add(t3);
-        engine.sendTickets(tickets);
+       this.sendTicketsMock();
         assertEquals("[{\"open-fraction\":0.75}]" , this.engine.conector.calculateLastSignal());
     }
 
     public void testRuleValue(){
-        engine.conector.initializeProcessor();
-        Ticket t0 = new Ticket(0,new TicketState("OPEN"));
-        Ticket t1 = new Ticket(1,new TicketState("CLOSE"));
-        Ticket t2 = new Ticket(2,new TicketState("OPEN"));
-        Ticket t3 = new Ticket(3,new TicketState("OPEN"));
-        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
-        tickets.add(t0);
-        tickets.add(t1);
-        tickets.add(t2);
-        tickets.add(t3);
-        engine.sendTickets(tickets);
+        this.sendTicketsMock();
         this.engine.conector.calculateLastSignal();
 
         assertEquals(1.0 , this.engine.getRuleValue("close-count"), 0);
@@ -114,6 +79,15 @@ public class EngineTest extends TestCase {
     }
 
 
+    public void testUpdateQueries() {
+        Admin admin = new Admin("ADMIN", this.monitorSystem);
+        admin.addDashboard(new Dashboard("DASH1"));
+        this.monitorSystem.addUser(admin);
+        Query query = new Query("open-count", Duration.ofSeconds(10), new Rule("define-counter","open-count","(current \"OPEN\")","[]"));
+        admin.defineQuery(query,"DASH1");
+        this.engine.updateQueries(this.getListTicketsMock());
+        assertEquals(3.0, query.getResults().get(0).value, 0);
+    }
 
 
 }

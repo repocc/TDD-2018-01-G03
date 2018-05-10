@@ -136,7 +136,5 @@ public class Conector {
         } else {
             return Float.parseFloat(value);
         }
-
-
     }
 }

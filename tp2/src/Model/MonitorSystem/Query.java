@@ -46,4 +46,8 @@ public class Query {
         return (this.state == QueryState.ENABLE);
     }
 
+    public void updateResult(float ruleValue) {
+        Result newResult = new Result(ruleValue);
+        this.results.add(newResult);
+    }
 }
