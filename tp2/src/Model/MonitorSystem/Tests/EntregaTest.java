@@ -5,6 +5,7 @@ import tp2.src.Model.MonitorSystem.*;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EntregaTest extends TestCase{
     private MonitorSystem monitorSystem;
@@ -80,6 +81,21 @@ public class EntregaTest extends TestCase{
         assertEquals(1, this.engine.getRuleValue("close-count"),0);
         assertEquals(0.75, this.engine.getRuleValue("open-fraction"), 0);
 
+
+        //RESULTS
+        List<Dashboard> dashboards = admin.getDashboards();
+
+        for (Dashboard dashboard : dashboards){
+
+            for (Query query : dashboard.getQueries()){
+                System.out.println(query.getRule().name);
+                for (Result result : query.getResults()){
+                    System.out.print(result.value);
+                    System.out.print("   ");
+                    System.out.println(result.dateTimeRecorded);
+                }
+            }
+        }
 
 
     }

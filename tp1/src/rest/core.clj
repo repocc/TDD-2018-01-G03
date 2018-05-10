@@ -33,18 +33,6 @@
 
 (defn db-store-rule [rule] (rdb/insert db :rules rule))
 
-(def rules '((define-counter "tickets-count" []
-               true)
-             (define-counter "close-count" []
-               (current "CLOSE"))
-             (define-counter "open-count" []
-                 (current "OPEN"))
-             (define-signal {"open-fraction" (/ (counter-value "open-count" [])
-                                                (counter-value "tickets-count" []))}
-               true)
-             (define-counter "open-to-do-table" [(current "OPEN")
-                                                     (current "TO DO")]
-               true)))
 
 (defn save-signal [signal]
  (rdb/insert db :signal
@@ -61,14 +49,23 @@
   (save-signal (last rta))
 )
 
+(def rules '((define-counter "tickets-count" []
+               true)
+             (define-counter "close-count" []
+               (current "CLOSE"))
+             (define-counter "open-count" []
+                 (current "OPEN"))
+             (define-signal {"open-fraction" (/ (counter-value "open-count" [])
+                                                (counter-value "tickets-count" []))}
+               true)
+             (define-counter "open-to-do-table" [(current "OPEN")
+                                                     (current "TO DO")]
+               true)))
+
 
 (defn processor-initialization []
   ; TODO: Cambiar, rules debe venir de las reglas que se guardaron en la base de datos
   (save-state (initialize-processor rules))
-)
-
-(defn query-counterss []
-(prn "aca devuelvo el query-counter")
 )
 
 (defroutes app-routes
