@@ -100,9 +100,10 @@
   (POST "/example/api/processTicket" request
 
     (let [ticket (get-in request [:json-params])]
-            (prn ticket)
+          (prn ticket)
       (process-ticket ticket)
-      {:status 201 :body (str "Ticket procesado Ok -> " ticket)}
+      {:status 201 :body (str "Ticket procesado Ok \n Ticket -> " ticket)}
+
     )
   )
 
