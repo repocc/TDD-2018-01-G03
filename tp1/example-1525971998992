@@ -1,0 +1,18 @@
+{
+  "rules" : [ {
+    "type" : "define-counter",
+    "name" : "open-count",
+    "condition" : "(current \"OPEN\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-counter",
+    "name" : "close-count",
+    "condition" : "(current \"CLOSE\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-signal",
+    "name" : "open-fraction",
+    "condition" : "true",
+    "params" : "(/ (counter-value \"open-count\" []) (counter-value \"tickets-count\" []))"
+  } ]
+}
