@@ -47,5 +47,6 @@ public class TicketsDealer {
                 break;
             }
         }
+        this.updateDashboards();
     }
 }

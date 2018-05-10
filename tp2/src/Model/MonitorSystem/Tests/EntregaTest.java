@@ -61,9 +61,11 @@ public class EntregaTest extends TestCase{
         assertEquals(1.0, this.engine.getRuleValue("close-count"),0);
         assertEquals(0.75, this.engine.getRuleValue("open-fraction"), 0);
 
-
-
-
+        //REMOVE TICKET
+        this.tickeySysyemG3Traslator.removeTicket(1);
+        assertEquals(3.0, this.engine.getRuleValue("open-count"),0);
+        assertEquals(0, this.engine.getRuleValue("close-count"),0);
+        assertEquals(1, this.engine.getRuleValue("open-fraction"), 0);
 
     }
 
