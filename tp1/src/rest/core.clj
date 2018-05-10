@@ -33,7 +33,6 @@
 
 (defn db-store-rule [rule] (rdb/insert db :rules rule))
 
-
 (defn save-signal [signal]
  (rdb/insert db :signal
    {:nombre signal}))
@@ -42,6 +41,12 @@
    (rdb/insert db :state
      {:nombre state})
 )
+
+(defn save-rule [rule]
+  (prn rule)
+ (rdb/insert db :rules
+   rule
+   ))
 
 (defn process-ticket [ ticket ]
   (def rta (process-data (db-find-last-state) ticket))
@@ -64,10 +69,14 @@
 
 
 (defn processor-initialization []
-  (rules-maker db-find-last-rules)
+  (prn db-find-last-rules)
+
   ; TODO: Cambiar, rules debe venir de las reglas que se guardaron en la base de datos
   (save-state (initialize-processor rules))
   ; (save-state (initialize-processor (rules-maker db-find-last-rules))))
+
+  ; (rdb/drop-where db :rules :type "define-signal")
+  ; (rdb/drop-where db :rules :type "define-counter")
 
 )
 
@@ -97,7 +106,6 @@
     tras procesar todos los datos, se guarda el estado final y se
     procesa un dato inutil para poder guardar el signal final"
     (def rta (process-data (db-find-last-state) {:inutil ""}))
-    (prn  (last rta))
     (save-signal (last rta))
     {:status 200 :body (last rta)}
   )
@@ -122,8 +130,10 @@
           condition (get-in request [:params :condition])
           type (get-in request [:params :type])
           rule {:type type :name name :condition condition :params params}]
+          (save-rule rule)
       {:status 201 :body rule}
     )
+
   )
 
   (POST "/example/api/processTicket" request
