@@ -79,15 +79,34 @@ public class EngineTest extends TestCase {
     }
 
 
-    public void testUpdateQueries() {
+    public void testUpdateQueriesOneDashboard() {
         Admin admin = new Admin("ADMIN", this.monitorSystem);
         admin.addDashboard(new Dashboard("DASH1"));
         this.monitorSystem.addUser(admin);
-        Query query = new Query("open-count", Duration.ofSeconds(10), new Rule("define-counter","open-count","(current \"OPEN\")","[]"));
-        admin.defineQuery(query,"DASH1");
+        Query query0 = new Query("open-count", Duration.ofSeconds(10), new Rule("define-counter","open-count","(current \"OPEN\")","[]"));
+        Query query1 = new Query("open-count", Duration.ofSeconds(10), new Rule("define-counter","close-count","(current \"CLOSE\")","[]"));
+        admin.defineQuery(query0,"DASH1");
+        admin.defineQuery(query1,"DASH1");
         this.engine.updateQueries(this.getListTicketsMock());
-        assertEquals(3.0, query.getResults().get(0).value, 0);
+        assertEquals(3.0, query0.getResults().get(0).value, 0);
+        assertEquals(1.0, query1.getResults().get(0).value, 0);
     }
+
+
+    public void testUpdateQueriesMultipleDashboards() {
+        Admin admin = new Admin("ADMIN", this.monitorSystem);
+        admin.addDashboard(new Dashboard("DASH1"));
+        admin.addDashboard(new Dashboard("DASH2"));
+        this.monitorSystem.addUser(admin);
+        Query query0 = new Query("open-count", Duration.ofSeconds(10), new Rule("define-counter","open-count","(current \"OPEN\")","[]"));
+        Query query1 = new Query("open-count", Duration.ofSeconds(10), new Rule("define-counter","close-count","(current \"CLOSE\")","[]"));
+        admin.defineQuery(query0,"DASH1");
+        admin.defineQuery(query1,"DASH2");
+        this.engine.updateQueries(this.getListTicketsMock());
+        assertEquals(3.0, query0.getResults().get(0).value, 0);
+        assertEquals(1.0, query1.getResults().get(0).value, 0);
+    }
+
 
 
 }
