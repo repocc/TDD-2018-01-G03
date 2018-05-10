@@ -18,19 +18,7 @@ public class TicketsDealer {
         this.engine.updateQueries(tickets);
     }
 
-    public void updateTicket(Ticket ticket) {
-        //TODO: update ticket
-        //pisar ticket
-//        Iterator<Ticket> it = this.tickets.iterator();
-//        while (it.hasNext()) {
-//            if(it.next().equals(ticket.ID)){
-//                it
-//                break;
-//            }
-//        }
-//    }
-
-
+    public void updateTicket() {
         this.updateDashboards();
     }
 

@@ -16,8 +16,7 @@ public class TicketSystemG3Translator implements TicketTranslator {
         this.ticketsDealer.removeTicket(ID);
     }
 
-    @Override
-    public void updateTicket(Ticket ticket) {
-        this.ticketsDealer.updateTicket(ticket);
+    public void ticketUpdate() {
+        this.ticketsDealer.updateTicket();
     }
 }

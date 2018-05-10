@@ -5,6 +5,6 @@ public interface  TicketTranslator {
 
     public void addTicket(Ticket ticket);
     public void removeTicket(float ID);
-    public void updateTicket(Ticket ticket);
+    public void ticketUpdate();
 
 }
