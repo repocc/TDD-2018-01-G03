@@ -19,9 +19,7 @@ public class EntregaTest extends TestCase{
         this.engine = new Engine(monitorSystem);
         this.ticketsDealer = new TicketsDealer(engine);
         this.tickeySysyemG3Traslator = new TicketSystemG3Translator(ticketsDealer);
-
     }
-
 
     public void testMonitorSystem(){
         Admin admin = new Admin("U1", this.monitorSystem );

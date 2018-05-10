@@ -6,7 +6,7 @@
             [compojure.handler :as handler]
             [rage-db.core :as rdb]
             [data-processor :refer :all]
-            [value-operator :refer :all]
+            [core-operator :refer :all]
             ))
 
 ;; Utility function to parse an integer
@@ -64,8 +64,11 @@
 
 
 (defn processor-initialization []
+  (rules-maker db-find-last-rules)
   ; TODO: Cambiar, rules debe venir de las reglas que se guardaron en la base de datos
   (save-state (initialize-processor rules))
+  ; (save-state (initialize-processor (rules-maker db-find-last-rules))))
+
 )
 
 (defroutes app-routes
@@ -100,35 +103,25 @@
   )
 
   (POST "/example/api/counterValue" request
-    (prn request)
     (let [counter-name (get-in request [:params :counter-name])
         counter-value {:value (query-counter (db-find-last-state) counter-name [] )}]
-        (prn counter-name)
-        (prn counter-value)
-        (prn (counter-value :value))
         {:status 201 :body (str (counter-value :value))}
     )
   )
 
   (POST "/example/api/ruleValue" request
-    (prn request)
     (let [rule-name (get-in request [:params :rule-name])
         rule-value {:value (rule-value (db-find-last-state) (db-find-last-signal) rule-name  )}]
-        (prn rule-name)
-        (prn rule-value)
-        (prn (rule-value :value))
         {:status 201 :body (str (rule-value :value))}
     )
   )
 
   (POST "/example/api/setRule" request
-    (prn request)
     (let [name (get-in request [:params :name])
           params (get-in request [:params :params])
           condition (get-in request [:params :condition])
           type (get-in request [:params :type])
           rule {:type type :name name :condition condition :params params}]
-      (db-store-rule rule)
       {:status 201 :body rule}
     )
   )
@@ -136,7 +129,6 @@
   (POST "/example/api/processTicket" request
 
     (let [ticket (get-in request [:json-params])]
-          (prn ticket)
       (process-ticket ticket)
       {:status 201 :body (str "Ticket procesado Ok \nTicket -> " ticket)}
 
