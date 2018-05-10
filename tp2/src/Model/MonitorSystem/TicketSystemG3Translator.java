@@ -8,21 +8,16 @@ public class TicketSystemG3Translator implements TicketTranslator {
 
     @Override
     public void addTicket(Ticket ticket) {
-
-    }
-
-    @Override
-    public void getTicket(float ID) {
-
+        this.ticketsDealer.addTicket(ticket);
     }
 
     @Override
     public void removeTicket(float ID) {
-
+        this.ticketsDealer.removeTicket(ID);
     }
 
     @Override
-    public void updateTicket() {
-
+    public void updateTicket(Ticket ticket) {
+        this.ticketsDealer.updateTicket(ticket);
     }
 }

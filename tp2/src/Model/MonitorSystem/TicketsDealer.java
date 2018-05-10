@@ -1,5 +1,6 @@
 package tp2.src.Model.MonitorSystem;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,6 +10,8 @@ public class TicketsDealer {
 
     public TicketsDealer(Engine engine) {
         this.engine = engine;
+        this.tickets = new ArrayList<Ticket>();
+
     }
 
     public void updateDashboards() {
@@ -17,6 +20,17 @@ public class TicketsDealer {
 
     public void updateTicket(Ticket ticket) {
         //TODO: update ticket
+        //pisar ticket
+//        Iterator<Ticket> it = this.tickets.iterator();
+//        while (it.hasNext()) {
+//            if(it.next().equals(ticket.ID)){
+//                it
+//                break;
+//            }
+//        }
+//    }
+
+
         this.updateDashboards();
     }
 
@@ -25,10 +39,10 @@ public class TicketsDealer {
         this.updateDashboards();
     }
 
-    public void removeTicket(Ticket ticket) {
+    public void removeTicket(float ID) {
         Iterator<Ticket> it = this.tickets.iterator();
         while (it.hasNext()) {
-            if(it.next().equals(ticket.ID)){
+            if(it.next().equals(ID)){
                 it.remove();
                 break;
             }
