@@ -21,7 +21,6 @@ public class Conector {
         try {
 
             URL url = new URL(urlGet);
-            System.out.println(url);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -36,7 +35,6 @@ public class Conector {
 
             System.out.println("Output from Server .... \n");  String op = "";
             while ((op = br.readLine()) != null) {
-                System.out.println(op);
                 output = output + op;
             }
 
@@ -78,13 +76,13 @@ public class Conector {
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     (conn.getInputStream())));
 
-            System.out.println("Output from Server ...\n");
+            System.out.println("Output from Server ...");
             String op = "";
             while ((op = br.readLine()) != null) {
                 System.out.println(op);
                 output = output + op;
             }
-
+            System.out.println("\n");
             conn.disconnect();
             return output;
 
@@ -115,5 +113,12 @@ public class Conector {
 
     public String getLastState(){
         return this.getRequest("http://localhost:3000/example/api/getState");
+    }
+    public String getLastSignal(){
+        return this.getRequest("http://localhost:3000/example/api/getLastSignal");
+    }
+
+    public float getCounterValue(JSONObject counterName) {
+        return Float.parseFloat(this.postRequest(counterName, "http://localhost:3000/example/api/counterValue"));
     }
 }

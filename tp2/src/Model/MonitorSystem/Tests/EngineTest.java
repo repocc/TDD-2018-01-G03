@@ -42,7 +42,43 @@ public class EngineTest extends TestCase {
         tickets.add(t2);
         tickets.add(t3);
         engine.sendTickets(tickets);
-        System.out.print(engine.conector.getLastState());
-
+        System.out.println(engine.conector.getLastState());
+//        TODO: checkear
     }
+
+    public void testGetLastSignal(){
+        engine.conector.initializeProcessor();
+        Ticket t0 = new Ticket(0,new TicketState("OPEN"));
+        Ticket t1 = new Ticket(1,new TicketState("CLOSE"));
+        Ticket t2 = new Ticket(2,new TicketState("OPEN"));
+        Ticket t3 = new Ticket(3,new TicketState("OPEN"));
+        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+        tickets.add(t0);
+        tickets.add(t1);
+        tickets.add(t2);
+        tickets.add(t3);
+        engine.sendTickets(tickets);
+
+        System.out.println(engine.conector.getLastSignal());
+//        TODO: checkear
+    }
+
+
+    public void testGetCounterValue(){
+        engine.conector.initializeProcessor();
+        Ticket t0 = new Ticket(0,new TicketState("OPEN"));
+        Ticket t1 = new Ticket(1,new TicketState("CLOSE"));
+        Ticket t2 = new Ticket(2,new TicketState("OPEN"));
+        Ticket t3 = new Ticket(3,new TicketState("OPEN"));
+        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+        tickets.add(t0);
+        tickets.add(t1);
+        tickets.add(t2);
+        tickets.add(t3);
+        engine.sendTickets(tickets);
+        assertEquals(3.0, engine.getCounterValue("open-count"), 0);
+    }
+
+
+
 }

@@ -55,13 +55,21 @@ public class Engine {
         }
     }
 
+    public float getCounterValue(String counterName){
+        JSONObject json = new JSONObject();
+        json.put("counter-name", counterName);
+        return this.conector.getCounterValue(json);
+    }
+
     public void updateQueries(List<Ticket> tickets){
         ArrayList<Query> queries = this.monitorSystem.getQueries();
         ArrayList<Rule> rules = this.getRulesFromQueries(queries);
         this.sendRules(rules);
         this.conector.initializeProcessor();
         this.sendTickets(tickets);
-        System.out.print(this.conector.getLastState());
+
+
+
     }
 
 }

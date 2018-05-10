@@ -24,6 +24,10 @@
   (get (last (rdb/keyspace db :state)) :nombre)
 )
 
+(defn db-find-last-signal []
+  (get (last (rdb/keyspace db :signal)) :nombre)
+)
+
 (defn db-find-last-rules [] (rdb/keyspace db :rules))
 
 (defn db-store-rule [rule] (rdb/insert db :rules rule))
@@ -41,6 +45,9 @@
                                                      (current "TO DO")]
                true)))
 
+(defn save-signal [signal]
+ (rdb/insert db :signal
+   {:nombre signal}))
 
 (defn save-state [state]
    (rdb/insert db :state
@@ -48,11 +55,13 @@
 )
 
 (defn process-ticket [ ticket ]
-
-  (rdb/insert db :state
-    {:nombre (first (process-data (db-find-last-state) ticket))})
-
+  (def rta (process-data (db-find-last-state) ticket))
+  (prn  (first rta))
+  (prn  (last rta))
+  (save-state (first rta))
+  (save-signal (last rta))
 )
+
 
 (defn processor-initialization []
   ; TODO: Cambiar, rules debe venir de las reglas que se guardaron en la base de datos
@@ -74,6 +83,10 @@
     {:status 200 :body (db-find-last-state)}
   )
 
+  (GET "/example/api/getLastSignal" []
+    {:status 200 :body (db-find-last-signal)}
+  )
+
   (GET "/example/api/processor-initialization" []
 
     (processor-initialization)
@@ -81,8 +94,16 @@
   )
 
 
-  (GET "/example/api/GetQueryCounter" []
-    {:status 200 :body (query-counterss)}
+  (POST "/example/api/counterValue" request
+    (prn request)
+    (let [counter-name (get-in request [:params :counter-name])
+        counter-value {:value (query-counter (db-find-last-state) counter-name [] )}]
+        (prn counter-name)
+        (prn counter-value)
+        (prn (counter-value :value))
+        {:status 201 :body (str (counter-value :value))}
+    )
+
   )
 
   (POST "/example/api/setRule" request
@@ -102,7 +123,7 @@
     (let [ticket (get-in request [:json-params])]
           (prn ticket)
       (process-ticket ticket)
-      {:status 201 :body (str "Ticket procesado Ok \n Ticket -> " ticket)}
+      {:status 201 :body (str "Ticket procesado Ok \nTicket -> " ticket)}
 
     )
   )
