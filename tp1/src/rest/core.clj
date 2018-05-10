@@ -6,6 +6,7 @@
             [compojure.handler :as handler]
             [rage-db.core :as rdb]
             [data-processor :refer :all]
+            [value-operator :refer :all]
             ))
 
 ;; Utility function to parse an integer
@@ -56,8 +57,6 @@
 
 (defn process-ticket [ ticket ]
   (def rta (process-data (db-find-last-state) ticket))
-  (prn  (first rta))
-  (prn  (last rta))
   (save-state (first rta))
   (save-signal (last rta))
 )
@@ -88,9 +87,19 @@
   )
 
   (GET "/example/api/processor-initialization" []
-
     (processor-initialization)
     {:status 200 :body "todo bien"}
+  )
+
+  (GET "/example/api/calculateLastSignal" []
+    "Esto es porque el signal se calcula con el estado anterior,
+    no con el estado resultante tras la llamada al data-processor,
+    tras procesar todos los datos, se guarda el estado final y se
+    procesa un dato inutil para poder guardar el signal final"
+    (def rta (process-data (db-find-last-state) {:inutil ""}))
+    (prn  (last rta))
+    (save-signal (last rta))
+    {:status 200 :body (last rta)}
   )
 
 
@@ -102,6 +111,17 @@
         (prn counter-value)
         (prn (counter-value :value))
         {:status 201 :body (str (counter-value :value))}
+    )
+  )
+
+  (POST "/example/api/ruleValue" request
+    (prn request)
+    (let [rule-name (get-in request [:params :rule-name])
+        rule-value {:value (rule-value (db-find-last-state) (db-find-last-signal) rule-name  )}]
+        (prn rule-name)
+        (prn rule-value)
+        (prn (rule-value :value))
+        {:status 201 :body (str (rule-value :value))}
     )
 
   )

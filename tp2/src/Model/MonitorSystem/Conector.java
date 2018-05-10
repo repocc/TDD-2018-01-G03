@@ -33,9 +33,10 @@ public class Conector {
             BufferedReader br = new BufferedReader(new InputStreamReader(
                     (conn.getInputStream())));
 
-            System.out.println("Output from Server .... \n");  String op = "";
+            System.out.println("Output from Server ... \n");  String op = "";
             while ((op = br.readLine()) != null) {
                 output = output + op;
+                System.out.println(op);
             }
 
             conn.disconnect();
@@ -120,5 +121,22 @@ public class Conector {
 
     public float getCounterValue(JSONObject counterName) {
         return Float.parseFloat(this.postRequest(counterName, "http://localhost:3000/example/api/counterValue"));
+    }
+
+    public String calculateLastSignal() {
+        return this.getRequest("http://localhost:3000/example/api/calculateLastSignal");
+    }
+
+    public float getRuleValue(JSONObject ruleName) {
+        String value = this.postRequest(ruleName, "http://localhost:3000/example/api/ruleValue");
+
+        if (value.contains("/")) {
+            String[] rat = value.split("/");
+            return Float.parseFloat(rat[0]) / Float.parseFloat(rat[1]);
+        } else {
+            return Float.parseFloat(value);
+        }
+
+
     }
 }

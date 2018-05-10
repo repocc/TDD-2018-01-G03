@@ -79,6 +79,38 @@ public class EngineTest extends TestCase {
         assertEquals(3.0, engine.getCounterValue("open-count"), 0);
     }
 
+    public void testCalculateLastSignal(){
+        engine.conector.initializeProcessor();
+        Ticket t0 = new Ticket(0,new TicketState("OPEN"));
+        Ticket t1 = new Ticket(1,new TicketState("CLOSE"));
+        Ticket t2 = new Ticket(2,new TicketState("OPEN"));
+        Ticket t3 = new Ticket(3,new TicketState("OPEN"));
+        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+        tickets.add(t0);
+        tickets.add(t1);
+        tickets.add(t2);
+        tickets.add(t3);
+        engine.sendTickets(tickets);
+        assertEquals("[{\"open-fraction\":0.75}]" , this.engine.conector.calculateLastSignal());
+    }
+
+    public void testRuleValue(){
+        engine.conector.initializeProcessor();
+        Ticket t0 = new Ticket(0,new TicketState("OPEN"));
+        Ticket t1 = new Ticket(1,new TicketState("CLOSE"));
+        Ticket t2 = new Ticket(2,new TicketState("OPEN"));
+        Ticket t3 = new Ticket(3,new TicketState("OPEN"));
+        ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+        tickets.add(t0);
+        tickets.add(t1);
+        tickets.add(t2);
+        tickets.add(t3);
+        engine.sendTickets(tickets);
+        this.engine.conector.calculateLastSignal();
+        assertEquals(0.75 , this.engine.getRuleValue("open-fraction"), 0);
+    }
+
+
 
 
 }

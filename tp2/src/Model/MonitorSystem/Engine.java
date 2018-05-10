@@ -67,9 +67,15 @@ public class Engine {
         this.sendRules(rules);
         this.conector.initializeProcessor();
         this.sendTickets(tickets);
+        this.conector.calculateLastSignal();
 
 
 
     }
 
+    public float getRuleValue(String ruleName) {
+        JSONObject json = new JSONObject();
+        json.put("rule-name", ruleName);
+        return this.conector.getRuleValue(json);
+    }
 }
