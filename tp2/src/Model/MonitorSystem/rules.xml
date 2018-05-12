@@ -3,21 +3,21 @@
 
 <class>
     <Rule>
-        <name>"open-count"</name>
-        <type>"define-counter"</type>
-        <condition>"(current "OPEN")"</condition>
-        <params>"[]"</params>
+        <name>open-count</name>
+        <type>define-counter</type>
+        <condition>(current "OPEN")</condition>
+        <params>[]</params>
     </Rule>
     <Rule>
-        <name>"close-count"</name>
-        <type>"define-counter"</type>
-        <condition>"(current "CLOSE")"</condition>
-        <params>"[]"</params>
+        <name>close-count</name>
+        <type>define-counter</type>
+        <condition>(current "CLOSE")</condition>
+        <params>[]</params>
     </Rule>
     <Rule>
-        <name>"open-fraction"</name>
-        <type>"define-signal"</type>
-        <condition>"true"</condition>
-        <params>"(/ (counter-value "open-count" []) (counter-value "tickets-count" []))"</params>
+        <name>open-fraction</name>
+        <type>define-signal</type>
+        <condition>true</condition>
+        <params>(/ (counter-value "open-count" []) (counter-value "tickets-count" []))</params>
     </Rule>
 </class>

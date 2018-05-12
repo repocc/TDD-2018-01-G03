@@ -1,6 +1,7 @@
 package tp2.src.Model.MonitorSystem;
 
 import tp2.src.Model.MonitorSystem.Exceptions.DashboardNotFoundException;
+import tp2.src.Model.MonitorSystem.Exceptions.RuleNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -52,5 +53,14 @@ public class MonitorSystem {
             queries.addAll(it.next().getQueries());
         }
         return queries;
+    }
+
+    public Rule getRule(String ruleName) throws RuleNotFoundException {
+        for (Rule rule : this.availableRules) {
+            if(rule.name.equalsIgnoreCase(ruleName)){
+                return  rule;
+            }
+        }
+        throw new RuleNotFoundException(ruleName);
     }
 }
