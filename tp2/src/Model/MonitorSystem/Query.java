@@ -2,7 +2,6 @@ package tp2.src.Model.MonitorSystem;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Query {

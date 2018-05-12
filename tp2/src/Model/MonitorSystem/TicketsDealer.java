@@ -11,7 +11,6 @@ public class TicketsDealer {
     public TicketsDealer(Engine engine) {
         this.engine = engine;
         this.tickets = new ArrayList<Ticket>();
-
     }
 
     public void updateDashboards() {

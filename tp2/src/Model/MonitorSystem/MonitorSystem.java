@@ -9,9 +9,16 @@ import java.util.List;
 public class MonitorSystem {
     private List<User> users;
     private Engine engine;
+    private List<Rule> availableRules;
 
     public MonitorSystem() {
         this.users = new ArrayList<User>();
+        this.availableRules =  this.buildRulesFromXML();
+    }
+
+    private List<Rule> buildRulesFromXML() {
+        xmlParser xmlParser = new xmlParser();
+        return xmlParser.buildRules();
     }
 
     public void addUser(User user) {
