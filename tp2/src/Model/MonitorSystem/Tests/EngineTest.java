@@ -78,8 +78,6 @@ public class EngineTest extends TestCase {
         admin.defineQuery(query0,"DASH1");
         admin.defineQuery(query1,"DASH1");
 
-        this.engine.updateQueriesResult();
-
         assertEquals(3.0, query0.getResults().get(0).value, 0);
         assertEquals(1.0, query1.getResults().get(0).value, 0);
     }
@@ -94,7 +92,7 @@ public class EngineTest extends TestCase {
         Query query1 = new Query("open-count", Duration.ofSeconds(10), "close-count");
         admin.defineQuery(query0,"DASH1");
         admin.defineQuery(query1,"DASH2");
-        this.engine.updateQueriesResult();
+
         assertEquals(3.0, query0.getResults().get(0).value, 0);
         assertEquals(1.0, query1.getResults().get(0).value, 0);
     }

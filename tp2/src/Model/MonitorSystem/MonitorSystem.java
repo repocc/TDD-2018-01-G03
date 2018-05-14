@@ -65,4 +65,8 @@ public class MonitorSystem {
         }
         throw new RuleNotFoundException(ruleName);
     }
+
+    public void updateQueriesResult() {
+        this.engine.updateQueriesResult();
+    }
 }

@@ -1,7 +1,6 @@
 package tp2.src.Model.MonitorSystem;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -40,6 +39,7 @@ public class Admin extends User {
                 dashboard.addQuery(query);
             }
         }
+        this.monitorSystem.updateQueriesResult();
     }
     public void enableQuery(String queryName){
         Iterator<Dashboard> it = this.dashboards.iterator();
