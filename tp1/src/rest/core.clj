@@ -60,10 +60,12 @@
                (current "CLOSE"))
              (define-counter "open-count" []
                  (current "OPEN"))
+             (define-counter "remove-count" []
+                 (current "REMOVED"))
              (define-signal {"open-actual-count" (- (counter-value "open-count" [])
                                                 (counter-value "close-count" []))}
                true)
-             (define-signal {"open-fraction" (/ (- (counter-value "open-count" [])(counter-value "close-count" []))
+             (define-signal {"open-fraction" (/ (- (counter-value "open-count" []) (counter-value "close-count" []))
                                                 (counter-value "open-count" []))}
                true)
              (define-counter "open-to-do-table" [(current "OPEN")
@@ -100,7 +102,7 @@
 
   (GET "/example/api/processor-initialization" []
     (processor-initialization)
-    {:status 200 :body "todo bien"}
+    {:status 200 :body "processor initialized"}
   )
 
   (GET "/example/api/calculateLastSignal" []

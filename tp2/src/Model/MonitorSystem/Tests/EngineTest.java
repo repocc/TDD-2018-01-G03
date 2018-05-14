@@ -23,7 +23,6 @@ public class EngineTest extends TestCase {
     }
 
     public void testSendRules() {
-
         Rule rule0 = new Rule("define-counter","open-count","(current \"OPEN\")","[]");
         Rule rule1 = new Rule("define-counter","close-count","(current \"CLOSE\")","[]");
         Rule rule2 = new Rule("define-signal","open-fraction","true", "(/ (counter-value \"open-count\" []) (counter-value \"tickets-count\" []))");

@@ -3,7 +3,6 @@ package tp2.src.Model.MonitorSystem.Tests;
 import junit.framework.TestCase;
 import tp2.src.Model.MonitorSystem.Dashboard;
 import tp2.src.Model.MonitorSystem.Query;
-import tp2.src.Model.MonitorSystem.Rule;
 
 import java.time.Duration;
 

@@ -49,37 +49,39 @@ public class EntregaTest extends TestCase{
             this.tickeySysyemG3Traslator.addTicket(new Ticket(1, new TicketState("CLOSE")));
             assertEquals(1.0, this.engine.getRuleValue("open-count"), 0);
             assertEquals(1.0, this.engine.getRuleValue("close-count"), 0);
-            assertEquals(0.5, this.engine.getRuleValue("open-fraction"), 0);
+            assertEquals(0, this.engine.getRuleValue("open-fraction"), 0);
 
             this.tickeySysyemG3Traslator.addTicket(new Ticket(2, new TicketState("OPEN")));
             assertEquals(2.0, this.engine.getRuleValue("open-count"), 0);
             assertEquals(1.0, this.engine.getRuleValue("close-count"), 0);
-            assertEquals(0.6, this.engine.getRuleValue("open-fraction"), 0.1);
+            assertEquals(0.5, this.engine.getRuleValue("open-fraction"), 0);
 
             Ticket t = new Ticket(3, new TicketState("OPEN"));
             this.tickeySysyemG3Traslator.addTicket(t);
             assertEquals(3.0, this.engine.getRuleValue("open-count"), 0);
             assertEquals(1.0, this.engine.getRuleValue("close-count"), 0);
-            assertEquals(0.75, this.engine.getRuleValue("open-fraction"), 0);
+            assertEquals(0.7, this.engine.getRuleValue("open-fraction"), 0.1);
 
             //REMOVE TICKET
             t.remove();
             this.tickeySysyemG3Traslator.ticketUpdate(t);
             assertEquals(3.0, this.engine.getRuleValue("open-count"), 0);
-            assertEquals(0, this.engine.getRuleValue("close-count"), 0);
-            assertEquals(1, this.engine.getRuleValue("open-fraction"), 0);
+            assertEquals(1, this.engine.getRuleValue("remove-count"), 0);
+            assertEquals(1, this.engine.getRuleValue("close-count"), 0);
+            assertEquals(0.7, this.engine.getRuleValue("open-fraction"), 0);
 
             //UPDATE TICKET
             Ticket ticket4 = new Ticket(4, new TicketState("OPEN"));
             this.tickeySysyemG3Traslator.addTicket(ticket4);
             assertEquals(4.0, this.engine.getRuleValue("open-count"), 0);
-            assertEquals(0, this.engine.getRuleValue("close-count"), 0);
-            assertEquals(1, this.engine.getRuleValue("open-fraction"), 0);
+            assertEquals(1, this.engine.getRuleValue("close-count"), 0);
+            assertEquals(0.7, this.engine.getRuleValue("open-fraction"), 0);
 
             ticket4.changeState(new TicketState("CLOSE"));
             this.tickeySysyemG3Traslator.ticketUpdate(ticket4);
-            assertEquals(3.0, this.engine.getRuleValue("open-count"), 0);
-            assertEquals(1, this.engine.getRuleValue("close-count"), 0);
+            assertEquals(4.0, this.engine.getRuleValue("open-count"), 0);
+            assertEquals(2, this.engine.getRuleValue("close-count"), 0);
+            assertEquals(3, this.engine.getRuleValue("open-actual-count"), 0);
             assertEquals(0.75, this.engine.getRuleValue("open-fraction"), 0);
 
 
