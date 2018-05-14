@@ -3,10 +3,8 @@ package tp2.src.Model.MonitorSystem.Tests;
 import junit.framework.TestCase;
 import tp2.src.Model.MonitorSystem.*;
 import tp2.src.Model.MonitorSystem.Exceptions.NotFoundException;
-import tp2.src.Model.MonitorSystem.Exceptions.RuleNotFoundException;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 
 public class EntregaTest extends TestCase{
@@ -14,7 +12,7 @@ public class EntregaTest extends TestCase{
     private Engine engine;
     private TicketsDealer ticketsDealer;
     private TicketTranslator tickeySysyemG3Traslator;
-    private ArrayList<Ticket> ticketsMock;
+
     public void setUp() throws Exception {
         super.setUp();
         this.monitorSystem = new MonitorSystem();
@@ -34,9 +32,9 @@ public class EntregaTest extends TestCase{
             Rule rule2 = this.monitorSystem.getRule("open-fraction");
 
 
-            Query query0 = new Query("open-count", Duration.ofSeconds(10), rule0);
-            Query query1 = new Query("close-count", Duration.ofSeconds(10), rule1);
-            Query query2 = new Query("open-fraction", Duration.ofSeconds(10), rule2);
+            Query query0 = new Query("open-count", Duration.ofSeconds(10), "open-count");
+            Query query1 = new Query("close-count", Duration.ofSeconds(10), "close-count");
+            Query query2 = new Query("open-fraction", Duration.ofSeconds(10), "open-fraction");
 
             admin.defineQuery(query0, "D1");
             admin.defineQuery(query1, "D1");
@@ -58,13 +56,15 @@ public class EntregaTest extends TestCase{
             assertEquals(1.0, this.engine.getRuleValue("close-count"), 0);
             assertEquals(0.6, this.engine.getRuleValue("open-fraction"), 0.1);
 
-            this.tickeySysyemG3Traslator.addTicket(new Ticket(3, new TicketState("OPEN")));
+            Ticket t = new Ticket(3, new TicketState("OPEN"));
+            this.tickeySysyemG3Traslator.addTicket(t);
             assertEquals(3.0, this.engine.getRuleValue("open-count"), 0);
             assertEquals(1.0, this.engine.getRuleValue("close-count"), 0);
             assertEquals(0.75, this.engine.getRuleValue("open-fraction"), 0);
 
             //REMOVE TICKET
-            this.tickeySysyemG3Traslator.removeTicket(1);
+            t.remove();
+            this.tickeySysyemG3Traslator.ticketUpdate(t);
             assertEquals(3.0, this.engine.getRuleValue("open-count"), 0);
             assertEquals(0, this.engine.getRuleValue("close-count"), 0);
             assertEquals(1, this.engine.getRuleValue("open-fraction"), 0);
@@ -77,7 +77,7 @@ public class EntregaTest extends TestCase{
             assertEquals(1, this.engine.getRuleValue("open-fraction"), 0);
 
             ticket4.changeState(new TicketState("CLOSE"));
-            this.tickeySysyemG3Traslator.ticketUpdate();
+            this.tickeySysyemG3Traslator.ticketUpdate(ticket4);
             assertEquals(3.0, this.engine.getRuleValue("open-count"), 0);
             assertEquals(1, this.engine.getRuleValue("close-count"), 0);
             assertEquals(0.75, this.engine.getRuleValue("open-fraction"), 0);
@@ -89,7 +89,7 @@ public class EntregaTest extends TestCase{
             for (Dashboard dashboard : dashboards) {
 
                 for (Query query : dashboard.getQueries()) {
-                    System.out.println(query.getRule().name);
+                    System.out.println(query.getRule());
                     for (Result result : query.getResults()) {
                         System.out.print(result.value);
                         System.out.print("   ");

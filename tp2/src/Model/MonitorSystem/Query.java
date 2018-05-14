@@ -6,15 +6,15 @@ import java.util.List;
 
 public class Query {
     private String name;
+    private String ruleName;
     private Duration interval;
-    private Rule rule;
     private List<Result> results;
     private QueryState state;
 
-    public Query(String name, Duration interval, Rule rule){
+    public Query(String name, Duration interval, String ruleName){
         this.name = name;
+        this.ruleName = ruleName;
         this.interval = interval;
-        this.rule = rule;
         this.results = new ArrayList<Result>();
         this.state = QueryState.ENABLE;
     }
@@ -23,8 +23,8 @@ public class Query {
         return results;
     }
 
-    public Rule getRule() {
-        return rule;
+    public String getRule() {
+        return ruleName;
     }
 
     public Duration getInterval() {

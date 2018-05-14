@@ -15,9 +15,15 @@
         <params>[]</params>
     </Rule>
     <Rule>
+        <name>open-actual-count</name>
+        <type>define-signal</type>
+        <condition>true</condition>
+        <params>(- (counter-value "open-count" []) (counter-value "close-count" []))</params>
+    </Rule>
+    <Rule>
         <name>open-fraction</name>
         <type>define-signal</type>
         <condition>true</condition>
-        <params>(/ (counter-value "open-count" []) (counter-value "tickets-count" []))</params>
+        <params>(/ (- (counter-value "open-count" []) (counter-value "close-count" [])) (counter-value "open-count" []))</params>
     </Rule>
 </class>

@@ -112,17 +112,6 @@ public class Conector {
         return this.postRequest(ticket, "http://localhost:3000/example/api/processTicket");
     }
 
-    public String getLastState(){
-        return this.getRequest("http://localhost:3000/example/api/getState");
-    }
-    public String getLastSignal(){
-        return this.getRequest("http://localhost:3000/example/api/getLastSignal");
-    }
-
-    public float getCounterValue(JSONObject counterName) {
-        return Float.parseFloat(this.postRequest(counterName, "http://localhost:3000/example/api/counterValue"));
-    }
-
     public String calculateLastSignal() {
         return this.getRequest("http://localhost:3000/example/api/calculateLastSignal");
     }

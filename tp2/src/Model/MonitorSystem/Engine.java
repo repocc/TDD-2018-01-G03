@@ -1,10 +1,12 @@
 package tp2.src.Model.MonitorSystem;
 
 import org.json.simple.JSONObject;
+import tp2.src.Model.MonitorSystem.Exceptions.RuleNotFoundException;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 
 public class Engine {
     private MonitorSystem monitorSystem;
@@ -13,15 +15,6 @@ public class Engine {
     public Engine(MonitorSystem monitorSystem) {
         this.conector = new Conector();
         this.monitorSystem = monitorSystem;
-    }
-
-    public ArrayList<Rule> getRulesFromQueries(ArrayList<Query> queries){
-        ArrayList<Rule> rules = new ArrayList<Rule>();
-        Iterator<Query> it = queries.iterator();
-        while (it.hasNext()){
-            rules.add(it.next().getRule());
-        }
-        return rules;
     }
 
     public JSONObject JsonRule(Rule rule){
@@ -33,7 +26,7 @@ public class Engine {
         return ruleJson;
     }
 
-    public ArrayList<String> sendRules(ArrayList<Rule> rules){
+    public List<String> sendRules(ArrayList<Rule> rules){
         ArrayList<String> serverAnswers = new ArrayList<String>();
         Iterator<Rule> it = rules.iterator();
         while (it.hasNext()){
@@ -48,34 +41,29 @@ public class Engine {
         return ticketJson;
     }
 
-    public void sendTickets(List<Ticket> tickets) {
-        Iterator<Ticket> it = tickets.iterator();
-        while (it.hasNext()) {
-            this.conector.proccessTicket(JsonTicket(it.next()));
-        }
-    }
-
-    public float getCounterValue(String counterName){
-        JSONObject json = new JSONObject();
-        json.put("counter-name", counterName);
-        return this.conector.getCounterValue(json);
-    }
-
-    public void updateQueries(List<Ticket> tickets){
-        ArrayList<Query> queries = this.monitorSystem.getQueries();
-        ArrayList<Rule> rules = this.getRulesFromQueries(queries);
-        this.sendRules(rules);
-        this.conector.initializeProcessor();
-        this.sendTickets(tickets);
-        this.conector.calculateLastSignal();
-        for (Query query : queries) {
-            query.updateResult(getRuleValue(query.getRule().name));
-        }
-    }
-
     public float getRuleValue(String ruleName) {
         JSONObject json = new JSONObject();
         json.put("rule-name", ruleName);
         return this.conector.getRuleValue(json);
     }
+
+
+    public void updateQueriesResult() {
+        ArrayList<Query> queries = this.monitorSystem.getQueries();
+        for (Query query : queries) {
+            query.updateResult(getRuleValue(query.getRule()));
+        }
+    }
+
+    public void updateQueries(Ticket ticketModified) throws RuleNotFoundException {
+
+        this.conector.proccessTicket(JsonTicket(ticketModified));
+        this.conector.calculateLastSignal();
+
+        this.updateQueriesResult();
+
+    }
+
+
+
 }

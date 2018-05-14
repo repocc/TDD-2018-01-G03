@@ -2,6 +2,7 @@ package tp2.src.Model.MonitorSystem.Tests;
 
 import junit.framework.TestCase;
 import tp2.src.Model.MonitorSystem.*;
+import tp2.src.Model.MonitorSystem.Exceptions.RuleNotFoundException;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -14,6 +15,11 @@ public class EngineTest extends TestCase {
         super.setUp();
         this.monitorSystem = new MonitorSystem();
         this.engine = new Engine(monitorSystem);
+        try {
+            this.sendTickets();
+        } catch (RuleNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void testSendRules() {
@@ -41,41 +47,25 @@ public class EngineTest extends TestCase {
         return tickets;
     }
 
-    public void sendTicketsMock(){
-        engine.conector.initializeProcessor();
-        engine.sendTickets(this.getListTicketsMock());
-    }
 
-    public void testSendTickets(){
-        this.sendTicketsMock();
-        System.out.println(engine.conector.getLastState());
-//        TODO: checkear
+    public void sendTickets() throws RuleNotFoundException {
+        for (Ticket ticket : getListTicketsMock()){
+            this.engine.updateQueries(ticket);
+        }
     }
-
-    public void testGetLastSignal(){
-       this.sendTicketsMock();
-        System.out.println(engine.conector.getLastSignal());
-//        TODO: checkear
-    }
-
 
     public void testGetCounterValue(){
-        this.sendTicketsMock();
-        assertEquals(3.0, engine.getCounterValue("open-count"), 0);
+        assertEquals(3.0, engine.getRuleValue("open-count"), 0);
     }
 
     public void testCalculateLastSignal(){
-       this.sendTicketsMock();
-        assertEquals("[{\"open-fraction\":0.75}]" , this.engine.conector.calculateLastSignal());
+        assertEquals(0.6 , this.engine.getRuleValue("open-fraction"),0.1);
     }
 
     public void testRuleValue(){
-        this.sendTicketsMock();
-        this.engine.conector.calculateLastSignal();
-
         assertEquals(1.0 , this.engine.getRuleValue("close-count"), 0);
         assertEquals(3.0 , this.engine.getRuleValue("open-count"), 0);
-        assertEquals(0.75 , this.engine.getRuleValue("open-fraction"), 0);
+        assertEquals(0.6 , this.engine.getRuleValue("open-fraction"), 0.1);
     }
 
 
@@ -83,11 +73,13 @@ public class EngineTest extends TestCase {
         Admin admin = new Admin("ADMIN", this.monitorSystem);
         admin.addDashboard(new Dashboard("DASH1"));
         this.monitorSystem.addUser(admin);
-        Query query0 = new Query("open-count", Duration.ofSeconds(10), new Rule("define-counter","open-count","(current \"OPEN\")","[]"));
-        Query query1 = new Query("open-count", Duration.ofSeconds(10), new Rule("define-counter","close-count","(current \"CLOSE\")","[]"));
+        Query query0 = new Query("open-count", Duration.ofSeconds(10),"open-count");
+        Query query1 = new Query("close-count", Duration.ofSeconds(10), "close-count");
         admin.defineQuery(query0,"DASH1");
         admin.defineQuery(query1,"DASH1");
-        this.engine.updateQueries(this.getListTicketsMock());
+
+        this.engine.updateQueriesResult();
+
         assertEquals(3.0, query0.getResults().get(0).value, 0);
         assertEquals(1.0, query1.getResults().get(0).value, 0);
     }
@@ -98,11 +90,11 @@ public class EngineTest extends TestCase {
         admin.addDashboard(new Dashboard("DASH1"));
         admin.addDashboard(new Dashboard("DASH2"));
         this.monitorSystem.addUser(admin);
-        Query query0 = new Query("open-count", Duration.ofSeconds(10), new Rule("define-counter","open-count","(current \"OPEN\")","[]"));
-        Query query1 = new Query("open-count", Duration.ofSeconds(10), new Rule("define-counter","close-count","(current \"CLOSE\")","[]"));
+        Query query0 = new Query("open-count", Duration.ofSeconds(10), "open-count");
+        Query query1 = new Query("open-count", Duration.ofSeconds(10), "close-count");
         admin.defineQuery(query0,"DASH1");
         admin.defineQuery(query1,"DASH2");
-        this.engine.updateQueries(this.getListTicketsMock());
+        this.engine.updateQueriesResult();
         assertEquals(3.0, query0.getResults().get(0).value, 0);
         assertEquals(1.0, query1.getResults().get(0).value, 0);
     }

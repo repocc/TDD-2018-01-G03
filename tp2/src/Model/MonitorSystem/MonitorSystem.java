@@ -14,12 +14,14 @@ public class MonitorSystem {
 
     public MonitorSystem() {
         this.users = new ArrayList<User>();
+        this.engine = new Engine(this);
         this.availableRules =  this.buildRulesFromXML();
+        this.engine.sendRules((ArrayList<Rule>) availableRules);
+        this.engine.conector.initializeProcessor();
     }
 
     private List<Rule> buildRulesFromXML() {
-        xmlParser xmlParser = new xmlParser();
-        return xmlParser.buildRules();
+        return (new xmlParser()).buildRules();
     }
 
     public void addUser(User user) {

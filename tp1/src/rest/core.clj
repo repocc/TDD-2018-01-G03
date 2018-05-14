@@ -54,14 +54,17 @@
   (save-signal (last rta))
 )
 
-(def rules '((define-counter "tickets-count" []
+(def rules '((define-counter "modification-count" []
                true)
              (define-counter "close-count" []
                (current "CLOSE"))
              (define-counter "open-count" []
                  (current "OPEN"))
-             (define-signal {"open-fraction" (/ (counter-value "open-count" [])
-                                                (counter-value "tickets-count" []))}
+             (define-signal {"open-actual-count" (- (counter-value "open-count" [])
+                                                (counter-value "close-count" []))}
+               true)
+             (define-signal {"open-fraction" (/ (- (counter-value "open-count" [])(counter-value "close-count" []))
+                                                (counter-value "open-count" []))}
                true)
              (define-counter "open-to-do-table" [(current "OPEN")
                                                      (current "TO DO")]

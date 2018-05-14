@@ -41,4 +41,8 @@ public class Ticket {
     public boolean isClosed() {
         return this.getActualState().isClosed();
     }
+
+    public void remove(){
+        this.changeState(new TicketState("REMOVED"));
+    }
 }
