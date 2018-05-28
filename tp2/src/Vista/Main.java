@@ -74,9 +74,6 @@ public class Main extends Application {
         //stage.setFullScreen(true);
     }
 
-    public Stage getStage(){
-        return this.stage;
-    }
 
 
 }
