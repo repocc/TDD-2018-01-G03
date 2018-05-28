@@ -6,9 +6,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import tp2.src.Controlador.LoginAdmin;
 
 public class VistaInicial extends StackPane {
 
@@ -43,7 +44,7 @@ public class VistaInicial extends StackPane {
         Button botonAdmin = new Button("Administrador");
         botonAdmin.setId("admin");
         botonAdmin.setAlignment(Pos.CENTER_LEFT);
-       // botonComenzarJuego.setOnAction(new ComenzarJuego(mainApp));
+        botonAdmin.setOnAction(new LoginAdmin(mainApp));
 
         Button botonAsoc = new Button("Asociado");
         botonAsoc.setId("asoc");
