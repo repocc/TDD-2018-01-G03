@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="json-simple-1.1">
+  <library name="junit-4.12">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Descargas/json-simple-1.1.jar!/" />
+      <root url="jar://$USER_HOME$/Descargas/junit-4.12.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
