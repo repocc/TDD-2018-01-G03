@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2941f309-49be-4226-9c54-e7632c794583" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/tp2/src/Controlador/MostrarDashboard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tp2/src/Vista/VistaDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/AgregarDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controlador/AgregarDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/CrearDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controlador/CrearDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Dashboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Vista/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Vista/VistaAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Vista/VistaDashboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaListaDashboards.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Vista/VistaListaDashboards.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaNuevoDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Vista/VistaNuevoDashboard.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/tp2/src/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,8 +39,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
+            <state relative-caret-position="241">
+              <caret line="95" column="27" selection-start-line="95" selection-start-column="27" selection-end-line="95" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,8 +51,8 @@
       <file leaf-file-name="VistaListaDashboards.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tp2/src/Vista/VistaListaDashboards.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="36" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+            <state relative-caret-position="274">
+              <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -70,8 +63,8 @@
       <file leaf-file-name="VistaInicial.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tp2/src/Vista/VistaInicial.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="349">
+              <caret line="46" column="39" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,47 +72,39 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AgregarDashboard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/Controlador/AgregarDashboard.java">
+      <file leaf-file-name="LoginAdmin.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/Controlador/LoginAdmin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+            <state relative-caret-position="225">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#251#252#0" expanded="true" />
+                <element signature="e#289#290#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MostrarDashboard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/Controlador/MostrarDashboard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VistaAdmin.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VistaAdmin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tp2/src/Vista/VistaAdmin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="86" column="34" selection-start-line="86" selection-start-column="34" selection-end-line="86" selection-end-column="34" />
+            <state relative-caret-position="244">
+              <caret line="36" column="43" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2809#2810#0" expanded="true" />
+                <element signature="e#2863#2864#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VistaDashboard.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="VistaDashboard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tp2/src/Vista/VistaDashboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+            <state relative-caret-position="109">
+              <caret line="64" column="33" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -130,8 +115,8 @@
       <file leaf-file-name="CrearDashboard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tp2/src/Controlador/CrearDashboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+            <state relative-caret-position="259">
+              <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -143,7 +128,7 @@
         <entry file="file://$PROJECT_DIR$/tp2/src/Vista/VistaNuevoDashboard.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
-              <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+              <caret line="44" column="8" lean-forward="true" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -182,15 +167,15 @@
         <option value="$PROJECT_DIR$/tp2/src/Controlador/Logout.java" />
         <option value="$PROJECT_DIR$/tp2/src/Controlador/EliminarDashboard.java" />
         <option value="$PROJECT_DIR$/tp2/src/Controlador/EditarDashboard.java" />
-        <option value="$PROJECT_DIR$/tp2/src/Vista/Main.java" />
         <option value="$PROJECT_DIR$/tp2/src/Vista/VistaNuevoDashboard.java" />
         <option value="$PROJECT_DIR$/tp2/src/Controlador/CrearDashboard.java" />
         <option value="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Dashboard.java" />
         <option value="$PROJECT_DIR$/tp2/src/Controlador/AgregarDashboard.java" />
         <option value="$PROJECT_DIR$/tp2/src/Controlador/MostrarDashboard.java" />
-        <option value="$PROJECT_DIR$/tp2/src/Vista/VistaDashboard.java" />
-        <option value="$PROJECT_DIR$/tp2/src/Vista/VistaListaDashboards.java" />
         <option value="$PROJECT_DIR$/tp2/src/Vista/VistaAdmin.java" />
+        <option value="$PROJECT_DIR$/tp2/src/Vista/Main.java" />
+        <option value="$PROJECT_DIR$/tp2/src/Vista/VistaListaDashboards.java" />
+        <option value="$PROJECT_DIR$/tp2/src/Vista/VistaDashboard.java" />
       </list>
     </option>
   </component>
@@ -241,21 +226,6 @@
               <item name="tp2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Controlador" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TDD-2018-01-G03" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TDD-2018-01-G03" type="462c0819:PsiDirectoryNode" />
-              <item name="tp2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TDD-2018-01-G03" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TDD-2018-01-G03" type="462c0819:PsiDirectoryNode" />
-              <item name="tp2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Model" type="462c0819:PsiDirectoryNode" />
-              <item name="MonitorSystem" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TDD-2018-01-G03" type="b2602c69:ProjectViewProjectNode" />
@@ -401,7 +371,7 @@
       <updated>1525977279985</updated>
       <workItem from="1525977288111" duration="5314000" />
       <workItem from="1527378777338" duration="43000" />
-      <workItem from="1527378871979" duration="39348000" />
+      <workItem from="1527378871979" duration="44075000" />
     </task>
     <servers />
   </component>
@@ -417,7 +387,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44705000" />
+    <option name="totallyTimeSpent" value="49432000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1377" height="912" extended-state="6" />
@@ -433,7 +403,7 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3199498" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.39974126" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.39974126" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32988358" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -653,20 +623,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Controlador/LoginAdmin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#276#277#0" expanded="true" />
-            <element signature="e#316#317#0" expanded="true" />
-            <element signature="e#381#382#0" expanded="true" />
-            <element signature="e#426#427#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tp2/src/Controlador/EliminarDashboard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -714,20 +670,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Main.java">
+    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/VistaInicial.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
+        <state relative-caret-position="349">
+          <caret line="46" column="39" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/VistaListaDashboards.java">
+    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="36" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+        <state relative-caret-position="241">
+          <caret line="95" column="27" selection-start-line="95" selection-start-column="27" selection-end-line="95" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -744,10 +700,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/VistaInicial.java">
+    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/VistaListaDashboards.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        <state relative-caret-position="274">
+          <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -756,8 +712,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tp2/src/Controlador/MostrarDashboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+        <state relative-caret-position="271">
+          <caret line="23" column="57" selection-start-line="23" selection-start-column="57" selection-end-line="23" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controlador/LoginAdmin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#251#252#0" expanded="true" />
+            <element signature="e#289#290#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controlador/CrearDashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -767,27 +745,7 @@
     <entry file="file://$PROJECT_DIR$/tp2/src/Vista/VistaNuevoDashboard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
-          <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/VistaDashboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Controlador/CrearDashboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+          <caret line="44" column="8" lean-forward="true" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -796,8 +754,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tp2/src/Vista/VistaAdmin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="86" column="34" selection-start-line="86" selection-start-column="34" selection-end-line="86" selection-end-column="34" />
+        <state relative-caret-position="244">
+          <caret line="36" column="43" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2809#2810#0" expanded="true" />
+            <element signature="e#2863#2864#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/VistaDashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="64" column="33" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

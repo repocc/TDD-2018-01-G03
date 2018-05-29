@@ -88,9 +88,8 @@ public class Main extends Application {
 
     public void loginAdmin(){
 
-        Admin admin = new Admin("U1", this.monitorSystem);
+        Admin admin = new Admin("Admin 1", this.monitorSystem);
         this.monitorSystem.addUser(admin);
-        admin.addDashboard(new Dashboard("D1"));
 
         VistaAdmin vistaAdmin = new VistaAdmin(admin,this.queries,this,monitorSystem);
         final Group group = new Group(vistaAdmin);

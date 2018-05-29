@@ -28,13 +28,3 @@ public class VistaListaDashboards extends VBox {
 
     }
 }
-/*
- btnLogout.setOnAction(new Logout(mainApp));
-         Button btnEdit = new Button("Editar\n Dashboard");
-         btnEdit.setMinSize(100,100);
-         btnEdit.setOnAction(new EditarDashboard(mainApp));
-         btnEdit.textAlignmentProperty().set(TextAlignment.CENTER);
-         Button btnEliminar = new Button("Eliminar\n Dashboard");
-         btnEliminar.setOnAction(new EliminarDashboard(mainApp));
-         btnEliminar.setMinSize(100,100);
-         btnEliminar.textAlignmentProperty().set(TextAlignment.CENTER);*/
