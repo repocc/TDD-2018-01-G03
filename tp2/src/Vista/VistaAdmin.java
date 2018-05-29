@@ -1,6 +1,8 @@
 package tp2.src.Vista;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -8,20 +10,29 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import tp2.src.Controlador.AgregarDashboard;
 import tp2.src.Controlador.Logout;
+import tp2.src.Model.MonitorSystem.Admin;
+import tp2.src.Model.MonitorSystem.Dashboard;
 import tp2.src.Model.MonitorSystem.MonitorSystem;
+import tp2.src.Model.MonitorSystem.Query;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class VistaAdmin extends VBox {
 
     private MonitorSystem monitorSystem;
     private Main mainApp;
+    private Admin admin;
+    private HashMap<String, Query> queries;
     private VistaListaDashboards vistaListaDashboards;
     private VBox vboxDashboardList;
     private VBox vBoxMedio;
     private HBox hboxdown;
 
-    public VistaAdmin(Main mainApp, MonitorSystem monitorSystem){
-
+    public VistaAdmin(Admin admin, HashMap<String, Query> queries, Main mainApp, MonitorSystem monitorSystem){
+        this.admin = admin;
         this.mainApp = mainApp;
+        this.queries=queries;
         Label label = new Label("G3 - TDD Monitor System");
         label.setFont(Font.font("Cambria", FontWeight.BOLD, 35));
         label.setAlignment(Pos.TOP_CENTER);
@@ -29,8 +40,8 @@ public class VistaAdmin extends VBox {
         label.setMinWidth(1100);
 
         Button btnAdd = new Button("Agregar Dashboard");
-        btnAdd.setOnAction(new AgregarDashboard(this));
-        this.vistaListaDashboards = new VistaListaDashboards();
+        btnAdd.setOnAction(new AgregarDashboard(this.mainApp,this));
+        this.vistaListaDashboards = new VistaListaDashboards(this.admin,this);
         VBox vboxDashboardList = new VBox(10);
         vboxDashboardList.getChildren().add(new Label("DASHBOARDS"));
         vboxDashboardList.getChildren().add(btnAdd);
@@ -62,21 +73,31 @@ public class VistaAdmin extends VBox {
 
 
     public void agregarDashboardVista(){
-        this.vBoxMedio = new VistaNuevoDashboard(this);
+        this.vBoxMedio = new VistaNuevoDashboard(this.mainApp,this);
     }
 
 
     public void actualizarListaDeDashboards() {
-
+        this.vistaListaDashboards.actualizar();
     }
 
-    public void setearPaginaDashboard(VistaNuevoDashboard vistaNuevoDashboard) {
-        this.vBoxMedio = vistaNuevoDashboard;
+    public void setearPaginaDashboard(VBox vistaDashboard) {
+        this.vBoxMedio = vistaDashboard;
         this.hboxdown.getChildren().clear();
         this.hboxdown.getChildren().addAll(vboxDashboardList,this.vBoxMedio);
         System.out.println("Estoy aca");
 
     }
 
+    public void crearNuevoDashboard(String name, ArrayList<CheckBox> CBqueries){
+        this.admin.addDashboard(new Dashboard(name));
+        for(int i=0;i<CBqueries.size();i++){
+            if(CBqueries.get(i).isSelected()){
+                Query query = this.queries.get(CBqueries.get(i).getId());
+                this.admin.defineQuery(query,name);
+            }
+        }
+
+    }
 
 }

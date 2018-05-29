@@ -38,6 +38,9 @@ public class Dashboard {
             }
         }
     }
+    public String getName(){
+        return this.name;
+    }
     public void enable() {
         this.state = DashboardState.ENABLE;
     }

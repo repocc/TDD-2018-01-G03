@@ -1,11 +1,15 @@
 package tp2.src.Vista;
 
 import javafx.application.Application;
-import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.transform.Scale;
+import javafx.stage.Stage;
 import tp2.src.Model.MonitorSystem.*;
+import tp2.src.Model.MonitorSystem.Exceptions.NotFoundException;
+
+import java.time.Duration;
+import java.util.HashMap;
 
 public class Main extends Application {
     private Stage stage;
@@ -13,6 +17,7 @@ public class Main extends Application {
     private Engine engine;
     private TicketsDealer ticketsDealer;
     private TicketTranslator tickeySysyemG3Traslator;
+    private HashMap<String,Query> queries;
 
     public static void main(String[] args) {
         launch(args);
@@ -22,7 +27,32 @@ public class Main extends Application {
     public void start(Stage stage){
         this.stage = stage;
         stage.setTitle("TDD Monitoreo de Tickets");
-        //Application.setUserAgentStylesheet(getClass().getResource("css/main.css").toExternalForm());
+        this.monitorSystem = new MonitorSystem();
+        this.engine = new Engine(monitorSystem);
+        this.ticketsDealer = new TicketsDealer(engine);
+        this.tickeySysyemG3Traslator = new TicketSystemG3Translator(ticketsDealer);
+        try {
+            Rule rule0 = this.monitorSystem.getRule("open-count");
+            Rule rule1 = this.monitorSystem.getRule("close-count");
+            Rule rule2 = this.monitorSystem.getRule("open-actual-count");
+            Rule rule3 = this.monitorSystem.getRule("open-fraction");
+
+
+            Query query0 = new Query("open-count", Duration.ofSeconds(10), "open-count");
+            Query query1 = new Query("close-count", Duration.ofSeconds(10), "close-count");
+            Query query2 = new Query("open-actual-count", Duration.ofSeconds(10), "open-actual-count");
+            Query query3 = new Query("open-fraction", Duration.ofSeconds(10), "open-fraction");
+            this.queries = new HashMap<String,Query>();
+            this.queries.put("open-count",query0);
+            this.queries.put("close-count",query1);
+            this.queries.put("open-actual-count",query2);
+            this.queries.put("open-fraction",query3);
+
+
+        }catch(NotFoundException e) {
+            e.printStackTrace();
+
+        }
         this.mostrarPantallaDeInicio();
     }
 
@@ -58,17 +88,11 @@ public class Main extends Application {
 
     public void loginAdmin(){
 
-        this.monitorSystem = new MonitorSystem();
-        this.engine = new Engine(monitorSystem);
-        this.ticketsDealer = new TicketsDealer(engine);
-        this.tickeySysyemG3Traslator = new TicketSystemG3Translator(ticketsDealer);
-
-
         Admin admin = new Admin("U1", this.monitorSystem);
         this.monitorSystem.addUser(admin);
         admin.addDashboard(new Dashboard("D1"));
 
-        VistaAdmin vistaAdmin = new VistaAdmin(this,monitorSystem);
+        VistaAdmin vistaAdmin = new VistaAdmin(admin,this.queries,this,monitorSystem);
         final Group group = new Group(vistaAdmin);
         setearScene(group);
         //stage.setFullScreen(true);
