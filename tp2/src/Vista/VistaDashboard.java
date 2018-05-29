@@ -5,21 +5,19 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import tp2.src.Model.MonitorSystem.Admin;
 
 ;
 
 public class VistaDashboard extends VBox {
 
-    private Admin admin;
+
     private String name;
 
-    public VistaDashboard(Admin admin, String name) {
-       this.admin=admin;
+    public VistaDashboard(String name) {
        this.name=name;
        this.setMinSize(800,700);
        this.setSpacing(20);

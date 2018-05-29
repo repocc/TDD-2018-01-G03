@@ -1,27 +1,26 @@
 package tp2.src.Controlador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import tp2.src.Model.MonitorSystem.Admin;
-import tp2.src.Vista.VistaAdmin;
+import tp2.src.Model.MonitorSystem.User;
 import tp2.src.Vista.VistaDashboard;
-import tp2.src.Vista.VistaNuevoDashboard;
+import tp2.src.Vista.VistaUser;
 
 public class MostrarDashboard implements EventHandler<ActionEvent> {
 
-    private Admin admin;
+    private User user;
     private String name;
-    private VistaAdmin vistaAdmin;
+    private VistaUser vistaUser;
 
-    public MostrarDashboard(Admin admin, String dashboardName,VistaAdmin vistaAdmin) {
-        this.admin = admin;
+    public MostrarDashboard(User user, String dashboardName,VistaUser vistaUser) {
+        this.user = user;
         this.name = dashboardName;
-        this.vistaAdmin = vistaAdmin;
+        this.vistaUser = vistaUser;
     }
 
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        this.vistaAdmin.setearPaginaDashboard(new VistaDashboard(this.admin,this.name));
+        this.vistaUser.setearPaginaDashboard(new VistaDashboard(this.name));
 
     }
 }

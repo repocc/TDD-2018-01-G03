@@ -18,16 +18,14 @@ import tp2.src.Model.MonitorSystem.Query;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class VistaAdmin extends VBox {
+public class VistaAdmin extends VistaUser {
 
     private MonitorSystem monitorSystem;
     private Main mainApp;
     private Admin admin;
     private HashMap<String, Query> queries;
     private VistaListaDashboards vistaListaDashboards;
-    private VBox vboxDashboardList;
-    private VBox vBoxMedio;
-    private HBox hboxdown;
+
 
     public VistaAdmin(Admin admin, HashMap<String, Query> queries, Main mainApp, MonitorSystem monitorSystem){
         this.admin = admin;
@@ -81,13 +79,8 @@ public class VistaAdmin extends VBox {
         this.vistaListaDashboards.actualizar();
     }
 
-    public void setearPaginaDashboard(VBox vistaDashboard) {
-        this.vBoxMedio = vistaDashboard;
-        this.hboxdown.getChildren().clear();
-        this.hboxdown.getChildren().addAll(vboxDashboardList,this.vBoxMedio);
-        System.out.println("Estoy aca");
 
-    }
+
 
     public void crearNuevoDashboard(String name, ArrayList<CheckBox> CBqueries){
         this.admin.addDashboard(new Dashboard(name));

@@ -25,8 +25,14 @@ public class Admin extends User {
     }
 
     @Override
-    public List<Dashboard> getDashboards() {
+    public List<Dashboard> getOwnDashboards() {
         return this.dashboards;
+
+    }
+
+    @Override
+    public List<Dashboard> getViewDashboards() {
+        return this.getOwnDashboards();
     }
 
     public void addDashboard(Dashboard dashboard){

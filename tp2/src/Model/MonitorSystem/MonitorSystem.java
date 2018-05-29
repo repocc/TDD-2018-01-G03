@@ -42,7 +42,7 @@ public class MonitorSystem {
         ArrayList<Dashboard> dashboards = new ArrayList<Dashboard>();
         Iterator<User> it = this.users.iterator();
         while (it.hasNext()) {
-            dashboards.addAll(it.next().getDashboards());
+            dashboards.addAll(it.next().getOwnDashboards());
         }
         return dashboards;
     }

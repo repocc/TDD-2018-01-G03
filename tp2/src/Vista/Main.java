@@ -18,6 +18,8 @@ public class Main extends Application {
     private TicketsDealer ticketsDealer;
     private TicketTranslator tickeySysyemG3Traslator;
     private HashMap<String,Query> queries;
+    private Admin admin;
+    private Associated assoc;
 
     public static void main(String[] args) {
         launch(args);
@@ -53,6 +55,10 @@ public class Main extends Application {
             e.printStackTrace();
 
         }
+        this.admin = new Admin("Admin 1", this.monitorSystem);
+        this.monitorSystem.addUser(this.admin);
+        this.assoc = new Associated("Assoc",this.monitorSystem);
+        this.monitorSystem.addUser(this.assoc);
         this.mostrarPantallaDeInicio();
     }
 
@@ -88,15 +94,21 @@ public class Main extends Application {
 
     public void loginAdmin(){
 
-        Admin admin = new Admin("Admin 1", this.monitorSystem);
-        this.monitorSystem.addUser(admin);
 
-        VistaAdmin vistaAdmin = new VistaAdmin(admin,this.queries,this,monitorSystem);
+
+        VistaAdmin vistaAdmin = new VistaAdmin(this.admin,this.queries,this,monitorSystem);
         final Group group = new Group(vistaAdmin);
         setearScene(group);
         //stage.setFullScreen(true);
     }
 
 
+    public void loginAsoc() {
 
+
+
+        VistaAssoc vistaAssoc = new VistaAssoc(assoc,this,this.monitorSystem);
+        final Group group = new Group(vistaAssoc);
+        setearScene(group);
+    }
 }

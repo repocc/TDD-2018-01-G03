@@ -10,6 +10,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import tp2.src.Controlador.LoginAdmin;
+import tp2.src.Controlador.LoginAssoc;
 
 public class VistaInicial extends StackPane {
 
@@ -49,7 +50,7 @@ public class VistaInicial extends StackPane {
         Button botonAsoc = new Button("Asociado");
         botonAsoc.setId("asoc");
         botonAsoc.setAlignment(Pos.CENTER_RIGHT);
-        //botonSalir.setOnAction(new SalirJuego(mainApp));
+        botonAsoc.setOnAction(new LoginAssoc(mainApp));
         contenedorDeBotones.setSpacing(100);
         contenedorDeBotones.setAlignment(Pos.CENTER);
         contenedorDeBotones.getChildren().addAll(botonAdmin, botonAsoc);

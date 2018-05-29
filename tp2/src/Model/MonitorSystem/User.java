@@ -13,5 +13,6 @@ public abstract class User {
 
     public abstract Dashboard getDashboard(String dashboardName);
 
-    public abstract List<Dashboard> getDashboards();
+    public abstract List<Dashboard> getViewDashboards();
+    public abstract List<Dashboard> getOwnDashboards();
 }

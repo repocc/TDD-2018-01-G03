@@ -86,7 +86,7 @@ public class EntregaTest extends TestCase{
 
 
             //RESULTS
-            List<Dashboard> dashboards = admin.getDashboards();
+            List<Dashboard> dashboards = admin.getOwnDashboards();
 
             for (Dashboard dashboard : dashboards) {
 

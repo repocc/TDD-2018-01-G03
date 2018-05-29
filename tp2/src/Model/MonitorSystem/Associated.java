@@ -15,9 +15,15 @@ public class Associated extends User{
     }
 
     @Override
-    public List<Dashboard> getDashboards() {
+    public List<Dashboard> getOwnDashboards() {
         return new ArrayList<>();
     }
+
+    @Override
+    public List<Dashboard> getViewDashboards() {
+        return this.monitorSystem.getDashboards();
+    }
+
 
 
 }
