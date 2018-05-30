@@ -17,7 +17,7 @@ public class TicketTest extends TestCase {
     }
 
     public void testGetActualState() {
-        assertTrue(ticket.getActualState().getTittle() == "OPEN");
+        assertSame(ticket.getActualState().getTittle(),"OPEN");
     }
 
     public void testChangeState(){
