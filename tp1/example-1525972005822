@@ -1,0 +1,592 @@
+{
+  "signal" : [ {
+    "nombre" : [ ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 1
+    } ]
+  }, {
+    "nombre" : [ ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 1
+    } ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 0.5
+    } ]
+  }, {
+    "nombre" : [ ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 1
+    } ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 0.5
+    } ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 0.6666666666666667
+    } ]
+  }, {
+    "nombre" : [ ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 1
+    } ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 0.5
+    } ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 0.6666666666666667
+    } ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 0.75
+    } ]
+  }, {
+    "nombre" : [ ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 1
+    } ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 1
+    } ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 1
+    } ]
+  }, {
+    "nombre" : [ ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 1
+    } ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 1
+    } ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 1
+    } ]
+  }, {
+    "nombre" : [ {
+      "open-fraction" : 1
+    } ]
+  } ],
+  "state" : [ {
+    "nombre" : [ {
+      "tickets-count" : 0,
+      "close-count" : 0,
+      "open-count" : 0,
+      "open-to-do-table" : { }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, { } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 1,
+      "close-count" : 0,
+      "open-count" : 1,
+      "open-to-do-table" : {
+        "[true nil]" : 1
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 0,
+      "close-count" : 0,
+      "open-count" : 0,
+      "open-to-do-table" : { }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, { } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 1,
+      "close-count" : 0,
+      "open-count" : 1,
+      "open-to-do-table" : {
+        "[true nil]" : 1
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 2,
+      "close-count" : 1,
+      "open-count" : 1,
+      "open-to-do-table" : {
+        "[true nil]" : 1,
+        "[nil nil]" : 1
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "CLOSE" : [ true ],
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 0,
+      "close-count" : 0,
+      "open-count" : 0,
+      "open-to-do-table" : { }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, { } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 1,
+      "close-count" : 0,
+      "open-count" : 1,
+      "open-to-do-table" : {
+        "[true nil]" : 1
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 2,
+      "close-count" : 1,
+      "open-count" : 1,
+      "open-to-do-table" : {
+        "[true nil]" : 1,
+        "[nil nil]" : 1
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "CLOSE" : [ true ],
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 3,
+      "close-count" : 1,
+      "open-count" : 2,
+      "open-to-do-table" : {
+        "[nil nil]" : 1,
+        "[true nil]" : 2
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "CLOSE" : [ true ],
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 0,
+      "close-count" : 0,
+      "open-count" : 0,
+      "open-to-do-table" : { }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, { } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 1,
+      "close-count" : 0,
+      "open-count" : 1,
+      "open-to-do-table" : {
+        "[true nil]" : 1
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 2,
+      "close-count" : 1,
+      "open-count" : 1,
+      "open-to-do-table" : {
+        "[true nil]" : 1,
+        "[nil nil]" : 1
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "CLOSE" : [ true ],
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 3,
+      "close-count" : 1,
+      "open-count" : 2,
+      "open-to-do-table" : {
+        "[nil nil]" : 1,
+        "[true nil]" : 2
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "CLOSE" : [ true ],
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 4,
+      "close-count" : 1,
+      "open-count" : 3,
+      "open-to-do-table" : {
+        "[nil nil]" : 1,
+        "[true nil]" : 3
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "CLOSE" : [ true ],
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 0,
+      "close-count" : 0,
+      "open-count" : 0,
+      "open-to-do-table" : { }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, { } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 1,
+      "close-count" : 0,
+      "open-count" : 1,
+      "open-to-do-table" : {
+        "[true nil]" : 1
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 2,
+      "close-count" : 0,
+      "open-count" : 2,
+      "open-to-do-table" : {
+        "[true nil]" : 2
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 3,
+      "close-count" : 0,
+      "open-count" : 3,
+      "open-to-do-table" : {
+        "[true nil]" : 3
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 0,
+      "close-count" : 0,
+      "open-count" : 0,
+      "open-to-do-table" : { }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, { } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 1,
+      "close-count" : 0,
+      "open-count" : 1,
+      "open-to-do-table" : {
+        "[true nil]" : 1
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 2,
+      "close-count" : 0,
+      "open-count" : 2,
+      "open-to-do-table" : {
+        "[true nil]" : 2
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 3,
+      "close-count" : 0,
+      "open-count" : 3,
+      "open-to-do-table" : {
+        "[true nil]" : 3
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "OPEN" : [ true ]
+    } ]
+  }, {
+    "nombre" : [ {
+      "tickets-count" : 4,
+      "close-count" : 0,
+      "open-count" : 4,
+      "open-to-do-table" : {
+        "[true nil]" : 4
+      }
+    }, {
+      "tickets-count" : [ [ ], true, 1 ],
+      "close-count" : [ [ ], [ "current", "CLOSE" ], 1 ],
+      "open-count" : [ [ ], [ "current", "OPEN" ], 1 ],
+      "open-to-do-table" : [ [ [ "current", "OPEN" ], [ "current", "TO DO" ] ], true, 1 ]
+    }, {
+      "open-fraction" : [ [ "/", [ "counter-value", "open-count", [ ] ], [ "counter-value", "tickets-count", [ ] ] ], true ]
+    }, {
+      "OPEN" : [ true ]
+    } ]
+  } ],
+  "rules" : [ {
+    "type" : "define-counter",
+    "name" : "open-count",
+    "condition" : "(current \"OPEN\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-counter",
+    "name" : "close-count",
+    "condition" : "(current \"CLOSE\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-signal",
+    "name" : "open-fraction",
+    "condition" : "true",
+    "params" : "(/ (counter-value \"open-count\" []) (counter-value \"tickets-count\" []))"
+  }, {
+    "type" : "define-counter",
+    "name" : "open-count",
+    "condition" : "(current \"OPEN\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-counter",
+    "name" : "close-count",
+    "condition" : "(current \"CLOSE\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-signal",
+    "name" : "open-fraction",
+    "condition" : "true",
+    "params" : "(/ (counter-value \"open-count\" []) (counter-value \"tickets-count\" []))"
+  }, {
+    "type" : "define-counter",
+    "name" : "open-count",
+    "condition" : "(current \"OPEN\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-counter",
+    "name" : "close-count",
+    "condition" : "(current \"CLOSE\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-signal",
+    "name" : "open-fraction",
+    "condition" : "true",
+    "params" : "(/ (counter-value \"open-count\" []) (counter-value \"tickets-count\" []))"
+  }, {
+    "type" : "define-counter",
+    "name" : "open-count",
+    "condition" : "(current \"OPEN\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-counter",
+    "name" : "close-count",
+    "condition" : "(current \"CLOSE\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-signal",
+    "name" : "open-fraction",
+    "condition" : "true",
+    "params" : "(/ (counter-value \"open-count\" []) (counter-value \"tickets-count\" []))"
+  }, {
+    "type" : "define-counter",
+    "name" : "open-count",
+    "condition" : "(current \"OPEN\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-counter",
+    "name" : "close-count",
+    "condition" : "(current \"CLOSE\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-signal",
+    "name" : "open-fraction",
+    "condition" : "true",
+    "params" : "(/ (counter-value \"open-count\" []) (counter-value \"tickets-count\" []))"
+  }, {
+    "type" : "define-counter",
+    "name" : "open-count",
+    "condition" : "(current \"OPEN\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-counter",
+    "name" : "close-count",
+    "condition" : "(current \"CLOSE\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-signal",
+    "name" : "open-fraction",
+    "condition" : "true",
+    "params" : "(/ (counter-value \"open-count\" []) (counter-value \"tickets-count\" []))"
+  }, {
+    "type" : "define-counter",
+    "name" : "open-count",
+    "condition" : "(current \"OPEN\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-counter",
+    "name" : "close-count",
+    "condition" : "(current \"CLOSE\")",
+    "params" : "[]"
+  }, {
+    "type" : "define-signal",
+    "name" : "open-fraction",
+    "condition" : "true",
+    "params" : "(/ (counter-value \"open-count\" []) (counter-value \"tickets-count\" []))"
+  } ]
+}

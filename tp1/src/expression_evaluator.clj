@@ -1,20 +1,37 @@
 (ns expression-evaluator
   (:require [unparser :as unparser])
   )
-(use '[clojure.string :as s])
+; (use '[clojure.string :as s])
 
+(defn starts-with?
+  "True if s starts with substr."
+  {:added "1.8"}
+  [^CharSequence s ^String substr]
+  (.startsWith (.toString s) substr))
+
+(defn ends-with?
+  "True if s ends with substr."
+  {:added "1.8"}
+  [^CharSequence s ^String substr]
+  (.endsWith (.toString s) substr))
+
+(defn includes?
+  "True if s includes substr."
+  {:added "1.8"}
+  [^CharSequence s ^CharSequence substr]
+  (.contains (.toString s) substr))
   (defn includes [coll value]
     (let [s (seq coll)]
       (if s (if (= (first s) value) true (recur (rest s) value)) false)))
 
   (defn includes-otra [substr s]
-  (s/includes? s substr))
+  (includes? s substr))
 
   (defn starts-with [s substr]
-    (s/starts-with? s substr))
+    (starts-with? s substr))
 
   (defn ends-with [s substr]
-    (s/ends-with? s substr))
+    (ends-with? s substr))
 
   (defn new-or [value1 value2]
     (or value1 value2))
