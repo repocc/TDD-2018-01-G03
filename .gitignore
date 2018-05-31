@@ -10,4 +10,5 @@ pom.xml.asc
 .hgignore
 .hg/
 /tp2/src/out
-.idea
+.idea/
+../.idea/
