@@ -3,6 +3,8 @@ package tp2.src.Model.MonitorSystem.Tests;
 import junit.framework.TestCase;
 import tp2.src.Model.MonitorSystem.*;
 import tp2.src.Model.MonitorSystem.Exceptions.NotFoundException;
+import tp2.src.Model.MonitorSystem.TicketUpdate.TicketSystemG3Translator;
+import tp2.src.Model.MonitorSystem.TicketUpdate.TicketTranslator;
 
 import java.time.Duration;
 import java.util.List;

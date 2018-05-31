@@ -129,9 +129,4 @@ public class Conector {
         }
     }
 
-    public String echo(JSONObject rule) {
-
-        return this.postRequest(rule, "http://localhost:9000/echoHeader");
-    }
-
 }
