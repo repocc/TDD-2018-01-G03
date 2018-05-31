@@ -36,7 +36,7 @@ public class Handlers {
         public void handle(HttpExchange he) throws IOException {
             String ticket = he.getRequestHeaders().get("State").get(0);
             JSONObject ticketJson = new JSONObject();
-            ticketJson.put("ticket", ticket);
+            ticketJson.put("state", ticket);
             try {
                 ticketsDealer.updateTicket(G3Translate.translateTicket(ticketJson));
             } catch (RuleNotFoundException e) {

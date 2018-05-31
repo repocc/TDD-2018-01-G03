@@ -7,8 +7,7 @@ import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import tp2.src.Model.MonitorSystem.*;
 import tp2.src.Model.MonitorSystem.Exceptions.NotFoundException;
-import tp2.src.Model.MonitorSystem.TicketUpdate.TicketSystemG3Translator;
-import tp2.src.Model.MonitorSystem.TicketUpdate.TicketTranslator;
+import tp2.src.Model.MonitorSystem.TicketUpdate.SimpleHttpServer;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -18,7 +17,7 @@ public class Main extends Application {
     private MonitorSystem monitorSystem;
     private Engine engine;
     private TicketsDealer ticketsDealer;
-    private TicketTranslator tickeySysyemG3Traslator;
+    private SimpleHttpServer server;
     private HashMap<String,Query> queries;
     private Admin admin;
     private Associated assoc;
@@ -34,7 +33,8 @@ public class Main extends Application {
         this.monitorSystem = new MonitorSystem();
         this.engine = new Engine(monitorSystem);
         this.ticketsDealer = new TicketsDealer(engine);
-        this.tickeySysyemG3Traslator = new TicketSystemG3Translator(ticketsDealer);
+        this.server  = new SimpleHttpServer(ticketsDealer);
+
         try {
             Rule rule0 = this.monitorSystem.getRule("open-count");
             Rule rule1 = this.monitorSystem.getRule("close-count");

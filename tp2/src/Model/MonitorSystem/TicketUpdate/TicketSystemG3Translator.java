@@ -8,7 +8,7 @@ public class TicketSystemG3Translator implements TicketTranslator {
 
     @Override
     public Ticket translateTicket(JSONObject ticket) {
-        TicketState state = new TicketState(ticket.toString());
-        return new Ticket(0, state);
+        TicketState state = new TicketState(ticket.get("state").toString());
+        return new Ticket(state);
     }
 }
