@@ -16,9 +16,4 @@ public class TicketsDealer {
     public void updateTicket(Ticket ticketModified) throws RuleNotFoundException {
         this.updateDashboards(ticketModified);
     }
-
-    public void addTicket(Ticket ticket) throws RuleNotFoundException {
-        this.updateTicket(ticket);
-    }
-
 }
