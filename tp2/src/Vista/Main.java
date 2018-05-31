@@ -33,7 +33,7 @@ public class Main extends Application {
         this.monitorSystem = new MonitorSystem();
         this.engine = new Engine(monitorSystem);
         this.ticketsDealer = new TicketsDealer(engine);
-        this.server  = new SimpleHttpServer(ticketsDealer);
+        this.server = new SimpleHttpServer(ticketsDealer);
 
         try {
             Rule rule0 = this.monitorSystem.getRule("open-count");

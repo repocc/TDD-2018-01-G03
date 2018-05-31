@@ -10,6 +10,7 @@ public class TicketsDealer {
     }
 
     public void updateDashboards(Ticket ticketModified) throws RuleNotFoundException {
+        System.out.println("Recibido por Dealear");
         this.engine.updateQueries(ticketModified);
     }
 

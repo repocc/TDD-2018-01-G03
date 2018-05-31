@@ -35,15 +35,19 @@ public class Handlers {
         @Override
         public void handle(HttpExchange he) throws IOException {
             String ticket = he.getRequestHeaders().get("State").get(0);
+
+            System.out.println("Ticket recibido: " + ticket);
+
             JSONObject ticketJson = new JSONObject();
             ticketJson.put("state", ticket);
             try {
+                System.out.println("Enviado al Dealear");
                 ticketsDealer.updateTicket(G3Translate.translateTicket(ticketJson));
             } catch (RuleNotFoundException e) {
                 e.printStackTrace();
             }
 
-            System.out.println("Ticket recibido: " + ticket);
+
             String response = "TICKET UPDATED: " + ticket;
             he.sendResponseHeaders(201, response.length());
             OutputStream os = he.getResponseBody();
