@@ -9,4 +9,6 @@ pom.xml.asc
 /.nrepl-port
 .hgignore
 .hg/
-tp2/src/out
+/tp2/src/out
+.idea/
+../.idea/

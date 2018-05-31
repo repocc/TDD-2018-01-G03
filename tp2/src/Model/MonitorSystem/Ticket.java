@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ticket {
-    public float ID;
     private List<TicketState> states;
 
-    public Ticket(float ID, TicketState initialState){
-        this.ID = ID;
+    public Ticket(TicketState initialState){
         this.states = new ArrayList<TicketState>();
         this.states.add(initialState);
     }
@@ -17,9 +15,6 @@ public class Ticket {
     public void changeState(TicketState newState){
         this.getActualState().close();
         states.add(newState);
-    }
-    public boolean equals(float ID) {
-        return (ID == this.ID);
     }
 
     public TicketState getActualState() {

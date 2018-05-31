@@ -34,10 +34,10 @@ public class EngineTest extends TestCase {
     }
 
     public ArrayList<Ticket> getListTicketsMock(){
-        Ticket t0 = new Ticket(0,new TicketState("OPEN"));
-        Ticket t1 = new Ticket(1,new TicketState("CLOSE"));
-        Ticket t2 = new Ticket(2,new TicketState("OPEN"));
-        Ticket t3 = new Ticket(3,new TicketState("OPEN"));
+        Ticket t0 = new Ticket(new TicketState("OPEN"));
+        Ticket t1 = new Ticket(new TicketState("CLOSE"));
+        Ticket t2 = new Ticket(new TicketState("OPEN"));
+        Ticket t3 = new Ticket(new TicketState("OPEN"));
         ArrayList<Ticket> tickets = new ArrayList<Ticket>();
         tickets.add(t0);
         tickets.add(t1);

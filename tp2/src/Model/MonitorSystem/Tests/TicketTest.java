@@ -13,11 +13,11 @@ public class TicketTest extends TestCase {
     public void setUp() throws Exception {
         super.setUp();
         TicketState initialState = new TicketState("OPEN");
-        this.ticket = new Ticket(1,initialState);
+        this.ticket = new Ticket(initialState);
     }
 
     public void testGetActualState() {
-        assertTrue(ticket.getActualState().getTittle() == "OPEN");
+        assertSame(ticket.getActualState().getTittle(),"OPEN");
     }
 
     public void testChangeState(){

@@ -53,7 +53,7 @@ public class Conector {
         return output;
     }
 
-    public String postRequest(JSONObject stringJson, String urlPost) {
+    public String postRequest(JSONObject json, String urlPost) {
         String output = "";
 
         try {
@@ -63,8 +63,10 @@ public class Conector {
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("State",json.toString());
 
-            String input = stringJson.toString();
+
+            String input = json.toString();
             OutputStream os = conn.getOutputStream();
             os.write(input.getBytes());
             os.flush();
@@ -126,4 +128,5 @@ public class Conector {
             return Float.parseFloat(value);
         }
     }
+
 }
