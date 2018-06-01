@@ -90,13 +90,9 @@ public class Main extends Application {
         scale.setPivotX(0);
         scale.setPivotY(0);
         group.getTransforms().addAll(scale);
-
-
     }
 
     public void loginAdmin(){
-
-
 
         VistaAdmin vistaAdmin = new VistaAdmin(this.admin,this.queries,this,monitorSystem);
         final Group group = new Group(vistaAdmin);
@@ -106,8 +102,6 @@ public class Main extends Application {
 
 
     public void loginAsoc() {
-
-
 
         VistaAssoc vistaAssoc = new VistaAssoc(assoc,this,this.monitorSystem);
         final Group group = new Group(vistaAssoc);

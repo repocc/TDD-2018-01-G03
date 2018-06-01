@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.net.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp2.src.Vista.Vista2.AdminStageController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <FlowPane fx:id="leftPane" prefHeight="600.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="200.0" styleClass="middle" stylesheets="@bootstrap3.css" text="DASHBOARDS">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="59.0" prefWidth="200.0" styleClass="danger" stylesheets="@bootstrap3.css" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@addicon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </FlowPane>
+         </left>
+         <bottom>
+            <FlowPane fx:id="downPane" prefHeight="101.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+         </bottom>
+         <center>
+            <LineChart fx:id="lineChart" BorderPane.alignment="CENTER">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
