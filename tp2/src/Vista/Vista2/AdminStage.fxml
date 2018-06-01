@@ -11,34 +11,34 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp2.src.Vista.Vista2.AdminStageController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #dddddd;" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp2.src.Vista.Vista2.AdminStageController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <FlowPane fx:id="leftPane" prefHeight="600.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <FlowPane fx:id="dashboardsPane" prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #333333;" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="200.0" styleClass="middle" stylesheets="@bootstrap3.css" text="DASHBOARDS">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="200.0" styleClass="middle" stylesheets="@bootstrap3.css" text="DASHBOARDS" textFill="WHITE">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="59.0" prefWidth="200.0" styleClass="danger" stylesheets="@bootstrap3.css" textAlignment="CENTER">
+                  <Button fx:id="addDashboardButton" cacheShape="false" centerShape="false" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" scaleShape="false" style="-fx-background-color: rgb(96, 96, 96);" styleClass="middle" stylesheets="@bootstrap3.css" textAlignment="CENTER">
                      <graphic>
                         <ImageView fitHeight="47.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@addicon.png" />
+                              <Image url="@images/addicon.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
                   </Button>
                </children>
             </FlowPane>
          </left>
-         <bottom>
-            <FlowPane fx:id="downPane" prefHeight="101.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
-         </bottom>
          <center>
-            <LineChart fx:id="lineChart" BorderPane.alignment="CENTER">
+            <LineChart fx:id="lineChart" style="-fx-background-color: white;" stylesheets="@bootstrap3.css" BorderPane.alignment="CENTER">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -47,6 +47,51 @@
               </yAxis>
             </LineChart>
          </center>
+         <right>
+            <FlowPane fx:id="queriesPane" prefHeight="462.0" prefWidth="115.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="23.0" prefWidth="200.0" styleClass="middle" stylesheets="@bootstrap3.css" text="QUERIES">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="addQueryButton" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="middle" stylesheets="@bootstrap3.css" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="39.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/addicon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </FlowPane>
+         </right>
+         <top>
+            <GridPane alignment="TOP_RIGHT" style="-fx-background-color: #337ab7;" stylesheets="@bootstrap3.css" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="307.5309600830078" minWidth="10.0" prefWidth="284.0012512207031" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="533.0" minWidth="10.0" prefWidth="410.05816650390625" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.3736572265625" minWidth="0.0" prefWidth="81.94183349609375" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="logoutButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="action-btn" stylesheets="@bootstrap3.css" text="logout" GridPane.columnIndex="2" />
+                  <Label fx:id="dashboardTittle" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="223.0" styleClass="middle" stylesheets="@bootstrap3.css" text="tittle" textFill="WHITE">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="queryTittle" alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="200.0" styleClass="middle" stylesheets="@bootstrap3.css" text="queryTittle" textFill="WHITE" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </top>
       </BorderPane>
    </children>
 </AnchorPane>

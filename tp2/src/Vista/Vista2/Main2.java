@@ -34,6 +34,7 @@ public class Main2 extends Application {
         primaryStage.setTitle("TDD Monitoreo de Tickets");
 
         this.stage = primaryStage;
+        this.stage.setFullScreen(true);
         stage.setTitle("TDD Monitoreo de Tickets");
 
 //        this.monitorSystem = new MonitorSystem();
