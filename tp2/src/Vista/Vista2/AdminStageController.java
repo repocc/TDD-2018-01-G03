@@ -113,8 +113,6 @@ public class AdminStageController extends UserController{
     public void showDashboard(ActionEvent event) {
         Button button = (Button) event.getSource();
         String data = (String) button.getText();
-
-
     }
 
     private void showDashboardsButtons(List<DashboardButton> dashboardButtons) {

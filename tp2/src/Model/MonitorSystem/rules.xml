@@ -9,6 +9,24 @@
         <params>[]</params>
     </Rule>
     <Rule>
+        <name>todo-count</name>
+        <type>define-counter</type>
+        <condition>(current "TO DO")</condition>
+        <params>[]</params>
+    </Rule>
+    <Rule>
+        <name>in-progress-count</name>
+        <type>define-counter</type>
+        <condition>(current "IN PROGRESS")</condition>
+        <params>[]</params>
+    </Rule>
+    <Rule>
+        <name>done-count</name>
+        <type>define-counter</type>
+        <condition>(current "DONE")</condition>
+        <params>[]</params>
+    </Rule>
+    <Rule>
         <name>close-count</name>
         <type>define-counter</type>
         <condition>(current "CLOSE")</condition>
