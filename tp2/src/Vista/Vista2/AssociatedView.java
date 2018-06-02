@@ -28,4 +28,9 @@ public class AssociatedView extends UserView {
         }
 
     }
+
+    @Override
+    public boolean validUser(User user){
+        return !(user.logAsAdmin());
+    }
 }

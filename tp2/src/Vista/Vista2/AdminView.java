@@ -27,4 +27,9 @@ public class AdminView extends UserView{
         }
 
     }
+
+    @Override
+    public boolean validUser(User user){
+           return user.logAsAdmin();
+    }
 }

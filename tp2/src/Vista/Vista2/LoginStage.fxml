@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp2.src.Vista.Controller2.LoginController">
     <children>
@@ -30,6 +31,7 @@
                            </image></ImageView>
                         <TextField fx:id="username" layoutX="170.0" layoutY="158.0" text="username" />
                         <Button layoutX="224.0" layoutY="223.0" mnemonicParsing="false" onAction="#login" styleClass="primary" stylesheets="@bootstrap3.css" text="Login" />
+                        <Text fx:id="errorMessage" layoutX="168.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="Username incorrecto" visible="false" wrappingWidth="210.7294921875" />
 
                             </children>
                         </AnchorPane>

@@ -85,4 +85,8 @@ public class Admin extends User {
         Dashboard dashboard = new Dashboard(name);
         this.addDashboard(dashboard);
     }
+
+    public boolean logAsAdmin(){
+        return true;
+    }
 }

@@ -30,7 +30,7 @@ public class AssociatedStageController extends UserController {
             button.setMinWidth(200);
             button.setMnemonicParsing(false);
             button.setStyle("-fx-background-color: #d3d3d3;");
-            button.setOnAction(new ShowDashboard(this));
+            button.setOnAction(new ShowDashboard(this,dashboard));
             listDashboard.getChildren().add(button);
         }
 
@@ -63,5 +63,10 @@ public class AssociatedStageController extends UserController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void selectDashboard(Dashboard dashboard){
+        this.dashboardSelected = dashboard;
+        this.setDashboardPage(new ViewDashboard(this,dashboard));
     }
 }

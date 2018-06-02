@@ -15,4 +15,6 @@ public abstract class UserView {
     public abstract User createUser(String name);
 
     public abstract void setScene();
+
+    public abstract boolean validUser(User user);
 }

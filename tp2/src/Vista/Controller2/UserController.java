@@ -5,14 +5,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import tp2.src.Model.MonitorSystem.Dashboard;
-import tp2.src.Vista.Vista2.ViewDashboard;
 
 import java.util.List;
 
 public abstract class UserController extends Controller {
 
     //public Button logoutButton;
-
+    public Dashboard dashboardSelected;
     @FXML
     public Label dashboardTittle;
     @FXML
@@ -22,11 +21,13 @@ public abstract class UserController extends Controller {
 
     public abstract void showDashboards(List<Dashboard> dashboards);
 
-    public abstract void setDashboardPage(ViewDashboard viewDashboard);
+    //public abstract void setDashboardPage(ViewDashboard viewDashboard);
 
     public abstract double getDashboardWidth();
 
     public abstract double getDashboardHeight();
 
     public abstract void logout();
+
+    public abstract void selectDashboard(Dashboard dashboard);
 }

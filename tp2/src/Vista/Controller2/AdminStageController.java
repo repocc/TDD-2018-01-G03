@@ -1,30 +1,37 @@
 package tp2.src.Vista.Controller2;
 
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.JavaFXBuilderFactory;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tp2.src.Model.MonitorSystem.Admin;
 import tp2.src.Model.MonitorSystem.Dashboard;
-import tp2.src.Vista.Vista2.DashboardButton;
 import tp2.src.Vista.Vista2.Main2;
 import tp2.src.Vista.Vista2.QueriesdButton;
 import tp2.src.Vista.Vista2.ViewDashboard;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdminStageController extends UserController {
     public Button addDashboardButton;
     private Admin admin;
-    private List<DashboardButton> dashboardButtons;
+    @FXML
+    private VBox queriesList;
+    @FXML
+    private Button saveQueries;
+
     private List<QueriesdButton> queriesdButtons;
 
 
@@ -32,9 +39,10 @@ public class AdminStageController extends UserController {
     @Override
     public void setMain(Main2 main) {
         super.setMain(main);
-        this.dashboardButtons = new ArrayList<DashboardButton>();
-        this.queriesdButtons = new ArrayList<QueriesdButton>();
+        //this.dashboardButtons = new ArrayList<DashboardButton>();
+        //this.queriesdButtons = new ArrayList<QueriesdButton>();
         admin = (Admin) main.actualUser;
+        dashboardSelected = null;
         getDashboards();
 
     }
@@ -56,19 +64,49 @@ public class AdminStageController extends UserController {
             button.setMinWidth(200);
             button.setMnemonicParsing(false);
             button.setStyle("-fx-background-color: #d3d3d3;");
-            button.setOnAction(new ShowDashboard(this));
+            button.setOnAction(new ShowDashboard(this, dashboard));
             //DashboardButton dashboardButton = new DashboardButton(button, dashboard);
             listDashboard.getChildren().add(button);
             //addButtonToPane(button, dashboardsPane);
         }
 
+
+    }
+
+    public void selectDashboard(Dashboard dashboard){
+        this.dashboardSelected = dashboard;
+        this.setDashboardPage(new ViewDashboard(this,dashboard));
     }
 
 
 
-    public void showQueries(Dashboard dashboard) {
+    public void addQuery() throws Exception {
+        if(this.dashboardSelected != null) {
+            System.out.println("hola");
+            final Stage dialog = new Stage();
+            dialog.setTitle("Edit Queries");
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(main.stage);
+            FXMLLoader loader  = new FXMLLoader(getClass().getResource("editQueries.fxml"), null, new JavaFXBuilderFactory());
+            Parent page = (Parent) loader.load();
+            dialog.setScene(new Scene(page, 500, 500));
+            dialog.show();
+            saveQueries.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+                @Override
+                public void handle(javafx.event.ActionEvent event) {
+                    //modificar las queries
+                    reloadDashboardView();
+                    dialog.close();
+                }
+            });
+        }
 
     }
+
+    public void reloadDashboardView(){
+
+    }
+
 
     public void newDashboard() throws IOException {
 
@@ -96,6 +134,7 @@ public class AdminStageController extends UserController {
                 Dashboard dashboard = new Dashboard(dashboardName);
                 admin.addDashboard(dashboard);
                 getDashboards();
+                selectDashboard(dashboard);
                 dialog.close();
             }
         });
@@ -104,22 +143,6 @@ public class AdminStageController extends UserController {
 
 
     }
-/*
-    public void addDashboard(String dashboardName){
-        Dashboard dashboard = new Dashboard(dashboardName);
-        admin.addDashboard(dashboard);
-        Button button = new Button(dashboardName);
-        button.setFocusTraversable(false);
-        button.setPrefWidth(addDashboardButton.getPrefWidth());
-        button.setPrefHeight(addDashboardButton.getPrefHeight());
-        button.setStyle(addDashboardButton.getStyle());
-
-        DashboardButton dashboardButton = new DashboardButton(button, dashboard);
-        dashboardButtons.add(dashboardButton);
-        addButtonToPane(button, dashboardsPane);
-
-    }*/
-
 
 
 

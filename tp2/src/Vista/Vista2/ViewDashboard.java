@@ -9,13 +9,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import tp2.src.Model.MonitorSystem.Dashboard;
 import tp2.src.Vista.Controller2.UserController;
 
 public class ViewDashboard extends VBox {
 
     private UserController userController;
 
-    public ViewDashboard(UserController userController) {
+    public ViewDashboard(UserController userController, Dashboard dashboard) {
         this.userController = userController;
 
         this.setMinSize(userController.getDashboardWidth(),userController.getDashboardHeight());
