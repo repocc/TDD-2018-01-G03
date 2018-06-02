@@ -12,6 +12,7 @@ import java.util.List;
 public abstract class UserController extends Controller {
 
     //public Button logoutButton;
+
     @FXML
     public Label dashboardTittle;
     @FXML

@@ -23,7 +23,6 @@ public class LoginController extends Controller {
         System.out.println(name);
         User user = main.monitorSystem.getUser(name);
         if (user == null){
-            System.out.println("Deberia entrar 1 vez");
             user = this.main.createUser(name);
         }
         main.actualUser = user;

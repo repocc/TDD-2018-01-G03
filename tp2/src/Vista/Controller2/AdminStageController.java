@@ -28,6 +28,7 @@ public class AdminStageController extends UserController {
     private List<QueriesdButton> queriesdButtons;
 
 
+
     @Override
     public void setMain(Main2 main) {
         super.setMain(main);
@@ -41,8 +42,8 @@ public class AdminStageController extends UserController {
 
     public void getDashboards() {
 
-        if(admin.getOwnDashboards() != null){
-            showDashboards(admin.getOwnDashboards());
+        if(main.actualUser.getViewDashboards().size() > 0){
+            showDashboards(main.actualUser.getViewDashboards());
         }
     }
 

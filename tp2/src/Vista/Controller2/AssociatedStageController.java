@@ -1,7 +1,9 @@
 package tp2.src.Vista.Controller2;
 
 import javafx.scene.control.Button;
+import tp2.src.Model.MonitorSystem.Associated;
 import tp2.src.Model.MonitorSystem.Dashboard;
+import tp2.src.Vista.Vista2.Main2;
 import tp2.src.Vista.Vista2.ViewDashboard;
 
 import java.io.IOException;
@@ -9,10 +11,14 @@ import java.util.List;
 
 public class AssociatedStageController extends UserController {
 
+    private Associated assoc;
 
-    public void initialize() {
+    @Override
+    public void setMain(Main2 main) {
         super.setMain(main);
-        this.getDashboards();
+        assoc = (Associated) main.actualUser;
+        getDashboards();
+
     }
 
     @Override
@@ -32,8 +38,8 @@ public class AssociatedStageController extends UserController {
 
     public void getDashboards() {
 
-        if(main.actualUser.getOwnDashboards() != null){
-            showDashboards(main.actualUser.getOwnDashboards());
+        if(main.actualUser.getViewDashboards().size() > 0){
+            showDashboards(main.actualUser.getViewDashboards());
         }
     }
 
