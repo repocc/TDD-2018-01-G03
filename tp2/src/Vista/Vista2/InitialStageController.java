@@ -3,12 +3,16 @@ package tp2.src.Vista.Vista2;
 public class InitialStageController extends Controller{
 
     public void openAssociatedStage() {
-        System.out.println("ASOC");
+        try {
+            this.main.replaceSceneContent("AssociatedStage.fxml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void openAdminStage() {
         try {
-            this.main.replaceSceneContent("AdminStage.fxml");
+            this.main.replaceSceneContent("LoginStage.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }

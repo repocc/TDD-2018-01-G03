@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.net.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #dddddd;" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp2.src.Vista.Vista2.AssociatedStageController">
+    <children>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <left>
+                <FlowPane fx:id="dashboardsPane" prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #333333;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="200.0" styleClass="middle" stylesheets="@bootstrap3.css" text="DASHBOARDS" textFill="WHITE">
+                            <font>
+                                <Font size="22.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </FlowPane>
+            </left>
+            <center>
+                <LineChart fx:id="lineChart" style="-fx-background-color: white;" stylesheets="@bootstrap3.css" BorderPane.alignment="CENTER">
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" />
+                    </yAxis>
+                </LineChart>
+            </center>
+            <right>
+                <FlowPane fx:id="queriesPane" prefHeight="462.0" prefWidth="115.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="23.0" prefWidth="200.0" styleClass="middle" stylesheets="@bootstrap3.css" text="QUERIES">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </FlowPane>
+            </right>
+            <top>
+                <GridPane alignment="TOP_RIGHT" style="-fx-background-color: #337ab7;" stylesheets="@bootstrap3.css" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="307.5309600830078" minWidth="10.0" prefWidth="284.0012512207031" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="533.0" minWidth="10.0" prefWidth="410.05816650390625" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.3736572265625" minWidth="0.0" prefWidth="81.94183349609375" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Button fx:id="logoutButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="action-btn" stylesheets="@bootstrap3.css" text="logout" GridPane.columnIndex="2" />
+                        <Label fx:id="dashboardTittle" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="223.0" styleClass="middle" stylesheets="@bootstrap3.css" text="tittle" textFill="WHITE">
+                            <font>
+                                <Font size="22.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="queryTittle" alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="200.0" styleClass="middle" stylesheets="@bootstrap3.css" text="queryTittle" textFill="WHITE" GridPane.columnIndex="1">
+                            <font>
+                                <Font size="22.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </GridPane>
+            </top>
+        </BorderPane>
+    </children>
+</AnchorPane>

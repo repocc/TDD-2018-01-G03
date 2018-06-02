@@ -16,6 +16,7 @@ public class Main2 extends Application {
 
     public Stage stage;
     public MonitorSystem monitorSystem;
+    public User actualUser;
     private Engine engine;
     private TicketsDealer ticketsDealer;
     private SimpleHttpServer server;
@@ -37,10 +38,10 @@ public class Main2 extends Application {
         this.stage.setFullScreen(true);
         stage.setTitle("TDD Monitoreo de Tickets");
 
-//        this.monitorSystem = new MonitorSystem();
-//        this.engine = new Engine(monitorSystem);
-//        this.ticketsDealer = new TicketsDealer(engine);
-//        this.server = new SimpleHttpServer(ticketsDealer);
+        this.monitorSystem = new MonitorSystem();
+        this.engine = new Engine(monitorSystem);
+        this.ticketsDealer = new TicketsDealer(engine);
+        this.server = new SimpleHttpServer(ticketsDealer);
         primaryStage.show();
 
         this.showInitialStage();
