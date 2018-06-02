@@ -20,13 +20,17 @@ public class Handlers {
         public void handle(HttpExchange he) throws IOException {
 
 
-            byte[] buf = new byte[he.getRequestBody().readAllBytes().length];
+            byte[] buf = new byte[2040];
             System.out.println("Server: " + he.getRequestURI());
             try (InputStream is = he.getRequestBody()) {
                 while (is.read(buf) != -1) ;
 
                 String v = new String( buf, Charset.forName("UTF-8") );
             System.out.println();
+
+//                String ticket = he.getRequestHeaders().get("state").get(0);
+//
+//                System.out.println("Ticket recibido: " + ticket);
 
             String response = "<h1>Server start success if you see this message</h1>" + "<h1>Port: " + 9000 + "</h1>";
             he.sendResponseHeaders(200, response.length());
