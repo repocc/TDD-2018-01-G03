@@ -56,21 +56,24 @@
 
 (def rules '((define-counter "modification-count" []
                true)
-             (define-counter "close-count" []
-               (current "CLOSE"))
+
              (define-counter "open-count" []
                  (current "OPEN"))
-             (define-counter "remove-count" []
-                 (current "REMOVED"))
+             (define-counter "todo-count" []
+                 (current "TO DO"))
+             (define-counter "in-progress-count" []
+                 (current "IN PROGRESS"))
+             (define-counter "done-count" []
+                 (current "DONE"))
+             (define-counter "close-count" []
+                 (current "CLOSE"))
              (define-signal {"open-actual-count" (- (counter-value "open-count" [])
                                                 (counter-value "close-count" []))}
                true)
              (define-signal {"open-fraction" (/ (- (counter-value "open-count" []) (counter-value "close-count" []))
                                                 (counter-value "open-count" []))}
                true)
-             (define-counter "open-to-do-table" [(current "OPEN")
-                                                     (current "TO DO")]
-               true)))
+             ))
 
 
 (defn processor-initialization []
