@@ -10,6 +10,7 @@ public class LoginController extends Controller {
     public TextField username;
 
     public void login(){
+
         User admin = new Admin(username.getText(), main.monitorSystem);
         main.monitorSystem.addUser(admin);
         main.actualUser = admin;

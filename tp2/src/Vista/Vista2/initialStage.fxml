@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -9,37 +10,39 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp2.src.Vista.Vista2.InitialStageController">
-   <children>
-      <GridPane layoutX="9.0" layoutY="470.0" prefHeight="95.0" prefWidth="797.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Button mnemonicParsing="false" onAction="#openAdminStage" prefHeight="95.0" prefWidth="406.0" text="ADMIN">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#openAssociatedStage" prefHeight="95.0" prefWidth="414.0" text="ASSOCIATED" GridPane.columnIndex="1">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Button>
-         </children>
-      </GridPane>
-      <Label alignment="CENTER" layoutX="-13.0" layoutY="357.0" prefHeight="55.0" prefWidth="819.0" text="LOGIN AS" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="357.0">
-         <font>
-            <Font name="Arial Bold" size="35.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="328.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="283.0" AnchorPane.leftAnchor="328.0" AnchorPane.rightAnchor="328.0" AnchorPane.topAnchor="167.0">
-         <image>
-            <Image url="@../inicio.png" />
-         </image>
-      </ImageView>
-   </children>
+    <children>
+        <StackPane layoutX="184.0" layoutY="100.0" prefHeight="507.0" prefWidth="749.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox prefWidth="100.0">
+                    <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #337ab7;" />
+                    </children>
+                </VBox>
+                <AnchorPane prefHeight="526.0" prefWidth="800.0" style="-fx-background-color: transparent;">
+                    <children>
+                        <AnchorPane layoutX="157.0" layoutY="113.0" prefHeight="342.0" prefWidth="469.0" style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-radius: 4; -fx-border-radius: 4; -fx-padding: 8;" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="157.0" AnchorPane.rightAnchor="173.0" AnchorPane.topAnchor="113.0">
+                            <children>
+                                <ImageView fitHeight="110.0" fitWidth="115.0" layoutX="201.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="18.0">
+                                    <image>
+                                        <Image url="@images/login.png" />
+                                    </image></ImageView>
+                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="153.0" layoutY="186.0" mnemonicParsing="false" onAction="#openAdminStage" styleClass="primary" stylesheets="@bootstrap3.css" text="  Admin  " />
+                        <Button layoutX="266.0" layoutY="187.0" mnemonicParsing="false" styleClass="primary" stylesheets="@bootstrap3.css" text="Associated" />
+
+                            </children>
+                        </AnchorPane>
+                        <VBox layoutX="188.0" layoutY="24.0" AnchorPane.leftAnchor="188.0" AnchorPane.rightAnchor="188.0" AnchorPane.topAnchor="24.0">
+                            <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="425.0" text=" TDD MONITOR SYSTEM" textAlignment="CENTER" textFill="WHITE">
+                                    <font>
+                                        <Font name="Roboto Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </children>
+        </StackPane>
+    </children>
 </AnchorPane>
