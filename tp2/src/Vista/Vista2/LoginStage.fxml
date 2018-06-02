@@ -44,7 +44,7 @@
                                 </Label>
                             </children>
                         </VBox>
-                  <Button fx:id="back" layoutX="771.0" layoutY="27.0" mnemonicParsing="false" styleClass="primary" stylesheets="@bootstrap3.css" text="Back" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="15.0" />
+                  <Button layoutX="771.0" layoutY="27.0" mnemonicParsing="false" onAction="#back" styleClass="primary" stylesheets="@bootstrap3.css" text="Back" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="15.0" />
                     </children>
                 </AnchorPane>
             </children>

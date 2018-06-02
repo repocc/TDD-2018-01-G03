@@ -47,7 +47,7 @@ public class Main2 extends Application {
         this.showInitialStage();
     }
 
-    private void showInitialStage() throws IOException {
+    public void showInitialStage() throws IOException {
         try {
             replaceSceneContent("initialStage.fxml");
         } catch (Exception e) {

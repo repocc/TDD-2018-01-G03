@@ -4,10 +4,20 @@ import javafx.scene.control.TextField;
 import tp2.src.Model.MonitorSystem.Admin;
 import tp2.src.Model.MonitorSystem.User;
 
+import java.io.IOException;
+
 public class LoginController extends Controller {
 
 
     public TextField username;
+
+    public void back(){
+        try {
+            this.main.showInitialStage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void login(){
 

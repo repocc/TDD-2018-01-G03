@@ -27,7 +27,7 @@
                                         <Image url="@images/login.png" />
                                     </image></ImageView>
                         <Button alignment="CENTER" contentDisplay="CENTER" layoutX="153.0" layoutY="186.0" mnemonicParsing="false" onAction="#openAdminStage" styleClass="primary" stylesheets="@bootstrap3.css" text="  Admin  " />
-                        <Button layoutX="266.0" layoutY="187.0" mnemonicParsing="false" styleClass="primary" stylesheets="@bootstrap3.css" text="Associated" />
+                        <Button layoutX="266.0" layoutY="187.0" mnemonicParsing="false" onAction="#openAssociatedStage" styleClass="primary" stylesheets="@bootstrap3.css" text="Associated" />
 
                             </children>
                         </AnchorPane>
