@@ -17,14 +17,16 @@ public class AdminStageController extends Controller{
     public FlowPane queriesPane;
     public LineChart lineChart;
 
-
-    public void initialize() {
+    @Override
+    public void setMain(Main2 main) {
+        super.setMain(main);
         Admin admin = (Admin) main.actualUser;
 
         if(admin.getOwnDashboards() != null){
             showDashboards(admin.getOwnDashboards());
         }
     }
+
 
     private void showDashboards(List<Dashboard> dashboards) {
     }
