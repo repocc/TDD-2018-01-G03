@@ -1,7 +1,6 @@
-package tp2.src.Vista.Vista2;
+package tp2.src.Vista.Controller2;
 
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,25 +8,25 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tp2.src.Model.MonitorSystem.Admin;
 import tp2.src.Model.MonitorSystem.Dashboard;
+import tp2.src.Vista.Vista2.DashboardButton;
+import tp2.src.Vista.Vista2.Main2;
+import tp2.src.Vista.Vista2.QueriesdButton;
+import tp2.src.Vista.Vista2.ViewDashboard;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminStageController extends UserController{
+public class AdminStageController extends UserController {
     public Button addDashboardButton;
     private Admin admin;
     private List<DashboardButton> dashboardButtons;
     private List<QueriesdButton> queriesdButtons;
-    @FXML
-    private VBox listDashboard;
-    @FXML
-    private Pane dashboard;
+
 
     @Override
     public void setMain(Main2 main) {
@@ -36,9 +35,8 @@ public class AdminStageController extends UserController{
         this.queriesdButtons = new ArrayList<QueriesdButton>();
         admin = (Admin) main.actualUser;
         getDashboards();
-        System.out.println("Hola");
-    }
 
+    }
 
 
     public void getDashboards() {
@@ -132,4 +130,21 @@ public class AdminStageController extends UserController{
         this.dashboard.getChildren().add(viewDashboard);
     }
 
+    public double getDashboardWidth() {
+        return this.dashboard.getWidth();
+    }
+
+    public double getDashboardHeight() {
+        return this.dashboard.getWidth();
+    }
+    @Override
+    public void logout()  {
+        try {
+            this.main.showInitialStage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
+

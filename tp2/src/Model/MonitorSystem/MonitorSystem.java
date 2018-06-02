@@ -32,7 +32,10 @@ public class MonitorSystem {
         Iterator<User> it = this.users.iterator();
         while (it.hasNext()) {
             User user = it.next();
+            System.out.println("El nombre del usuario es: "+user.name);
+            System.out.println("Lo que entro es: "+username);
             if (user.name == username){
+                System.out.println("Entra a monitor");
                 return user;
             }
         }
@@ -80,4 +83,6 @@ public class MonitorSystem {
     public void updateQueriesResult() {
         this.engine.updateQueriesResult();
     }
+
+
 }

@@ -9,17 +9,18 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import tp2.src.Vista.Controller2.UserController;
 
 public class ViewDashboard extends VBox {
 
-    private AdminStageController adminStageController;
+    private UserController userController;
 
-    public ViewDashboard(AdminStageController adminStageController) {
-        this.adminStageController = adminStageController;
+    public ViewDashboard(UserController userController) {
+        this.userController = userController;
 
-        this.setMinSize(400,500);
+        this.setMinSize(userController.getDashboardWidth(),userController.getDashboardHeight());
         this.setSpacing(20);
-        
+
 
         HBox total = new HBox();
         total.setSpacing(10);

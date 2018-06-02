@@ -1,7 +1,6 @@
-package tp2.src.Vista.Vista2;
+package tp2.src.Vista.Controller2;
 
 import javafx.scene.control.TextField;
-import tp2.src.Model.MonitorSystem.Admin;
 import tp2.src.Model.MonitorSystem.User;
 
 import java.io.IOException;
@@ -21,16 +20,13 @@ public class LoginController extends Controller {
 
     public void login(){
         String name = username.getText();
-        User admin = main.monitorSystem.getUser(name);
-        if (admin == null){
-            admin = new Admin(name, main.monitorSystem);
-            main.monitorSystem.addUser(admin);
+        System.out.println(name);
+        User user = main.monitorSystem.getUser(name);
+        if (user == null){
+            System.out.println("Deberia entrar 1 vez");
+            user = this.main.createUser(name);
         }
-        main.actualUser = admin;
-        try {
-            this.main.replaceSceneContent("AdminStage.fxml");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        main.actualUser = user;
+        this.main.setUserScene();
     }
 }

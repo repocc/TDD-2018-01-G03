@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #dddddd;" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp2.src.Vista.Vista2.AdminStageController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #dddddd;" stylesheets="@bootstrap3.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp2.src.Vista.Controller2.AdminStageController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -28,7 +28,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="logoutButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="action-btn" stylesheets="@bootstrap3.css" text="logout" GridPane.columnIndex="2" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#logout" styleClass="action-btn" stylesheets="@bootstrap3.css" text="logout" GridPane.columnIndex="2" />
                   <Label contentDisplay="CENTER" prefHeight="30.0" prefWidth="223.0" styleClass="middle" stylesheets="@bootstrap3.css" text=" Monitor System" textFill="WHITE">
                      <font>
                         <Font size="22.0" />

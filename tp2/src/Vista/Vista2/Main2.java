@@ -11,6 +11,7 @@ import tp2.src.Model.MonitorSystem.MonitorSystem;
 import tp2.src.Model.MonitorSystem.TicketUpdate.SimpleHttpServer;
 import tp2.src.Model.MonitorSystem.TicketsDealer;
 import tp2.src.Model.MonitorSystem.User;
+import tp2.src.Vista.Controller2.Controller;
 
 import java.io.IOException;
 
@@ -22,6 +23,7 @@ public class Main2 extends Application {
     private Engine engine;
     private TicketsDealer ticketsDealer;
     private SimpleHttpServer server;
+    public UserView userView;
 
 
     public static void main(String[] args) {
@@ -43,6 +45,8 @@ public class Main2 extends Application {
     }
 
     public void showInitialStage() throws IOException {
+
+
         try {
             replaceSceneContent("initialStage.fxml");
         } catch (Exception e) {
@@ -67,5 +71,17 @@ public class Main2 extends Application {
         }
         stage.sizeToScene();
         return page;
+    }
+
+    public void setUserView(UserView userView) {
+        this.userView = userView;
+    }
+
+    public User createUser(String name) {
+        return this.userView.createUser(name);
+    }
+
+    public void setUserScene() {
+        this.userView.setScene();
     }
 }
