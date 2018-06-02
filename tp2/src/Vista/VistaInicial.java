@@ -22,39 +22,37 @@ public class VistaInicial extends StackPane {
         this.setId("vistaInicial");
         VBox centerBox = new VBox();
         centerBox.setAlignment(Pos.CENTER);
-        HBox contenedorDeTitulo = new HBox();
+        centerBox.setSpacing(20);
         HBox contenedorDeBotones = new HBox();
 
-        VBox vbox = new VBox();
-        //vbox.setPadding(new Insets(10));
-        vbox.setSpacing(8);
         Text title = new Text("LOGIN AS");
-        title.setFont(Font.font("Arial", FontWeight.BOLD, 35));
-        vbox.getChildren().add(title);
-        vbox.setAlignment(Pos.CENTER);
-        vbox.setMinHeight(100);
+        title.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, 35));
 
         Image imgLogo = new Image("tp2/src/Vista/inicio.png");
         logo = new ImageView(imgLogo);
-
         logo.getStyleClass().add("imgLogo");
-        logo.setFitWidth(400);
+        logo.setFitWidth(500);
         logo.setPreserveRatio(true);
 
-        contenedorDeTitulo.getChildren().add(logo);
         Button botonAdmin = new Button("Administrador");
+        botonAdmin.setMinSize(200,100);
+        botonAdmin.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
         botonAdmin.setId("admin");
-        botonAdmin.setAlignment(Pos.CENTER_LEFT);
+        botonAdmin.setAlignment(Pos.CENTER);
         botonAdmin.setOnAction(new LoginAdmin(mainApp));
 
         Button botonAsoc = new Button("Asociado");
+        botonAsoc.setMinSize(200,100);
+        botonAsoc.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
         botonAsoc.setId("asoc");
-        botonAsoc.setAlignment(Pos.CENTER_RIGHT);
+        botonAsoc.setAlignment(Pos.CENTER);
         botonAsoc.setOnAction(new LoginAssoc(mainApp));
+
         contenedorDeBotones.setSpacing(100);
         contenedorDeBotones.setAlignment(Pos.CENTER);
         contenedorDeBotones.getChildren().addAll(botonAdmin, botonAsoc);
-        centerBox.getChildren().addAll(contenedorDeTitulo,vbox,contenedorDeBotones);
+
+        centerBox.getChildren().addAll(logo,title,contenedorDeBotones);
         centerBox.setId("centerBox");
 
         this.getChildren().add(centerBox);

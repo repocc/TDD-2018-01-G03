@@ -24,7 +24,7 @@ public class AssociatedStageController extends UserController {
         }
     }
 
-    @Override
+
     public void showQueries(Dashboard dashboard) {
 
     }

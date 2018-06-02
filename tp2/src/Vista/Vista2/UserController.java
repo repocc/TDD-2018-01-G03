@@ -11,11 +11,9 @@ import java.util.List;
 public abstract class UserController extends Controller {
     public FlowPane dashboardsPane;
     public Button logoutButton;
-    public Label dashboardTittle, queryTittle;
+    public Label dashboardTittle;
     public FlowPane queriesPane;
     public LineChart lineChart;
 
     public abstract void showDashboards(List<Dashboard> dashboards);
-    public abstract void showQueries(Dashboard dashboard);
-
 }
