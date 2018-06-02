@@ -9,7 +9,7 @@ import tp2.src.Model.MonitorSystem.Dashboard;
 
 import java.util.List;
 
-public class AdminStageController extends Controller{
+public class AdminStageController extends UserController{
     public FlowPane dashboardsPane;
     public Button logoutButton;
     public Label dashboardTittle, queryTittle;
@@ -28,7 +28,12 @@ public class AdminStageController extends Controller{
     }
 
 
-    private void showDashboards(List<Dashboard> dashboards) {
+    public void showDashboards(List<Dashboard> dashboards) {
+    }
+
+    @Override
+    public void showQueries(Dashboard dashboard) {
+
     }
 
     public void addDashboard(){
