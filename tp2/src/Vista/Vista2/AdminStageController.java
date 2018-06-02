@@ -1,6 +1,7 @@
 package tp2.src.Vista.Vista2;
 
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,12 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tp2.src.Model.MonitorSystem.Admin;
 import tp2.src.Model.MonitorSystem.Dashboard;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,10 @@ public class AdminStageController extends UserController{
     private Admin admin;
     private List<DashboardButton> dashboardButtons;
     private List<QueriesdButton> queriesdButtons;
+    @FXML
+    private VBox listDashboard;
+    @FXML
+    private Pane dashboard;
 
     @Override
     public void setMain(Main2 main) {
@@ -31,6 +36,7 @@ public class AdminStageController extends UserController{
         this.queriesdButtons = new ArrayList<QueriesdButton>();
         admin = (Admin) main.actualUser;
         getDashboards();
+        System.out.println("Hola");
     }
 
 
@@ -44,18 +50,23 @@ public class AdminStageController extends UserController{
 
     @Override
     public void showDashboards(List<Dashboard> dashboards) {
-
+        listDashboard.getChildren().clear();
         for (Dashboard dashboard : dashboards) {
             Button button = new Button(dashboard.getName());
-            DashboardButton dashboardButton = new DashboardButton(button, dashboard);
-            dashboardButtons.add(dashboardButton);
-            addButtonToPane(button, dashboardsPane);
+            button.prefWidth(200);
+            button.setMinWidth(200);
+            button.setMnemonicParsing(false);
+            button.setStyle("-fx-background-color: #d3d3d3;");
+            button.setOnAction(new ShowDashboard(this));
+            //DashboardButton dashboardButton = new DashboardButton(button, dashboard);
+            listDashboard.getChildren().add(button);
+            //addButtonToPane(button, dashboardsPane);
         }
 
     }
 
 
-    @Override
+
     public void showQueries(Dashboard dashboard) {
 
     }
@@ -67,7 +78,7 @@ public class AdminStageController extends UserController{
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(main.stage);
         Button add = new Button("Add");
-        final TextField input = new TextField("Please Enter Dashboard Name");
+        final TextField input = new TextField("Dashboard Name");
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -83,7 +94,9 @@ public class AdminStageController extends UserController{
             @Override
             public void handle(javafx.event.ActionEvent event) {
                 String dashboardName = input.getText();
-                addDashboard(dashboardName);
+                Dashboard dashboard = new Dashboard(dashboardName);
+                admin.addDashboard(dashboard);
+                getDashboards();
                 dialog.close();
             }
         });
@@ -92,7 +105,7 @@ public class AdminStageController extends UserController{
 
 
     }
-
+/*
     public void addDashboard(String dashboardName){
         Dashboard dashboard = new Dashboard(dashboardName);
         admin.addDashboard(dashboard);
@@ -106,22 +119,17 @@ public class AdminStageController extends UserController{
         dashboardButtons.add(dashboardButton);
         addButtonToPane(button, dashboardsPane);
 
-    }
+    }*/
 
 
-
-    public void showDashboard(ActionEvent event) {
-        Button button = (Button) event.getSource();
-        String data = (String) button.getText();
-    }
-
-    private void showDashboardsButtons(List<DashboardButton> dashboardButtons) {
-    }
 
 
     public void addButtonToPane(Button button, Pane pane){
         pane.getChildren().add(button);
     }
 
+    public void setDashboardPage(ViewDashboard viewDashboard){
+        this.dashboard.getChildren().add(viewDashboard);
+    }
 
 }
