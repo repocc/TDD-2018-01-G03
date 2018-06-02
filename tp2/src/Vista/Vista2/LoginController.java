@@ -20,9 +20,12 @@ public class LoginController extends Controller {
     }
 
     public void login(){
-
-        User admin = new Admin(username.getText(), main.monitorSystem);
-        main.monitorSystem.addUser(admin);
+        String name = username.getText();
+        User admin = main.monitorSystem.getUser(name);
+        if (admin == null){
+            admin = new Admin(name, main.monitorSystem);
+            main.monitorSystem.addUser(admin);
+        }
         main.actualUser = admin;
         try {
             this.main.replaceSceneContent("AdminStage.fxml");

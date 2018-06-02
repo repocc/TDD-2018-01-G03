@@ -6,11 +6,13 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import tp2.src.Model.MonitorSystem.*;
+import tp2.src.Model.MonitorSystem.Engine;
+import tp2.src.Model.MonitorSystem.MonitorSystem;
 import tp2.src.Model.MonitorSystem.TicketUpdate.SimpleHttpServer;
+import tp2.src.Model.MonitorSystem.TicketsDealer;
+import tp2.src.Model.MonitorSystem.User;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class Main2 extends Application {
 
@@ -20,9 +22,6 @@ public class Main2 extends Application {
     private Engine engine;
     private TicketsDealer ticketsDealer;
     private SimpleHttpServer server;
-    private HashMap<String,Query> queries;
-    private Admin admin;
-    private Associated assoc;
 
 
     public static void main(String[] args) {
@@ -32,18 +31,14 @@ public class Main2 extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        primaryStage.setTitle("TDD Monitoreo de Tickets");
-
+        primaryStage.setTitle("TDD Monitor System");
         this.stage = primaryStage;
-        this.stage.setFullScreen(true);
-        stage.setTitle("TDD Monitoreo de Tickets");
 
         this.monitorSystem = new MonitorSystem();
         this.engine = new Engine(monitorSystem);
         this.ticketsDealer = new TicketsDealer(engine);
-        this.server = new SimpleHttpServer(ticketsDealer);
-        primaryStage.show();
 
+        primaryStage.show();
         this.showInitialStage();
     }
 

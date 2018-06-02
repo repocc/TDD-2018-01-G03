@@ -22,7 +22,7 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Button fx:id="addDashboardButton" cacheShape="false" centerShape="false" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" scaleShape="false" style="-fx-background-color: rgb(96, 96, 96);" styleClass="middle" stylesheets="@bootstrap3.css" textAlignment="CENTER">
+                  <Button fx:id="addDashboardButton" cacheShape="false" centerShape="false" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#newDashboard" prefHeight="45.0" prefWidth="200.0" scaleShape="false" style="-fx-background-color: rgb(96, 96, 96);" styleClass="middle" stylesheets="@bootstrap3.css" textAlignment="CENTER">
                      <graphic>
                         <ImageView fitHeight="47.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -55,7 +55,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button fx:id="addQueryButton" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="middle" stylesheets="@bootstrap3.css" textAlignment="CENTER">
+                  <Button contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: white;" styleClass="middle" stylesheets="@bootstrap3.css" textAlignment="CENTER">
                      <graphic>
                         <ImageView fitHeight="39.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>

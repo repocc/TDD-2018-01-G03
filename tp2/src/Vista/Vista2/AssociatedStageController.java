@@ -1,19 +1,31 @@
 package tp2.src.Vista.Vista2;
 
-import javafx.scene.chart.LineChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
+import tp2.src.Model.MonitorSystem.Dashboard;
 
-public class AssociatedStageController extends Controller {
-    public FlowPane dashboardsPane;
-    public Button logoutButton;
-    public Label dashboardTittle, queryTittle;
-    public FlowPane queriesPane;
-    public LineChart lineChart;
+import java.util.List;
+
+public class AssociatedStageController extends UserController {
+
 
     public void initialize() {
-//        showDashboards(main.monitorSystem.getDashboards());
-//        showQueries();
+        super.setMain(main);
+        this.getDashboards();
+    }
+
+    @Override
+    public void showDashboards(List<Dashboard> dashboards) {
+
+    }
+
+    public void getDashboards() {
+
+        if(main.actualUser.getOwnDashboards() != null){
+            showDashboards(main.actualUser.getOwnDashboards());
+        }
+    }
+
+    @Override
+    public void showQueries(Dashboard dashboard) {
+
     }
 }
