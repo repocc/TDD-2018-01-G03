@@ -185,13 +185,7 @@ public class  AdminStageController extends UserController {
                 dialog.close();
             }
         });
-
-
-
-
     }
-
-
 
     public void addButtonToPane(Button button, Pane pane){
         pane.getChildren().add(button);
