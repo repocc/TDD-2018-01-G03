@@ -49,4 +49,6 @@ public class Query {
         Result newResult = new Result(ruleValue);
         this.results.add(newResult);
     }
+
+    public String getName(){return this.name;}
 }

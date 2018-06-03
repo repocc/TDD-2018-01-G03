@@ -24,20 +24,28 @@ public class Dashboard {
     public void addQuery(Query query) {
         this.queries.add(query);
     }
+
     public void enableQuery(String queryName) {
         for (Query query : this.queries) {
-            if(query.equals(queryName)){
+            if(query.getName().equals(queryName)){
                 query.enable();
             }
         }
     }
     public void disableQuery(String queryName) {
         for (Query query : this.queries) {
-            if(query.equals(queryName)){
+            if(query.getName().equals(queryName)){
                 query.disable();
             }
         }
     }
+
+    public void removeQuery(Query query){
+       if(hasQuery(query.getName())){
+           this.queries.remove(query);
+        }
+    }
+
     public String getName(){
         return this.name;
     }
@@ -50,5 +58,14 @@ public class Dashboard {
 
     public boolean isEnable() {
         return (this.state == DashboardState.ENABLE);
+    }
+
+    public boolean hasQuery(String name) {
+        for(int i=0;i<queries.size();i++){
+            if(queries.get(i).getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
     }
 }

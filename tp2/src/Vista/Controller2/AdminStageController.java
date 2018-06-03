@@ -2,45 +2,52 @@ package tp2.src.Vista.Controller2;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.JavaFXBuilderFactory;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tp2.src.Model.MonitorSystem.Admin;
 import tp2.src.Model.MonitorSystem.Dashboard;
 import tp2.src.Vista.Vista2.Main2;
-import tp2.src.Vista.Vista2.QueriesdButton;
 import tp2.src.Vista.Vista2.ViewDashboard;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 public class AdminStageController extends UserController {
     public Button addDashboardButton;
     private Admin admin;
+    //@FXML
+    //private VBox queriesList;
     @FXML
-    private VBox queriesList;
-    @FXML
-    private Button saveQueries;
+    private VBox queriesSelectedList;
+   // @FXML
+   // private Button saveQueries;
 
-    private List<QueriesdButton> queriesdButtons;
+    private HashMap<String,CheckBox> queriesCheckBox;
 
 
 
     @Override
     public void setMain(Main2 main) {
         super.setMain(main);
-        //this.dashboardButtons = new ArrayList<DashboardButton>();
-        //this.queriesdButtons = new ArrayList<QueriesdButton>();
+        queriesCheckBox = new HashMap<String,CheckBox>();
+        for(int i=0;i<main.queries.size();i++){
+            String name = main.queries.get(i).getName();
+            CheckBox checkbox = new CheckBox(name);
+            checkbox.setMinWidth(500);
+            checkbox.setStyle("-fx-background-color:  #ffebcd");
+            queriesCheckBox.put(name,checkbox);
+        }
         admin = (Admin) main.actualUser;
         dashboardSelected = null;
         getDashboards();
@@ -74,28 +81,70 @@ public class AdminStageController extends UserController {
     }
 
     public void selectDashboard(Dashboard dashboard){
+        queriesSelectedList.getChildren().clear();
+        deselectedAllQueries();
+        for(int i=0;i<dashboard.getQueries().size();i++){
+            queriesCheckBox.get(dashboard.getQueries().get(i).getName()).setSelected(true);
+            Text text = new Text(dashboard.getQueries().get(i).getName());
+            queriesSelectedList.getChildren().add(text);
+
+        }
         this.dashboardSelected = dashboard;
         this.setDashboardPage(new ViewDashboard(this,dashboard));
+    }
+
+    public void deselectedAllQueries(){
+        for(int i=0;i<main.queries.size();i++) {
+            queriesCheckBox.get(main.queries.get(i).getName()).setSelected(false);
+        }
     }
 
 
 
     public void addQuery() throws Exception {
         if(this.dashboardSelected != null) {
-            System.out.println("hola");
+
             final Stage dialog = new Stage();
             dialog.setTitle("Edit Queries");
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initOwner(main.stage);
-            FXMLLoader loader  = new FXMLLoader(getClass().getResource("editQueries.fxml"), null, new JavaFXBuilderFactory());
-            Parent page = (Parent) loader.load();
-            dialog.setScene(new Scene(page, 500, 500));
+
+            SplitPane sPane = new SplitPane();
+            sPane.setDividerPosition(2,0.88);
+            sPane.setPrefSize(598,373);
+            sPane.setOrientation(Orientation.VERTICAL);
+
+            VBox queriesList = new VBox();
+            for(int i=0; i<main.queries.size();i++){
+                CheckBox checkbox = queriesCheckBox.get(main.queries.get(i).getName());
+                queriesList.getChildren().add(checkbox);
+            }
+
+            Button save = new Button("SAVE");
+            save.setPrefSize(571,36);
+            save.setStyle("-fx-background-color: #e9967a;");
+            save.setTextAlignment(TextAlignment.CENTER);
+
+            sPane.getItems().addAll(queriesList,save);
+            //tPane.getChildrenUnmodifiable().add(sPane);
+            //FXMLLoader loader  = new FXMLLoader(getClass().getResource("editQueries.fxml"), null, new JavaFXBuilderFactory());
+            //Parent page = (Parent) loader.load();
+            //dialog.setScene(new Scene(page, 500, 500));
+            //queriesList.getChildren().clear();
+            TitledPane tPane = new TitledPane("Edit Queries",sPane);
+            tPane.setText("Edit Queries");
+            tPane.setCollapsible(false);
+            tPane.setPrefSize(500,500);
+            tPane.setStyle("-fx-background-color: #ffebcd;");
+
+            TitledPane titledPane = new TitledPane("My Title", new CheckBox("OK"));
+            dialog.setScene(new Scene(tPane));
             dialog.show();
-            saveQueries.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+            save.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
                 @Override
                 public void handle(javafx.event.ActionEvent event) {
-                    //modificar las queries
-                    reloadDashboardView();
+                    updateQueriesDashboard();
+                    selectDashboard(dashboardSelected);
                     dialog.close();
                 }
             });
@@ -103,9 +152,25 @@ public class AdminStageController extends UserController {
 
     }
 
-    public void reloadDashboardView(){
-
+    public void updateQueriesDashboard(){
+        //queriesCheckBox = new HashMap<String,CheckBox>();
+        for(int i=0;i<main.queries.size();i++){
+            String name = main.queries.get(i).getName();
+            //CheckBox checkbox = queriesCheckBox.get(main.queries.get(i).getName());
+            //Boolean bol = check.isSelected();
+            if(this.dashboardSelected.hasQuery(name) && !queriesCheckBox.get(name).isSelected()){
+                this.dashboardSelected.removeQuery(main.getQuery(name));
+            }
+            if(!this.dashboardSelected.hasQuery(name) && queriesCheckBox.get(name).isSelected()){
+                this.dashboardSelected.addQuery(main.getQuery(name));
+            }
+            //if(this.dashboardSelected.hasQuery(name) && queriesCheckBox.get(name).isSelected()){
+              //  this.dashboardSelected.enableQuery(name);
+            //}
+        }
     }
+
+
 
 
     public void newDashboard() throws IOException {
