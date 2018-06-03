@@ -10,6 +10,7 @@ import tp2.src.Model.MonitorSystem.*;
 import tp2.src.Model.MonitorSystem.Exceptions.NotFoundException;
 import tp2.src.Model.MonitorSystem.TicketUpdate.SimpleHttpServer;
 import tp2.src.Vista.Controller2.Controller;
+import tp2.src.Vista.Controller2.UserController;
 import tp2.src.Vista.Controller2.ViewObserver;
 
 import java.io.IOException;
@@ -115,5 +116,27 @@ public class Main2 extends Application {
             }
         }
         return null;
+    }
+
+    public void replaceSceneContent(String fxml, UserController userController) {
+        FXMLLoader loader  = new FXMLLoader(getClass().getResource(fxml), null, new JavaFXBuilderFactory());
+        Parent page = null;
+        try {
+            page = (Parent) loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        loader.setController(userController);
+        Scene scene = stage.getScene();
+
+        if (scene == null) {
+            scene = new Scene(page, 800, 600);
+            scene.getStylesheets().add(getClass().getResource("demo.css").toExternalForm());
+            stage.setScene(scene);
+        } else {
+            stage.getScene().setRoot(page);
+        }
+        stage.sizeToScene();
+
     }
 }

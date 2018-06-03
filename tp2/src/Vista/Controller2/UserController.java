@@ -1,5 +1,6 @@
 package tp2.src.Vista.Controller2;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
@@ -79,10 +80,16 @@ public abstract class UserController extends Controller {
         this.setDashboardPage(new ViewDashboard(this,this.dashboardSelected));
     }
 
+
+
     public void updateView() {
-        this.dashboardTittle.setText("ENTREE");
-        this.updateQuerySelected();
-        main.stage.show();
+
+        Platform.runLater(
+                () -> {
+                    this.dashboardTittle.setText("ENTREE");
+                    this.updateQuerySelected();
+                }
+        );
     }
 
     public void updateQuerySelected(){
