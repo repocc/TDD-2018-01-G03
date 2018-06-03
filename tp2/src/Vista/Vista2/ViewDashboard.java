@@ -14,7 +14,7 @@ public class ViewDashboard extends VBox {
 
         this.setMinSize(userController.getDashboardWidth(),userController.getDashboardHeight());
         this.setSpacing(20);
-
+        getChildren().clear();
         for(Query query: dashboard.getQueries()){
             getChildren().add(new CountView(query));
         }

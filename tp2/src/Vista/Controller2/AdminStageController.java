@@ -21,17 +21,13 @@ import tp2.src.Vista.Vista2.ViewDashboard;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 
 public class AdminStageController extends UserController {
     public Button addDashboardButton;
     private Admin admin;
-    //@FXML
-    //private VBox queriesList;
     @FXML
     private VBox queriesSelectedList;
-   // @FXML
-   // private Button saveQueries;
+
 
     private HashMap<String,CheckBox> queriesCheckBox;
 
@@ -62,25 +58,10 @@ public class AdminStageController extends UserController {
         }
     }
 
-    @Override
-    public void showDashboards(List<Dashboard> dashboards) {
-        listDashboard.getChildren().clear();
-        for (Dashboard dashboard : dashboards) {
-            Button button = new Button(dashboard.getName());
-            button.prefWidth(200);
-            button.setMinWidth(200);
-            button.setMnemonicParsing(false);
-            button.setStyle("-fx-background-color: #d3d3d3;");
-            button.setOnAction(new ShowDashboard(this, dashboard));
-            //DashboardButton dashboardButton = new DashboardButton(button, dashboard);
-            listDashboard.getChildren().add(button);
-            //addButtonToPane(button, dashboardsPane);
-        }
 
-
-    }
 
     public void selectDashboard(Dashboard dashboard){
+        this.dashboardTittle.setText(dashboard.getName());
         queriesSelectedList.getChildren().clear();
         deselectedAllQueries();
         for(int i=0;i<dashboard.getQueries().size();i++){
@@ -216,6 +197,7 @@ public class AdminStageController extends UserController {
     }
 
     public void setDashboardPage(ViewDashboard viewDashboard){
+        this.dashboard.getChildren().clear();
         this.dashboard.getChildren().add(viewDashboard);
     }
 
@@ -226,14 +208,8 @@ public class AdminStageController extends UserController {
     public double getDashboardHeight() {
         return this.dashboard.getWidth();
     }
-    @Override
-    public void logout()  {
-        try {
-            this.main.showInitialStage();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
+
 
 }
 

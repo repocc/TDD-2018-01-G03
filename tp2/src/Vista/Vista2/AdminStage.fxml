@@ -35,7 +35,7 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="200.0" styleClass="middle" stylesheets="@bootstrap3.css" text="dashBoard title" textFill="WHITE" GridPane.columnIndex="1">
+                  <Label fx:id="dashboardTittle" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="200.0" styleClass="middle" stylesheets="@bootstrap3.css" text="dashBoard title" textFill="WHITE" GridPane.columnIndex="1">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -77,9 +77,9 @@
                   </Label>
                   <Button contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#addQuery" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: #add8e6;" styleClass="middle" stylesheets="@bootstrap3.css" textAlignment="CENTER">
                      <graphic>
-                        <ImageView fitHeight="39.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="36.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/addicon.png" />
+                              <Image url="@images/edit.png" />
                            </image>
                         </ImageView>
                      </graphic>
