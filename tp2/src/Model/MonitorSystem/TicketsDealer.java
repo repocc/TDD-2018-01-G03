@@ -2,8 +2,8 @@ package tp2.src.Model.MonitorSystem;
 
 import tp2.src.Model.MonitorSystem.Exceptions.RuleNotFoundException;
 import tp2.src.Model.MonitorSystem.TicketUpdate.SimpleHttpServer;
-import tp2.src.Vista.Controller2.UserController;
-import tp2.src.Vista.Controller2.ViewObserver;
+import tp2.src.Controller.UserController;
+import tp2.src.Controller.ViewObserver;
 
 public class TicketsDealer {
     private Engine engine;

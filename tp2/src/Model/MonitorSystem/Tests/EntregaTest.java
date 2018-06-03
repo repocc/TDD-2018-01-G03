@@ -5,7 +5,7 @@ import tp2.src.Model.MonitorSystem.*;
 import tp2.src.Model.MonitorSystem.Exceptions.NotFoundException;
 import tp2.src.Model.MonitorSystem.TicketUpdate.TicketSystemG3Translator;
 import tp2.src.Model.MonitorSystem.TicketUpdate.TicketTranslator;
-import tp2.src.Vista.Controller2.ViewObserver;
+import tp2.src.Controller.ViewObserver;
 
 import java.time.Duration;
 import java.util.List;

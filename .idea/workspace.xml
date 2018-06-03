@@ -1,13 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2941f309-49be-4226-9c54-e7632c794583" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/tp2/src/Vista/Controller2/QueryController.java" afterDir="false" />
+    <list default="true" id="2941f309-49be-4226-9c54-e7632c794583" name="Default" comment="borre clases viejas que no se usaban">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp1/target/classes/META-INF/maven/tp1-rule-validator/tp1-rule-validator/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/tp1/target/classes/META-INF/maven/tp1-rule-validator/tp1-rule-validator/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Dashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/AdminStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Vista/Controller2/AdminStageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Vista/Controller2/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/AgregarDashboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/CrearDashboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/EditarDashboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/EliminarDashboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/LoginAdmin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/LoginAssoc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/Logout.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/MostrarDashboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Tests/EntregaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Tests/EntregaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/TicketsDealer.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/TicketsDealer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/AdminStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/AssociatedStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/AssociatedStageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/InitialStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/InitialStageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/PopupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/PopupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/QueryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/QueryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/ShowDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/ShowDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/ViewObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/ViewObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/AdminStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/AdminStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/AdminView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/AssociatedStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/AssociatedStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/AssociatedView.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/AssociatedView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/CountView.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/CountView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/LoginStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/LoginStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/Main2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/QueriesdButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/QueriesdButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/UserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/ViewDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/ViewDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/bootstrap3.css" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/bootstrap3.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/demo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/images/addicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/images/addicon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/images/edit.png" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/images/edit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/images/editar.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/images/editar.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/images/login.png" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/images/login.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/initialStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/initialStage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/popupDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/popupDashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaAdmin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaAssoc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaDashboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaInicial.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaListaDashboards.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaListaQueries.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaNuevoDashboard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/add.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/inicio.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/remove.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/remove2.png" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/tp2/src/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,105 +86,95 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AdminStageController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/AdminStageController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#7252#7253#0" expanded="true" />
-                <element signature="e#7298#7299#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/UserController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Dashboard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Dashboard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="79" selection-start-line="79" selection-end-line="79" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TicketsDealer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/Model/MonitorSystem/TicketsDealer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Handlers.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/Model/MonitorSystem/TicketUpdate/Handlers.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="70" selection-start-line="70" selection-end-line="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EPollArrayWrapper.class" pinned="false" current-in-tab="false">
-        <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/sun/nio/ch/EPollArrayWrapper.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="225" column="23" selection-start-line="225" selection-start-column="23" selection-end-line="225" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ViewObserver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/ViewObserver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-              <folding>
-                <element signature="e#173#174#0" expanded="true" />
-                <element signature="e#225#226#0" expanded="true" />
-                <element signature="e#303#304#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QueryController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/QueryController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Main2.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Vista2/Main2.java">
+        <entry file="file://$PROJECT_DIR$/tp2/src/View/Main2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1084">
-              <caret line="95" column="20" lean-forward="true" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
+            <state relative-caret-position="15">
+              <caret line="95" column="20" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/Controller/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="151" column="31" selection-start-line="151" selection-start-column="31" selection-end-line="151" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="initialStage.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/View/initialStage.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="22" column="191" selection-start-line="22" selection-start-column="191" selection-end-line="22" selection-end-column="191" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file leaf-file-name="LoginStage.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/View/LoginStage.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="25" column="191" selection-start-line="25" selection-start-column="191" selection-end-line="25" selection-end-column="191" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap3.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tp2/src/View/bootstrap3.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="361" column="21" selection-start-line="361" selection-start-column="21" selection-end-line="361" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdminStage.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/View/AdminStage.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="134">
+              <caret line="19" column="116" selection-start-line="19" selection-start-column="113" selection-end-line="19" selection-end-column="116" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file leaf-file-name="ShowDashboard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/ShowDashboard.java">
+        <entry file="file://$PROJECT_DIR$/tp2/src/Controller/ShowDashboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="20" selection-end-column="5" />
+            <state relative-caret-position="240">
+              <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdminStageController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="305">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AssociatedStageController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/Controller/AssociatedStageController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -159,6 +196,10 @@
       <find>setMa</find>
       <find>queriesList</find>
       <find>View</find>
+      <find>setDashboardPage</find>
+      <find>ViewDashboard</find>
+      <find>getDashboardWidth</find>
+      <find>css</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -216,12 +257,14 @@
         <option value="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Query.java" />
         <option value="$PROJECT_DIR$/tp2/src/Vista/Vista2/CountView.java" />
         <option value="$PROJECT_DIR$/tp2/src/Vista/Vista2/ViewDashboard.java" />
-        <option value="$PROJECT_DIR$/tp2/src/Vista/Controller2/AssociatedStageController.java" />
         <option value="$PROJECT_DIR$/tp2/src/Vista/Controller2/QueryView.java" />
         <option value="$PROJECT_DIR$/tp2/src/Vista/Controller2/QueryController.java" />
-        <option value="$PROJECT_DIR$/tp2/src/Vista/Controller2/AdminStageController.java" />
         <option value="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Dashboard.java" />
+        <option value="$PROJECT_DIR$/tp2/src/Vista/Controller2/AssociatedStageController.java" />
+        <option value="$PROJECT_DIR$/tp2/src/Vista/Controller2/AdminStageController.java" />
         <option value="$PROJECT_DIR$/tp2/src/Vista/Controller2/UserController.java" />
+        <option value="$PROJECT_DIR$/tp2/src/Controller2/UserController.java" />
+        <option value="$PROJECT_DIR$/tp2/src/Controller/UserController.java" />
       </list>
     </option>
   </component>
@@ -272,54 +315,14 @@
               <item name="TDD-2018-01-G03" type="462c0819:PsiDirectoryNode" />
               <item name="tp2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TDD-2018-01-G03" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TDD-2018-01-G03" type="462c0819:PsiDirectoryNode" />
-              <item name="tp2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Model" type="462c0819:PsiDirectoryNode" />
-              <item name="MonitorSystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TDD-2018-01-G03" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TDD-2018-01-G03" type="462c0819:PsiDirectoryNode" />
-              <item name="tp2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Model" type="462c0819:PsiDirectoryNode" />
-              <item name="MonitorSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="Tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TDD-2018-01-G03" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TDD-2018-01-G03" type="462c0819:PsiDirectoryNode" />
-              <item name="tp2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Vista" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TDD-2018-01-G03" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TDD-2018-01-G03" type="462c0819:PsiDirectoryNode" />
-              <item name="tp2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Vista" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TDD-2018-01-G03" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TDD-2018-01-G03" type="462c0819:PsiDirectoryNode" />
-              <item name="tp2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Vista" type="462c0819:PsiDirectoryNode" />
-              <item name="Vista2" type="462c0819:PsiDirectoryNode" />
+              <item name="View" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -327,28 +330,29 @@
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="315" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tp2/src/Vista/Controller2" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Descargas/json-simple-1.1.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="tp2.src.Vista.Controller2" />
-      <recent name="tp2.src.Vista.Vista2" />
-      <recent name="tp2.src.Vista" />
-      <recent name="tp2.src.Controlador" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tp2/src/Vista/Vista2/images" />
+      <recent name="$PROJECT_DIR$/tp2/src/Vista/Controller2" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="tp2.src" />
       <recent name="tp2.src.Vista.Controller2" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="tp2.src.Vista.Vista2" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tp2/src/Vista/Vista2/images" />
-      <recent name="$PROJECT_DIR$/tp2/src/Vista/Controller2" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="tp2.src.Vista.Controller2" />
+      <recent name="tp2.src.Vista.Vista2" />
+      <recent name="tp2.src.Vista" />
+      <recent name="tp2.src.Controlador" />
     </key>
   </component>
   <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
@@ -367,7 +371,6 @@
           <option name="myId" value="UPDATED" />
           <PATH vcs="Git" revision="">$PROJECT_DIR$/tp2/src/Vista/Controller2/AdminStageController.java</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/tp2/src/Vista/Controller2/UserController.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/tp2/src/Vista/Vista2/AdminStage.fxml</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -475,7 +478,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main2">
+  <component name="RunManager" selected="Application.Main2 (1)">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tp2.src.Vista.Main" />
       <module name="TDD-2018-01-G03" />
@@ -487,13 +490,24 @@
         </pattern>
       </extension>
     </configuration>
+    <configuration name="Main2 (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="tp2.src.View.Main2" />
+      <module name="TDD-2018-01-G03" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tp2.src.View.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
     <configuration name="Main2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tp2.src.Vista.Vista2.Main2" />
       <module name="TDD-2018-01-G03" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tp2.src.Vista.Controller2.*" />
+          <option name="PATTERN" value="tp2.src.Controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -544,7 +558,7 @@
       <module name="TDD-2018-01-G03" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="tp2.src.Vista.Controller2.*" />
+          <option name="PATTERN" value="tp2.src.Controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -590,9 +604,11 @@
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.tp2.src.Vista.Vista2 in TDD-2018-01-G03" />
       <item itemvalue="Application.Main2" />
+      <item itemvalue="Application.Main2 (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main2 (1)" />
         <item itemvalue="Application.Main2" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.tp2.src.Vista.Vista2 in TDD-2018-01-G03" />
@@ -615,6 +631,7 @@
       <workItem from="1527378871979" duration="48990000" />
       <workItem from="1527948063619" duration="41443000" />
       <workItem from="1528047210262" duration="10636000" />
+      <workItem from="1528064493443" duration="3020000" />
     </task>
     <task id="LOCAL-00001" summary="Update celar children de dashboards">
       <created>1528048660542</created>
@@ -623,7 +640,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528048660542</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Modifico Associated Controler para que funcione">
+      <created>1528066653251</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1528066653252</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -641,7 +665,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106426000" />
+    <option name="totallyTimeSpent" value="110043000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1377" height="912" extended-state="6" />
@@ -661,9 +685,8 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32988358" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49935317" visible="true" weight="0.20391272" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49935317" visible="true" weight="0.2069225" />
       <window_info anchor="right" id="Database" order="3" weight="0.3295711" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32988358" />
       <window_info id="Structure" order="1" sideWeight="0.5006468" side_tool="true" weight="0.25733635" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -675,24 +698,25 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32988358" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3199498" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.39974126" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3199498" />
       <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49935317" visible="true" weight="0.2167043" />
       <window_info id="Structure" order="1" sideWeight="0.5006468" side_tool="true" weight="0.25733635" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.39974126" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="6" weight="0.3295711" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32988358" />
@@ -701,7 +725,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Capture Tool" order="5" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32988358" />
       <window_info anchor="right" id="Maven Projects" order="8" />
       <window_info id="Favorites" order="6" sideWeight="0.5006468" side_tool="true" weight="0.25733635" />
@@ -715,31 +739,21 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update celar children de dashboards" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update celar children de dashboards" />
+    <MESSAGE value="Modifico Associated Controler para que funcione" />
+    <MESSAGE value="borre clases viejas que no se usaban" />
+    <option name="LAST_COMMIT_MESSAGE" value="borre clases viejas que no se usaban" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tp2/src/Vista/Controller2/UserController.java</url>
-          <line>88</line>
-          <properties />
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tp2/src/Vista/Controller2/UserController.java</url>
-          <line>83</line>
-          <properties />
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tp2/src/Vista/Controller2/ViewObserver.java</url>
+          <url>file://$PROJECT_DIR$/tp2/src/Controller/ViewObserver.java</url>
           <line>9</line>
           <properties />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tp2/src/Vista/Controller2/ViewObserver.java</url>
+          <url>file://$PROJECT_DIR$/tp2/src/Controller/ViewObserver.java</url>
           <line>6</line>
           <properties />
           <option name="timeStamp" value="26" />
@@ -758,54 +772,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tp2/src/Model/MonitorSystem/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Model/MonitorSystem/MonitorSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="58" column="9" lean-forward="true" selection-start-line="37" selection-start-column="8" selection-end-line="58" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Admin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-          <folding>
-            <element signature="e#822#823#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/util/Collections.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="670" selection-start-line="670" selection-end-line="670" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/util/ArrayList.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="109" selection-start-line="109" selection-end-line="109" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/jfxrt.jar!/com/sun/javafx/collections/ObservableListWrapper.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -848,14 +814,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/editQueries.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="15" column="27" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="27" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/editQueries.fxml" />
     <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/Object.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -954,7 +913,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Vista2/CountView.java">
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/CountView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
@@ -964,10 +923,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Vista2/images/editar.jpg">
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/images/editar.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/Controller.java">
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
@@ -978,7 +937,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Vista2/ViewDashboard.java">
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/ViewDashboard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-62">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
@@ -988,7 +947,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Vista2/AssociatedView.java">
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/AssociatedView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
           <caret line="32" column="40" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
@@ -999,7 +958,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Vista2/UserView.java">
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/UserView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
@@ -1021,9 +980,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="18" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="e#476#477#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1031,10 +987,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
           <caret line="174" column="32" lean-forward="true" selection-start-line="174" selection-start-column="32" selection-end-line="174" selection-end-column="32" />
-          <folding>
-            <element signature="e#16198#16199#0" expanded="true" />
-            <element signature="e#16234#16235#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1042,9 +994,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="586" selection-start-line="586" selection-end-line="586" />
-          <folding>
-            <element signature="e#22163#22164#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1052,19 +1001,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="45" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="e#1102#1103#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/AssociatedStageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1079,30 +1015,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="86" selection-start-line="86" selection-end-line="86" />
-          <folding>
-            <element signature="e#3040#3041#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Vista2/Main2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1084">
-          <caret line="95" column="20" lean-forward="true" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/ShowDashboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="20" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/QueryController.java">
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/QueryController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
@@ -1113,18 +1029,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="79" selection-start-line="79" selection-end-line="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/AdminStageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="65" column="47" selection-start-line="65" selection-start-column="47" selection-end-line="65" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7252#7253#0" expanded="true" />
-            <element signature="e#7298#7299#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1149,7 +1053,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/ViewObserver.java">
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/ViewObserver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
@@ -1161,10 +1065,89 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/UserController.java">
+    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/com/sun/net/httpserver/HttpServer.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
+        <state relative-caret-position="225">
+          <caret line="22" column="28" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/Main2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="95" column="20" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/AssociatedStage.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/ShowDashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/AssociatedStageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="151" column="31" selection-start-line="151" selection-start-column="31" selection-end-line="151" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/initialStage.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="22" column="191" selection-start-line="22" selection-start-column="191" selection-end-line="22" selection-end-column="191" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/LoginStage.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="25" column="191" selection-start-line="25" selection-start-column="191" selection-end-line="25" selection-end-column="191" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/AdminStage.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="19" column="116" selection-start-line="19" selection-start-column="113" selection-end-line="19" selection-end-column="116" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/bootstrap3.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="361" column="21" selection-start-line="361" selection-start-column="21" selection-end-line="361" selection-end-column="21" />
         </state>
       </provider>
     </entry>

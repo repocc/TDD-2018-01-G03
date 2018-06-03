@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tp2.src.Controller.LoginController">
+    <children>
+        <StackPane layoutX="184.0" layoutY="100.0" prefHeight="507.0" prefWidth="749.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox prefWidth="100.0">
+                    <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #337ab7;" />
+                    </children>
+                </VBox>
+                <AnchorPane prefHeight="526.0" prefWidth="800.0" style="-fx-background-color: transparent;">
+                    <children>
+                        <AnchorPane layoutX="166.0" layoutY="113.0" prefHeight="342.0" prefWidth="469.0" style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-radius: 4; -fx-border-radius: 4; -fx-padding: 8;" AnchorPane.bottomAnchor="145.0" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="165.0" AnchorPane.topAnchor="113.0">
+                            <children>
+                        <ImageView fitHeight="110.0" fitWidth="115.0" layoutX="201.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="18.0">
+                           <image>
+                              <Image url="@images/login.png" />
+                           </image></ImageView>
+                        <TextField fx:id="username" layoutX="170.0" layoutY="158.0" text="username" />
+                        <Button layoutX="224.0" layoutY="223.0" mnemonicParsing="false" onAction="#login" styleClass="primary" stylesheets="@bootstrap3.css" text="Login" />
+                        <Text fx:id="errorMessage" layoutX="168.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: red;" text="Username incorrecto" visible="false" wrappingWidth="210.7294921875" />
+
+                            </children>
+                        </AnchorPane>
+                        <VBox layoutX="188.0" layoutY="24.0" AnchorPane.leftAnchor="188.0" AnchorPane.rightAnchor="188.0" AnchorPane.topAnchor="24.0">
+                            <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="425.0" text=" TDD MONITOR SYSTEM" textAlignment="CENTER" textFill="WHITE">
+                                    <font>
+                                        <Font name="Roboto Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="425.0" text="INGRESE SU USERNAME" textAlignment="CENTER" textFill="WHITE">
+                                    <font>
+                                        <Font name="Roboto Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                  <Button layoutX="771.0" layoutY="27.0" mnemonicParsing="false" onAction="#back" styleClass="primary" stylesheets="@bootstrap3.css" text="Back" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="15.0" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </StackPane>
+    </children>
+
+</AnchorPane>
