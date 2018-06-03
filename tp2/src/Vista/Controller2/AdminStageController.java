@@ -1,7 +1,6 @@
 package tp2.src.Vista.Controller2;
 
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -10,23 +9,23 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tp2.src.Model.MonitorSystem.Admin;
 import tp2.src.Model.MonitorSystem.Dashboard;
+import tp2.src.Model.MonitorSystem.Query;
 import tp2.src.Vista.Vista2.Main2;
-import tp2.src.Vista.Vista2.ViewDashboard;
 
 import java.io.IOException;
 import java.util.HashMap;
 
 public class  AdminStageController extends UserController {
     public Button addDashboardButton;
+
     private Admin admin;
-    @FXML
-    private VBox queriesSelectedList;
+
+
 
 
     private HashMap<String,CheckBox> queriesCheckBox;
@@ -62,17 +61,35 @@ public class  AdminStageController extends UserController {
 
     public void selectDashboard(Dashboard dashboard){
         this.dashboardTittle.setText(dashboard.getName());
-//        queriesSelectedList.getChildren().clear();
+        queriesSelectedList.getChildren().clear();
         deselectedAllQueries();
         for(int i=0;i<dashboard.getQueries().size();i++){
-            queriesCheckBox.get(dashboard.getQueries().get(i).getName()).setSelected(true);
-            Text text = new Text(dashboard.getQueries().get(i).getName());
-            queriesSelectedList.getChildren().add(text);
+            String name = dashboard.getQueries().get(i).getName();
+            if(i==0){this.querySelected = name;}
+            Query query = dashboard.getQueries().get(i);
+            queriesCheckBox.get(name).setSelected(true);
+            Button queryButton = new Button(name);
+            queryButton.setPrefSize(200,31);
+            queriesSelectedList.getChildren().add(queryButton);
+            queryButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+                @Override
+                public void handle(javafx.event.ActionEvent event) {
+
+                    String nameButton = queryButton.getText();
+                    querySelected =nameButton;
+                    queryName.setText(nameButton);
+                    Query query2 = main.getQuery(nameButton);
+                    Float nbr = query2.getLastResult();
+                    queryValue.setText(String.valueOf(nbr));
+                }
+            });
 
         }
         this.dashboardSelected = dashboard;
-        this.setDashboardPage(new ViewDashboard(this,dashboard));
+        this.updateViewQuery();
     }
+
+
 
     public void deselectedAllQueries(){
         for(int i=0;i<main.queries.size();i++) {
@@ -196,10 +213,7 @@ public class  AdminStageController extends UserController {
         pane.getChildren().add(button);
     }
 
-    public void setDashboardPage(ViewDashboard viewDashboard){
-        this.dashboard.getChildren().clear();
-        this.dashboard.getChildren().add(viewDashboard);
-    }
+
 
     public double getDashboardWidth() {
         return this.dashboard.getWidth();
