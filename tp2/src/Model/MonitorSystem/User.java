@@ -15,4 +15,5 @@ public abstract class User {
 
     public abstract List<Dashboard> getViewDashboards();
     public abstract List<Dashboard> getOwnDashboards();
+    public abstract boolean logAsAdmin();
 }

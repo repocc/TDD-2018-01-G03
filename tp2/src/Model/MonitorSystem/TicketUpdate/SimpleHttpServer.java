@@ -23,7 +23,7 @@ public class SimpleHttpServer {
             server = HttpServer.create(new InetSocketAddress(port), 0);
             System.out.println("\nHTTP Server started at " + port + "...\n\n");
             server.createContext("/ticketUpdateG3", new Handlers.TicketUpdatedG3Handler(ticketsDealer));
-            server.createContext("/serverOk", new Handlers.RootHandler());
+                server.createContext("/serverOk", new Handlers.RootHandler());
 
             server.setExecutor(null);
             server.start();

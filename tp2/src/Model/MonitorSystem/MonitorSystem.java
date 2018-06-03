@@ -28,6 +28,18 @@ public class MonitorSystem {
         this.users.add(user);
     }
 
+    public User getUser(String username) {
+        Iterator<User> it = this.users.iterator();
+        while (it.hasNext()) {
+            User user = it.next();
+            
+            if (user.name.equals(username)){
+                return user;
+            }
+        }
+        return null;
+    }
+
     public Dashboard getDashboard(String dashboardName) throws DashboardNotFoundException {
         for (User user : this.users) {
             Dashboard dashboard = user.getDashboard(dashboardName);
@@ -69,4 +81,6 @@ public class MonitorSystem {
     public void updateQueriesResult() {
         this.engine.updateQueriesResult();
     }
+
+
 }

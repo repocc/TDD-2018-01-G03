@@ -27,10 +27,6 @@ public class Query {
         return ruleName;
     }
 
-    public Duration getInterval() {
-        return interval;
-    }
-
     public boolean equals(String queryName) {
         return (queryName == this.name);
     }
@@ -48,5 +44,15 @@ public class Query {
     public void updateResult(float ruleValue) {
         Result newResult = new Result(ruleValue);
         this.results.add(newResult);
+    }
+
+    public String getName(){return this.name;}
+
+    public float getLastResult(){
+        if(!results.isEmpty()){
+            return results.get(results.size()-1).value;
+
+        }
+        return 0;
     }
 }

@@ -24,6 +24,8 @@ public class Associated extends User{
         return this.monitorSystem.getDashboards();
     }
 
-
+    public boolean logAsAdmin(){
+        return false;
+    }
 
 }

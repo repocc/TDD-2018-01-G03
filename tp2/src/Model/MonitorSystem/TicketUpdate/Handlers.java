@@ -7,7 +7,10 @@ import tp2.src.Model.MonitorSystem.Exceptions.RuleNotFoundException;
 import tp2.src.Model.MonitorSystem.TicketsDealer;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
+
 
 public class Handlers {
 
@@ -20,8 +23,8 @@ public class Handlers {
             OutputStream os = he.getResponseBody();
             os.write(response.getBytes());
             os.close();
-        }
-    }
+    }}
+
 
     public static class TicketUpdatedG3Handler implements HttpHandler {
         TicketsDealer ticketsDealer;
@@ -32,21 +35,33 @@ public class Handlers {
             G3Translate = new TicketSystemG3Translator();
         }
 
+        public String getBody(HttpExchange he){
+            String ticket = "";
+            byte[] buf = new byte[200];
+            try (InputStream is = he.getRequestBody()) {
+                while (is.read(buf) != -1) ;
+                ticket = new String( buf, Charset.forName("UTF-8") );
+            } catch (IOException e) {
+                System.out.println("Can not read RequestBody");
+                e.printStackTrace();
+            }
+            int iend = ticket.indexOf("=");
+            ticket = ticket.substring(0, iend);
+            System.out.println("Ticket arrived: " + ticket + "...");
+            return ticket;
+        }
+
         @Override
         public void handle(HttpExchange he) throws IOException {
-            String ticket = he.getRequestHeaders().get("State").get(0);
-
-            System.out.println("Ticket recibido: " + ticket);
-
+            String ticket = getBody(he);
             JSONObject ticketJson = new JSONObject();
             ticketJson.put("state", ticket);
             try {
-                System.out.println("Enviado al Dealear");
+                System.out.println("Ticket sent to Dealear...");
                 ticketsDealer.updateTicket(G3Translate.translateTicket(ticketJson));
             } catch (RuleNotFoundException e) {
                 e.printStackTrace();
             }
-
 
             String response = "TICKET UPDATED: " + ticket;
             he.sendResponseHeaders(201, response.length());
@@ -56,3 +71,4 @@ public class Handlers {
         }
     }
 }
+

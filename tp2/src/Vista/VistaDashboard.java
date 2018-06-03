@@ -16,9 +16,12 @@ public class VistaDashboard extends VBox {
 
 
     private String name;
+    private VistaUser vistaUser;
 
-    public VistaDashboard(String name) {
+    public VistaDashboard(VistaUser vistaUser, String name) {
+
        this.name=name;
+       this.vistaUser = vistaUser;
        this.setMinSize(800,700);
        this.setSpacing(20);
        Label nameDashboard = new Label(this.name);
@@ -74,6 +77,8 @@ public class VistaDashboard extends VBox {
        chart.setTitle("Tickets Status");
 
        columns.getChildren().addAll(counts,chart);
+
+       //vistaUser.mostrarPanelEdicion();
 
        this.getChildren().addAll(nameDashboard,columns);
 

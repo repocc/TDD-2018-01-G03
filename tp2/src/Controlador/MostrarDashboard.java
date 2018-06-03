@@ -20,7 +20,7 @@ public class MostrarDashboard implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        this.vistaUser.setearPaginaDashboard(new VistaDashboard(this.name));
+        this.vistaUser.setearPaginaDashboard(new VistaDashboard(this.vistaUser,this.name));
 
     }
 }

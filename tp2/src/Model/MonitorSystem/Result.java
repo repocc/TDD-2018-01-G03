@@ -10,4 +10,6 @@ public class Result {
         this.value = value;
         this.dateTimeRecorded = LocalDateTime.now();
     }
+
+
 }

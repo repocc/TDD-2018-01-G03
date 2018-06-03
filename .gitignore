@@ -11,4 +11,5 @@ pom.xml.asc
 .hg/
 /tp2/src/out
 .idea/
-../.idea/
+tp2/.idea/
+tp1/target
