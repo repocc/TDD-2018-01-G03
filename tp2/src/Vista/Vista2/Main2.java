@@ -20,7 +20,7 @@ public class Main2 extends Application {
     public Stage stage;
     public MonitorSystem monitorSystem;
     public User actualUser;
-    private Engine engine;
+    public Engine engine;
     public ArrayList<Query> queries;
     private TicketsDealer ticketsDealer;
     private SimpleHttpServer server;

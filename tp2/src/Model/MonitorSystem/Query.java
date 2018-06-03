@@ -51,4 +51,12 @@ public class Query {
     }
 
     public String getName(){return this.name;}
+
+    public float getLastResult(){
+        if(!results.isEmpty()){
+            return results.get(results.size()-1).value;
+
+        }
+        return 0;
+    }
 }
