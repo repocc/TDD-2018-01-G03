@@ -23,7 +23,6 @@ public class LoginController extends Controller {
 
     public void login(){
         String name = username.getText();
-        System.out.println(name);
         User user = main.monitorSystem.getUser(name);
         if (user == null){
             user = this.main.createUser(name);

@@ -11,7 +11,7 @@ import tp2.src.Model.MonitorSystem.Exceptions.NotFoundException;
 import tp2.src.Model.MonitorSystem.TicketUpdate.SimpleHttpServer;
 import tp2.src.Controller.Controller;
 import tp2.src.Controller.UserController;
-import tp2.src.Controller.ViewObserver;
+import tp2.src.Controller.Observer;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -41,7 +41,7 @@ public class Main2 extends Application {
 
         this.monitorSystem = new MonitorSystem();
         this.engine = new Engine(monitorSystem);
-        this.ticketsDealer = new TicketsDealer(engine, new ViewObserver());
+        this.ticketsDealer = new TicketsDealer(engine, new Observer());
         try {
             Rule rule0 = this.monitorSystem.getRule("open-count");
             Rule rule1 = this.monitorSystem.getRule("close-count");

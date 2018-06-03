@@ -3,6 +3,7 @@ package tp2.src.Controller;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -12,8 +13,6 @@ import tp2.src.Model.MonitorSystem.Dashboard;
 import tp2.src.Model.MonitorSystem.Query;
 import tp2.src.Model.MonitorSystem.Result;
 import tp2.src.View.Main2;
-import tp2.src.View.ViewDashboard;
-import javafx.scene.chart.XYChart;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -70,17 +69,6 @@ public abstract class UserController extends Controller {
             e.printStackTrace();
         }
     }
-
-    public void setDashboardPage(ViewDashboard viewDashboard){
-        this.dashboard.getChildren().clear();
-        this.dashboard.getChildren().add(viewDashboard);
-    }
-
-    public void updateDashboardQueriesValues(){
-        this.setDashboardPage(new ViewDashboard(this,this.dashboardSelected));
-    }
-
-
 
     public void updateView() {
 
