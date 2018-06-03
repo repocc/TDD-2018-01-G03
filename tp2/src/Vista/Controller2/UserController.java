@@ -97,6 +97,7 @@ public abstract class UserController extends Controller {
             queryName.setText(querySelected);
             Float nbr = query.getLastResult();
             queryValue.setText(String.valueOf(nbr));
+
         }
     }
 
@@ -106,5 +107,35 @@ public abstract class UserController extends Controller {
         queryName.setText(query.getName());
         Float nbr = query.getLastResult();
         queryValue.setText(String.valueOf(nbr));
+//        updateChart(query);
+    }
+
+    private void updateChart(Query query) {
+        this.lineChart.getXAxis().setLabel("TimeLine");
+        this.lineChart.getYAxis().setLabel("Query Value");
+
+        lineChart.setTitle(query.getName());
+
+//        liz.Series series = new XYChart.Series();
+//        series.setName("My portfolio");
+//        //populating the series with data
+//        series.getData().add(new XYChart.Data(1, 23));
+//        series.getData().add(new XYChart.Data(2, 14));
+//        series.getData().add(new XYChart.Data(3, 15));
+//        series.getData().add(new XYChart.Data(4, 24));
+//        series.getData().add(new XYChart.Data(5, 34));
+//        series.getData().add(new XYChart.Data(6, 36));
+//        series.getData().add(new XYChart.Data(7, 22));
+//        series.getData().add(new XYChart.Data(8, 45));
+//        series.getData().add(new XYChart.Data(9, 43));
+//        series.getData().add(new XYChart.Data(10, 17));
+//        series.getData().add(new XYChart.Data(11, 29));
+//        series.getData().add(new XYChart.Data(12, 25));
+//
+//        Scene scene  = new Scene(lineChart,800,600);
+//        lineChart.getData().add(series);
+//
+//        stage.setScene(scene);
+//        stage.show();
     }
 }

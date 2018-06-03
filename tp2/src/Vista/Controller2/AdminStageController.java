@@ -61,6 +61,8 @@ public class  AdminStageController extends UserController {
         queriesSelectedList.getChildren().clear();
         deselectedAllQueries();
         querySelected = null;
+        queryName.setText("");
+        queryValue.setText("");
         for(int i=0;i<dashboard.getQueries().size();i++){
             String name = dashboard.getQueries().get(i).getName();
             if(i==0){this.querySelected = name;}
