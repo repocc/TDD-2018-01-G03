@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import tp2.src.Model.MonitorSystem.Dashboard;
+import tp2.src.Vista.Vista2.Main2;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,7 +22,11 @@ public abstract class UserController extends Controller {
     @FXML
     public Pane dashboard;
 
-
+    @Override
+    public void setMain(Main2 main) {
+        super.setMain(main);
+        main.ticketsDealer.setUserController(this);
+    }
 
     public abstract double getDashboardWidth();
 
@@ -48,5 +53,9 @@ public abstract class UserController extends Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void updateView() {
+        this.selectDashboard(this.dashboardSelected);
     }
 }

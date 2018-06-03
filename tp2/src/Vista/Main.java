@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import tp2.src.Model.MonitorSystem.*;
 import tp2.src.Model.MonitorSystem.Exceptions.NotFoundException;
 import tp2.src.Model.MonitorSystem.TicketUpdate.SimpleHttpServer;
+import tp2.src.Vista.Controller2.ViewObserver;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -32,7 +33,7 @@ public class Main extends Application {
         stage.setTitle("TDD Monitoreo de Tickets");
         this.monitorSystem = new MonitorSystem();
         this.engine = new Engine(monitorSystem);
-        this.ticketsDealer = new TicketsDealer(engine);
+        this.ticketsDealer = new TicketsDealer(engine, new ViewObserver());
         this.server = new SimpleHttpServer(ticketsDealer);
 
         try {

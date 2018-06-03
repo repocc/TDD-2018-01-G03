@@ -10,6 +10,7 @@ import tp2.src.Model.MonitorSystem.*;
 import tp2.src.Model.MonitorSystem.Exceptions.NotFoundException;
 import tp2.src.Model.MonitorSystem.TicketUpdate.SimpleHttpServer;
 import tp2.src.Vista.Controller2.Controller;
+import tp2.src.Vista.Controller2.ViewObserver;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -22,7 +23,7 @@ public class Main2 extends Application {
     public User actualUser;
     public Engine engine;
     public ArrayList<Query> queries;
-    private TicketsDealer ticketsDealer;
+    public TicketsDealer ticketsDealer;
     private SimpleHttpServer server;
     public UserView userView;
 
@@ -39,7 +40,7 @@ public class Main2 extends Application {
 
         this.monitorSystem = new MonitorSystem();
         this.engine = new Engine(monitorSystem);
-        this.ticketsDealer = new TicketsDealer(engine);
+        this.ticketsDealer = new TicketsDealer(engine, new ViewObserver());
         try {
             Rule rule0 = this.monitorSystem.getRule("open-count");
             Rule rule1 = this.monitorSystem.getRule("close-count");

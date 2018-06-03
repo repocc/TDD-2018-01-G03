@@ -27,10 +27,6 @@ public class Query {
         return ruleName;
     }
 
-    public Duration getInterval() {
-        return interval;
-    }
-
     public boolean equals(String queryName) {
         return (queryName == this.name);
     }

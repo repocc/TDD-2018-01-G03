@@ -22,7 +22,7 @@ import tp2.src.Vista.Vista2.ViewDashboard;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class AdminStageController extends UserController {
+public class  AdminStageController extends UserController {
     public Button addDashboardButton;
     private Admin admin;
     @FXML
@@ -62,7 +62,7 @@ public class AdminStageController extends UserController {
 
     public void selectDashboard(Dashboard dashboard){
         this.dashboardTittle.setText(dashboard.getName());
-        queriesSelectedList.getChildren().clear();
+//        queriesSelectedList.getChildren().clear();
         deselectedAllQueries();
         for(int i=0;i<dashboard.getQueries().size();i++){
             queriesCheckBox.get(dashboard.getQueries().get(i).getName()).setSelected(true);

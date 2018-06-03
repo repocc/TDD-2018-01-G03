@@ -32,6 +32,7 @@ public class MonitorSystem {
         Iterator<User> it = this.users.iterator();
         while (it.hasNext()) {
             User user = it.next();
+            
             if (user.name.equals(username)){
                 return user;
             }
