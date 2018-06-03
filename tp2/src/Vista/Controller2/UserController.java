@@ -86,7 +86,6 @@ public abstract class UserController extends Controller {
 
         Platform.runLater(
                 () -> {
-                    this.dashboardTittle.setText("ENTREE");
                     this.updateQuerySelected();
                 }
         );
