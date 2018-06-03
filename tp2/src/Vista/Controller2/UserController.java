@@ -28,7 +28,9 @@ public abstract class UserController extends Controller {
     @FXML
     public VBox queriesSelectedList;
 
+    @FXML
     public Label queryName;
+    @FXML
     public Label queryValue;
     public LineChart lineChart;
     protected String querySelected;
@@ -78,16 +80,25 @@ public abstract class UserController extends Controller {
     }
 
     public void updateView() {
-        this.updateViewQuery();
+        this.dashboardTittle.setText("ENTREE");
+        this.updateQuerySelected();
+        main.stage.show();
     }
 
-    public void updateViewQuery(){
+    public void updateQuerySelected(){
         if(querySelected != null) {
+            Query query = this.dashboardSelected.getQuery(querySelected);
             queryName.setText(querySelected);
-            Query query = main.getQuery(querySelected);
             Float nbr = query.getLastResult();
             queryValue.setText(String.valueOf(nbr));
         }
     }
 
+    public void updateQuery(String nameQuery) {
+        Query query = this.dashboardSelected.getQuery(nameQuery);
+        querySelected =query.getName();
+        queryName.setText(query.getName());
+        Float nbr = query.getLastResult();
+        queryValue.setText(String.valueOf(nbr));
+    }
 }

@@ -1,5 +1,6 @@
 package tp2.src.Model.MonitorSystem;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,9 @@ public class Dashboard {
     public void addQuery(Query query) {
         this.queries.add(query);
     }
+    public void addQuery(String name) {
+        this.queries.add(new Query(name,Duration.ofSeconds(10),name));
+    }
 
     public void enableQuery(String queryName) {
         for (Query query : this.queries) {
@@ -40,9 +44,9 @@ public class Dashboard {
         }
     }
 
-    public void removeQuery(Query query){
-       if(hasQuery(query.getName())){
-           this.queries.remove(query);
+    public void removeQuery(String name){
+       if(hasQuery(name)){
+           this.queries.remove(this.getQuery(name));
         }
     }
 
@@ -67,5 +71,16 @@ public class Dashboard {
             }
         }
         return false;
+    }
+
+    public Query getQuery(String nameQuery) {
+        if(hasQuery(nameQuery)){
+            for (Query query : this.queries) {
+                if (query.getName().equals(nameQuery)) {
+                    return query;
+                }
+            }
+        }
+        return null;
     }
 }

@@ -25,9 +25,6 @@ public class  AdminStageController extends UserController {
 
     private Admin admin;
 
-
-
-
     private HashMap<String,CheckBox> queriesCheckBox;
 
 
@@ -63,6 +60,7 @@ public class  AdminStageController extends UserController {
         this.dashboardTittle.setText(dashboard.getName());
         queriesSelectedList.getChildren().clear();
         deselectedAllQueries();
+        querySelected = null;
         for(int i=0;i<dashboard.getQueries().size();i++){
             String name = dashboard.getQueries().get(i).getName();
             if(i==0){this.querySelected = name;}
@@ -71,22 +69,11 @@ public class  AdminStageController extends UserController {
             Button queryButton = new Button(name);
             queryButton.setPrefSize(200,31);
             queriesSelectedList.getChildren().add(queryButton);
-            queryButton.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
-                @Override
-                public void handle(javafx.event.ActionEvent event) {
-
-                    String nameButton = queryButton.getText();
-                    querySelected =nameButton;
-                    queryName.setText(nameButton);
-                    Query query2 = main.getQuery(nameButton);
-                    Float nbr = query2.getLastResult();
-                    queryValue.setText(String.valueOf(nbr));
-                }
-            });
+            queryButton.setOnAction(new QueryController(this,query.getName()));
 
         }
         this.dashboardSelected = dashboard;
-        this.updateViewQuery();
+        this.updateQuerySelected();
     }
 
 
@@ -124,11 +111,6 @@ public class  AdminStageController extends UserController {
             save.setTextAlignment(TextAlignment.CENTER);
 
             sPane.getItems().addAll(queriesList,save);
-            //tPane.getChildrenUnmodifiable().add(sPane);
-            //FXMLLoader loader  = new FXMLLoader(getClass().getResource("editQueries.fxml"), null, new JavaFXBuilderFactory());
-            //Parent page = (Parent) loader.load();
-            //dialog.setScene(new Scene(page, 500, 500));
-            //queriesList.getChildren().clear();
             TitledPane tPane = new TitledPane("Edit Queries",sPane);
             tPane.setText("Edit Queries");
             tPane.setCollapsible(false);
@@ -157,10 +139,10 @@ public class  AdminStageController extends UserController {
             //CheckBox checkbox = queriesCheckBox.get(main.queries.get(i).getName());
             //Boolean bol = check.isSelected();
             if(this.dashboardSelected.hasQuery(name) && !queriesCheckBox.get(name).isSelected()){
-                this.dashboardSelected.removeQuery(main.getQuery(name));
+                this.dashboardSelected.removeQuery(name);
             }
             if(!this.dashboardSelected.hasQuery(name) && queriesCheckBox.get(name).isSelected()){
-                this.dashboardSelected.addQuery(main.getQuery(name));
+                this.dashboardSelected.addQuery(name);
             }
             //if(this.dashboardSelected.hasQuery(name) && queriesCheckBox.get(name).isSelected()){
               //  this.dashboardSelected.enableQuery(name);
