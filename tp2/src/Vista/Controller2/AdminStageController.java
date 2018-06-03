@@ -14,32 +14,23 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tp2.src.Model.MonitorSystem.Admin;
 import tp2.src.Model.MonitorSystem.Dashboard;
-import tp2.src.Model.MonitorSystem.Query;
 import tp2.src.Vista.Vista2.Main2;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class  AdminStageController extends UserController {
     public Button addDashboardButton;
 
     private Admin admin;
 
-    private HashMap<String,CheckBox> queriesCheckBox;
+
 
 
 
     @Override
     public void setMain(Main2 main) {
         super.setMain(main);
-        queriesCheckBox = new HashMap<String,CheckBox>();
-        for(int i=0;i<main.queries.size();i++){
-            String name = main.queries.get(i).getName();
-            CheckBox checkbox = new CheckBox(name);
-            checkbox.setMinWidth(500);
-            checkbox.setStyle("-fx-background-color:  #ffebcd");
-            queriesCheckBox.put(name,checkbox);
-        }
+        updateCheckBoxList();
         admin = (Admin) main.actualUser;
         dashboardSelected = null;
         getDashboards();
@@ -47,44 +38,15 @@ public class  AdminStageController extends UserController {
     }
 
 
-    public void getDashboards() {
-
-        if(main.actualUser.getViewDashboards().size() > 0){
-            showDashboards(main.actualUser.getViewDashboards());
-        }
-    }
 
 
 
-    public void selectDashboard(Dashboard dashboard){
-        this.dashboardTittle.setText(dashboard.getName());
-        queriesSelectedList.getChildren().clear();
-        deselectedAllQueries();
-        querySelected = null;
-        queryName.setText("");
-        queryValue.setText("");
-        for(int i=0;i<dashboard.getQueries().size();i++){
-            String name = dashboard.getQueries().get(i).getName();
-            if(i==0){this.querySelected = name;}
-            Query query = dashboard.getQueries().get(i);
-            queriesCheckBox.get(name).setSelected(true);
-            Button queryButton = new Button(name);
-            queryButton.setPrefSize(200,31);
-            queriesSelectedList.getChildren().add(queryButton);
-            queryButton.setOnAction(new QueryController(this,query.getName()));
-
-        }
-        this.dashboardSelected = dashboard;
-        this.updateQuerySelected();
-    }
 
 
 
-    public void deselectedAllQueries(){
-        for(int i=0;i<main.queries.size();i++) {
-            queriesCheckBox.get(main.queries.get(i).getName()).setSelected(false);
-        }
-    }
+
+
+
 
 
 
@@ -135,20 +97,17 @@ public class  AdminStageController extends UserController {
     }
 
     public void updateQueriesDashboard(){
-        //queriesCheckBox = new HashMap<String,CheckBox>();
+
         for(int i=0;i<main.queries.size();i++){
             String name = main.queries.get(i).getName();
-            //CheckBox checkbox = queriesCheckBox.get(main.queries.get(i).getName());
-            //Boolean bol = check.isSelected();
+
             if(this.dashboardSelected.hasQuery(name) && !queriesCheckBox.get(name).isSelected()){
                 this.dashboardSelected.removeQuery(name);
             }
             if(!this.dashboardSelected.hasQuery(name) && queriesCheckBox.get(name).isSelected()){
                 this.dashboardSelected.addQuery(name);
             }
-            //if(this.dashboardSelected.hasQuery(name) && queriesCheckBox.get(name).isSelected()){
-              //  this.dashboardSelected.enableQuery(name);
-            //}
+
         }
     }
 
@@ -185,27 +144,13 @@ public class  AdminStageController extends UserController {
                 dialog.close();
             }
         });
-
-
-
-
     }
-
-
 
     public void addButtonToPane(Button button, Pane pane){
         pane.getChildren().add(button);
     }
 
 
-
-    public double getDashboardWidth() {
-        return this.dashboard.getWidth();
-    }
-
-    public double getDashboardHeight() {
-        return this.dashboard.getWidth();
-    }
 
 
 
