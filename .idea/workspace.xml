@@ -1,60 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2941f309-49be-4226-9c54-e7632c794583" name="Default" comment="borre clases viejas que no se usaban">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/AgregarDashboard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/CrearDashboard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/EditarDashboard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/EliminarDashboard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/LoginAdmin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/LoginAssoc.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/Logout.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Controlador/MostrarDashboard.java" beforeDir="false" />
+    <list default="true" id="2941f309-49be-4226-9c54-e7632c794583" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Controller/ViewObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/Observer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Tests/EntregaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Tests/EntregaTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/TicketsDealer.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/TicketsDealer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/AdminStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/AssociatedStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/AssociatedStageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/InitialStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/InitialStageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/PopupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/PopupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/QueryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/QueryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/ShowDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/ShowDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Controller2/ViewObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/ViewObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/AdminStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/AdminStage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/AdminView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/AssociatedStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/AssociatedStage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/AssociatedView.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/AssociatedView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/CountView.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/CountView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/LoginStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/LoginStage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/Main2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/QueriesdButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/QueriesdButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/UserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/ViewDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/ViewDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/bootstrap3.css" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/bootstrap3.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/demo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/images/addicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/images/addicon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/images/edit.png" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/images/edit.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/images/editar.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/images/editar.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/images/login.png" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/images/login.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/initialStage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/initialStage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/popupDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/popupDashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/Vista2/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/sample.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaAdmin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaAssoc.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaDashboard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaInicial.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaListaDashboards.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaListaQueries.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaNuevoDashboard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/VistaUser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/add.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/inicio.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/remove.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Vista/remove2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/View/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/Main2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/View/QueriesdButton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/View/ViewDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/ViewDashboard.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/tp2/src/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -89,68 +45,24 @@
       <file leaf-file-name="Main2.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tp2/src/View/Main2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="95" column="20" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
+            <state relative-caret-position="171">
+              <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3401#3402#0" expanded="true" />
+                <element signature="e#3454#3455#0" expanded="true" />
+                <element signature="e#3488#3489#0" expanded="true" />
+                <element signature="e#3528#3529#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/Controller/UserController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="151" column="31" selection-start-line="151" selection-start-column="31" selection-end-line="151" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="initialStage.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/View/initialStage.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="22" column="191" selection-start-line="22" selection-start-column="191" selection-end-line="22" selection-end-column="191" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file leaf-file-name="LoginStage.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/View/LoginStage.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="25" column="191" selection-start-line="25" selection-start-column="191" selection-end-line="25" selection-end-column="191" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap3.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tp2/src/View/bootstrap3.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="361" column="21" selection-start-line="361" selection-start-column="21" selection-end-line="361" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AdminStage.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/View/AdminStage.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="19" column="116" selection-start-line="19" selection-start-column="113" selection-end-line="19" selection-end-column="116" />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file leaf-file-name="ShowDashboard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/Controller/ShowDashboard.java">
+      <file leaf-file-name="UserView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/View/UserView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+              <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -158,8 +70,8 @@
       <file leaf-file-name="AdminStageController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
+            <state>
+              <caret column="18" selection-start-column="18" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -167,11 +79,50 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AssociatedStageController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/Controller/AssociatedStageController.java">
+      <file leaf-file-name="PopupController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/Controller/PopupController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+            <state relative-caret-position="30">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QueryController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/Controller/QueryController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tp2/src/Controller/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="24">
+              <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewDashboard.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/View/ViewDashboard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CountView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/View/CountView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -200,6 +151,7 @@
       <find>ViewDashboard</find>
       <find>getDashboardWidth</find>
       <find>css</find>
+      <find>CountView</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -214,10 +166,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tp2/src/sample/Main.java" />
-        <option value="$PROJECT_DIR$/tp2/src/Controlador/LoginAdmin.java" />
-        <option value="$PROJECT_DIR$/tp2/src/Vista/vistaAdmin.form" />
-        <option value="$PROJECT_DIR$/tp2/src/Controlador/Logout.java" />
         <option value="$PROJECT_DIR$/tp2/src/Controlador/EliminarDashboard.java" />
         <option value="$PROJECT_DIR$/tp2/src/Controlador/EditarDashboard.java" />
         <option value="$PROJECT_DIR$/tp2/src/Vista/VistaNuevoDashboard.java" />
@@ -264,6 +212,10 @@
         <option value="$PROJECT_DIR$/tp2/src/Vista/Controller2/AdminStageController.java" />
         <option value="$PROJECT_DIR$/tp2/src/Vista/Controller2/UserController.java" />
         <option value="$PROJECT_DIR$/tp2/src/Controller2/UserController.java" />
+        <option value="$PROJECT_DIR$/tp2/src/Controller/Observer.java" />
+        <option value="$PROJECT_DIR$/tp2/src/Controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java" />
+        <option value="$PROJECT_DIR$/tp2/src/View/ViewDashboard.java" />
         <option value="$PROJECT_DIR$/tp2/src/Controller/UserController.java" />
       </list>
     </option>
@@ -309,6 +261,13 @@
               <item name="TDD-2018-01-G03" type="462c0819:PsiDirectoryNode" />
               <item name="tp2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TDD-2018-01-G03" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TDD-2018-01-G03" type="462c0819:PsiDirectoryNode" />
+              <item name="tp2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TDD-2018-01-G03" type="b2602c69:ProjectViewProjectNode" />
@@ -631,7 +590,7 @@
       <workItem from="1527378871979" duration="48990000" />
       <workItem from="1527948063619" duration="41443000" />
       <workItem from="1528047210262" duration="10636000" />
-      <workItem from="1528064493443" duration="3020000" />
+      <workItem from="1528064493443" duration="5032000" />
     </task>
     <task id="LOCAL-00001" summary="Update celar children de dashboards">
       <created>1528048660542</created>
@@ -647,7 +606,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528066653252</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="borre clases viejas que no se usaban">
+      <created>1528067583507</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1528067583507</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -665,7 +631,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110043000" />
+    <option name="totallyTimeSpent" value="112055000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1377" height="912" extended-state="6" />
@@ -681,12 +647,13 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3199498" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26390687" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26390687" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32988358" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49935317" visible="true" weight="0.2069225" />
       <window_info anchor="right" id="Database" order="3" weight="0.3295711" />
+      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32988358" />
       <window_info id="Structure" order="1" sideWeight="0.5006468" side_tool="true" weight="0.25733635" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -698,7 +665,6 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32988358" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
@@ -747,13 +713,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tp2/src/Controller/ViewObserver.java</url>
+          <url>file://$PROJECT_DIR$/tp2/src/Controller/Observer.java</url>
           <line>9</line>
           <properties />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tp2/src/Controller/ViewObserver.java</url>
+          <url>file://$PROJECT_DIR$/tp2/src/Controller/Observer.java</url>
           <line>6</line>
           <properties />
           <option name="timeStamp" value="26" />
@@ -772,49 +738,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/jfxrt.jar!/com/sun/javafx/collections/ObservableListWrapper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/jfxrt.jar!/com/sun/javafx/collections/VetoableListDecorator.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="240" selection-start-line="240" selection-end-line="240" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/NullPointerException.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/RuntimeException.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/Exception.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/Throwable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="201" selection-start-line="201" selection-end-line="201" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Vista/Controller2/editQueries.fxml" />
     <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/Object.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -913,16 +836,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/View/CountView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tp2/src/View/images/editar.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -937,16 +850,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/View/ViewDashboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-62">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tp2/src/View/AssociatedView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
@@ -954,17 +857,6 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#738#739#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/View/UserView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-          <folding>
-            <element signature="e#163#164#0" expanded="true" />
-            <element signature="e#195#196#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1018,13 +910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/QueryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Dashboard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -1053,18 +938,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/ViewObserver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#173#174#0" expanded="true" />
-            <element signature="e#225#226#0" expanded="true" />
-            <element signature="e#303#304#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/com/sun/net/httpserver/HttpServer.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1072,68 +945,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/View/Main2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="95" column="20" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tp2/src/View/AssociatedStage.fxml">
       <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/ShowDashboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="18" column="36" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/AssociatedStageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="151" column="31" selection-start-line="151" selection-start-column="31" selection-end-line="151" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/View/initialStage.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="22" column="191" selection-start-line="22" selection-start-column="191" selection-end-line="22" selection-end-column="191" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/View/LoginStage.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="25" column="191" selection-start-line="25" selection-start-column="191" selection-end-line="25" selection-end-column="191" />
-        </state>
-      </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/tp2/src/View/AdminStage.fxml">
@@ -1146,8 +959,161 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tp2/src/View/bootstrap3.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="361" column="21" selection-start-line="361" selection-start-column="21" selection-end-line="361" selection-end-column="21" />
+        <state relative-caret-position="867">
+          <caret line="390" column="24" lean-forward="true" selection-start-line="390" selection-start-column="24" selection-end-line="390" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/initialStage.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="22" column="196" selection-start-line="22" selection-start-column="196" selection-end-line="22" selection-end-column="196" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/AssociatedStageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp1/src/core_operator.clj">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/LoginStage.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="25" column="191" selection-start-line="25" selection-start-column="191" selection-end-line="25" selection-end-column="191" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/Observer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#296#297#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/ShowDashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="10" column="78" lean-forward="true" selection-start-line="10" selection-start-column="78" selection-end-line="10" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/InitialStageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Model/MonitorSystem/MonitorSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/Main2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3401#3402#0" expanded="true" />
+            <element signature="e#3454#3455#0" expanded="true" />
+            <element signature="e#3488#3489#0" expanded="true" />
+            <element signature="e#3528#3529#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="29" column="28" lean-forward="true" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/AdminView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/UserView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/PopupController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/QueryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/QueriesdButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/CountView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" selection-start-column="18" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/ViewDashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
         </state>
       </provider>
     </entry>

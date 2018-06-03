@@ -39,17 +39,6 @@ public class  AdminStageController extends UserController {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     public void addQuery() throws Exception {
         if(this.dashboardSelected != null) {
 
@@ -81,7 +70,6 @@ public class  AdminStageController extends UserController {
             tPane.setPrefSize(500,500);
             tPane.setStyle("-fx-background-color: #ffebcd;");
 
-            TitledPane titledPane = new TitledPane("My Title", new CheckBox("OK"));
             dialog.setScene(new Scene(tPane));
             dialog.show();
             save.setOnAction(new EventHandler<javafx.event.ActionEvent>() {

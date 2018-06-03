@@ -1,6 +1,6 @@
 package tp2.src.Controller;
 
-public class ViewObserver {
+public class Observer {
     private UserController userController;
 
     public void setUserController(UserController userController) {

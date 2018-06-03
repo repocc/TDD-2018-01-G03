@@ -5,7 +5,7 @@ import tp2.src.Model.MonitorSystem.*;
 import tp2.src.Model.MonitorSystem.Exceptions.NotFoundException;
 import tp2.src.Model.MonitorSystem.TicketUpdate.TicketSystemG3Translator;
 import tp2.src.Model.MonitorSystem.TicketUpdate.TicketTranslator;
-import tp2.src.Controller.ViewObserver;
+import tp2.src.Controller.Observer;
 
 import java.time.Duration;
 import java.util.List;
@@ -20,7 +20,7 @@ public class EntregaTest extends TestCase{
         super.setUp();
         this.monitorSystem = new MonitorSystem();
         this.engine = new Engine(monitorSystem);
-        this.ticketsDealer = new TicketsDealer(engine, new ViewObserver());
+        this.ticketsDealer = new TicketsDealer(engine, new Observer());
         this.tickeySysyemG3Traslator = new TicketSystemG3Translator();
     }
 
