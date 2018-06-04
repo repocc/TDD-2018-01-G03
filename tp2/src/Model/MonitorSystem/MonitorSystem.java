@@ -83,4 +83,7 @@ public class MonitorSystem {
     }
 
 
+    public List<Rule> getRules() {
+        return this.availableRules;
+    }
 }

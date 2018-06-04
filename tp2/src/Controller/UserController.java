@@ -1,7 +1,6 @@
 package tp2.src.Controller;
 
 import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
@@ -12,6 +11,7 @@ import javafx.scene.layout.VBox;
 import tp2.src.Model.MonitorSystem.Dashboard;
 import tp2.src.Model.MonitorSystem.Query;
 import tp2.src.Model.MonitorSystem.Result;
+import tp2.src.Model.MonitorSystem.Rule;
 import tp2.src.View.Main2;
 
 import java.io.IOException;
@@ -20,23 +20,10 @@ import java.util.List;
 
 public abstract class UserController extends Controller {
 
-
     public Dashboard dashboardSelected;
-    @FXML
-    public Label dashboardTittle;
-    @FXML
-    public VBox listDashboard;
-    @FXML
+    public Label dashboardTittle, queryName, queryValue;
+    public VBox listDashboard, queriesSelectedList;
     public Pane dashboard;
-
-    @FXML
-    public VBox queriesSelectedList;
-
-    @FXML
-    public Label queryName;
-    @FXML
-    public Label queryValue;
-    @FXML
     public LineChart<String, Float> lineChart;
     protected String querySelected;
     public HashMap<String,CheckBox> queriesCheckBox;
@@ -47,7 +34,6 @@ public abstract class UserController extends Controller {
         super.setMain(main);
         main.ticketsDealer.setUserController(this);
     }
-
 
     public void showDashboards(List<Dashboard> dashboards) {
         listDashboard.getChildren().clear();
@@ -73,7 +59,6 @@ public abstract class UserController extends Controller {
     }
 
     public void updateView() {
-
         Platform.runLater(
                 () -> {
                     this.updateQuerySelected();
@@ -99,7 +84,6 @@ public abstract class UserController extends Controller {
     private void updateChart(Query query) {
         lineChart.getData().clear();
         this.lineChart.getYAxis().setLabel("Query Value");
-//        lineChart.setTitle(query.getName());
         XYChart.Series series = new XYChart.Series();
         series.setName(query.getName());
         int large = 0;
@@ -144,8 +128,8 @@ public abstract class UserController extends Controller {
 
     public void updateCheckBoxList(){
         queriesCheckBox = new HashMap<String,CheckBox>();
-        for(int i=0;i<main.rules.size();i++){
-            String name = main.rules.get(i).getName();
+        for(Rule rule : main.monitorSystem.getRules() ){
+            String name = rule.getName();
             CheckBox checkbox = new CheckBox(name);
             checkbox.setMinWidth(500);
             checkbox.setStyle("-fx-background-color:  #ffebcd");
@@ -154,8 +138,8 @@ public abstract class UserController extends Controller {
     }
 
     public void deselectedAllQueries(){
-        for(int i=0;i<main.rules.size();i++) {
-            queriesCheckBox.get(main.rules.get(i).getName()).setSelected(false);
+        for(Rule rule :  main.monitorSystem.getRules()) {
+            queriesCheckBox.get(rule.getName()).setSelected(false);
         }
     }
 
@@ -166,11 +150,4 @@ public abstract class UserController extends Controller {
         }
     }
 
-    public double getDashboardWidth() {
-        return this.dashboard.getWidth();
-    }
-
-    public double getDashboardHeight() {
-        return this.dashboard.getWidth();
-    }
 }

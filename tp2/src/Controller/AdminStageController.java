@@ -7,25 +7,20 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import tp2.src.Model.MonitorSystem.Admin;
 import tp2.src.Model.MonitorSystem.Dashboard;
+import tp2.src.Model.MonitorSystem.Rule;
 import tp2.src.View.Main2;
 
 import java.io.IOException;
 
 public class  AdminStageController extends UserController {
     public Button addDashboardButton;
-
     private Admin admin;
-
-
-
-
 
     @Override
     public void setMain(Main2 main) {
@@ -59,8 +54,8 @@ public class  AdminStageController extends UserController {
             VBox queriesList = new VBox();
             queriesList.setPrefWidth(200);
             queriesList.setPrefHeight(200);
-            for(int i=0; i<main.rules.size();i++){
-                CheckBox checkbox = queriesCheckBox.get(main.rules.get(i).getName());
+            for(Rule rule : main.monitorSystem.getRules()){
+                CheckBox checkbox = queriesCheckBox.get(rule.getName());
                 checkbox.setPrefWidth(200);
                 checkbox.setPrefHeight(40);
                 queriesList.getChildren().add(checkbox);
@@ -93,8 +88,8 @@ public class  AdminStageController extends UserController {
 
     public void updateQueriesDashboard(){
 
-        for(int i=0;i<main.rules.size();i++){
-            String name = main.rules.get(i).getName();
+        for(Rule rule : main.monitorSystem.getRules()){
+            String name = rule.getName();
 
             if(this.dashboardSelected.hasQuery(name) && !queriesCheckBox.get(name).isSelected()){
                 this.dashboardSelected.removeQuery(name);
@@ -140,14 +135,6 @@ public class  AdminStageController extends UserController {
             }
         });
     }
-
-    public void addButtonToPane(Button button, Pane pane){
-        pane.getChildren().add(button);
-    }
-
-
-
-
 
 }
 
