@@ -55,7 +55,9 @@ public abstract class UserController extends Controller {
             Button button = new Button(dashboard.getName());
             button.setPrefSize(207,47);
             button.setMnemonicParsing(false);
-            button.setStyle("-fx-background-color: #d3d3d3;");
+//            button.setStyle("-fx-text-fill: white;");
+            button.setStyle("-fx-background-color: #337ab7;");
+            button.setStyle("-fx-font-size: 14;");
             button.setOnAction(new ShowDashboard(this,dashboard));
             listDashboard.getChildren().add(button);
         }
@@ -100,8 +102,10 @@ public abstract class UserController extends Controller {
 //        lineChart.setTitle(query.getName());
         XYChart.Series series = new XYChart.Series();
         series.setName(query.getName());
-
-        for (Result result: query.getResults()) {
+        int large = 0;
+        if(query.getResults().size() > 20){
+        large = (query.getResults().size()-20);}
+        for (Result result: query.getResults().subList(large, query.getResults().size())) {
             String date = result.dateTimeRecorded.getHour() + ":" + result.dateTimeRecorded.getMinute() + ":"+ result.dateTimeRecorded.getSecond();
             series.getData().add(new XYChart.Data(date, result.value));
         }
