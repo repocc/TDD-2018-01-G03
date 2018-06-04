@@ -6,15 +6,14 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import tp2.src.Controller.Controller;
+import tp2.src.Controller.Observer;
+import tp2.src.Controller.UserController;
 import tp2.src.Model.MonitorSystem.*;
 import tp2.src.Model.MonitorSystem.Exceptions.NotFoundException;
 import tp2.src.Model.MonitorSystem.TicketUpdate.SimpleHttpServer;
-import tp2.src.Controller.Controller;
-import tp2.src.Controller.UserController;
-import tp2.src.Controller.Observer;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.ArrayList;
 
 public class Main2 extends Application {
@@ -23,7 +22,7 @@ public class Main2 extends Application {
     public MonitorSystem monitorSystem;
     public User actualUser;
     public Engine engine;
-    public ArrayList<Query> queries;
+    public ArrayList<Rule> rules;
     public TicketsDealer ticketsDealer;
     private SimpleHttpServer server;
     public UserView userView;
@@ -43,21 +42,23 @@ public class Main2 extends Application {
         this.engine = new Engine(monitorSystem);
         this.ticketsDealer = new TicketsDealer(engine, new Observer());
         try {
-            Rule rule0 = this.monitorSystem.getRule("open-count");
-            Rule rule1 = this.monitorSystem.getRule("close-count");
-            Rule rule2 = this.monitorSystem.getRule("open-actual-count");
-            Rule rule3 = this.monitorSystem.getRule("open-fraction");
+            Rule rule1 = this.monitorSystem.getRule("open-count");
+            Rule rule2 = this.monitorSystem.getRule("todo-count");
+            Rule rule3 = this.monitorSystem.getRule("in-progress-count");
+            Rule rule4 = this.monitorSystem.getRule("done-count");
+            Rule rule5 = this.monitorSystem.getRule("close-count");
+            Rule rule6 = this.monitorSystem.getRule("open-actual-count");
+            Rule rule7 = this.monitorSystem.getRule("open-fraction");
 
 
-            Query query0 = new Query("open-count", Duration.ofSeconds(10), "open-count");
-            Query query1 = new Query("close-count", Duration.ofSeconds(10), "close-count");
-            Query query2 = new Query("open-actual-count", Duration.ofSeconds(10), "open-actual-count");
-            Query query3 = new Query("open-fraction", Duration.ofSeconds(10), "open-fraction");
-            this.queries = new ArrayList<Query>();
-            this.queries.add(query0);
-            this.queries.add(query1);
-            this.queries.add(query2);
-            this.queries.add(query3);
+            this.rules = new ArrayList<Rule>();
+            this.rules.add(rule1);
+            this.rules.add(rule2);
+            this.rules.add(rule3);
+            this.rules.add(rule4);
+            this.rules.add(rule5);
+            this.rules.add(rule6);
+            this.rules.add(rule7);
 
 
         }catch(NotFoundException e) {
@@ -109,10 +110,10 @@ public class Main2 extends Application {
         this.userView.setScene();
     }
 
-    public Query getQuery(String name){
-        for(int i=0 ; i<queries.size();i++){
-            if(queries.get(i).getName().equals(name)){
-                return queries.get(i);
+    public Rule getRule(String name){
+        for(int i=0 ; i<rules.size();i++){
+            if(rules.get(i).getName().equals(name)){
+                return rules.get(i);
             }
         }
         return null;

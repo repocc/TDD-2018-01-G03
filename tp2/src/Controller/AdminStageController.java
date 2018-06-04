@@ -53,8 +53,8 @@ public class  AdminStageController extends UserController {
             sPane.setOrientation(Orientation.VERTICAL);
 
             VBox queriesList = new VBox();
-            for(int i=0; i<main.queries.size();i++){
-                CheckBox checkbox = queriesCheckBox.get(main.queries.get(i).getName());
+            for(int i=0; i<main.rules.size();i++){
+                CheckBox checkbox = queriesCheckBox.get(main.rules.get(i).getName());
                 queriesList.getChildren().add(checkbox);
             }
 
@@ -86,8 +86,8 @@ public class  AdminStageController extends UserController {
 
     public void updateQueriesDashboard(){
 
-        for(int i=0;i<main.queries.size();i++){
-            String name = main.queries.get(i).getName();
+        for(int i=0;i<main.rules.size();i++){
+            String name = main.rules.get(i).getName();
 
             if(this.dashboardSelected.hasQuery(name) && !queriesCheckBox.get(name).isSelected()){
                 this.dashboardSelected.removeQuery(name);
