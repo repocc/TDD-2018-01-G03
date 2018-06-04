@@ -60,7 +60,7 @@
              (define-counter "open-count" []
                  (current "OPEN"))
              (define-counter "todo-count" []
-                 (current "TO+DO"))
+                 (current "TODO"))
              (define-counter "in-progress-count" []
                  (current "IN+PROGRESS"))
              (define-counter "done-count" []
