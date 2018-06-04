@@ -46,29 +46,36 @@ public class  AdminStageController extends UserController {
             dialog.setTitle("Edit Queries");
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.initOwner(main.stage);
+            dialog.setWidth(500);
+            dialog.setHeight(225);
+            dialog.setResizable(false);
 
             SplitPane sPane = new SplitPane();
-            sPane.setDividerPosition(2,0.88);
-            sPane.setPrefSize(598,373);
+            sPane.setStyle("-fx-background-color: white;");
+            sPane.setDividerPosition(2,0);
+            sPane.setPrefSize(200,200);
             sPane.setOrientation(Orientation.VERTICAL);
 
             VBox queriesList = new VBox();
+            queriesList.setPrefWidth(200);
+            queriesList.setPrefHeight(200);
             for(int i=0; i<main.rules.size();i++){
                 CheckBox checkbox = queriesCheckBox.get(main.rules.get(i).getName());
+                checkbox.setPrefWidth(200);
+                checkbox.setPrefHeight(40);
                 queriesList.getChildren().add(checkbox);
             }
 
             Button save = new Button("SAVE");
-            save.setPrefSize(571,36);
-            save.setStyle("-fx-background-color: #e9967a;");
+            save.setPrefSize(500,36);
+            save.setStyle("-fx-background-color: white;");
             save.setTextAlignment(TextAlignment.CENTER);
 
             sPane.getItems().addAll(queriesList,save);
-            TitledPane tPane = new TitledPane("Edit Queries",sPane);
-            tPane.setText("Edit Queries");
+            TitledPane tPane = new TitledPane("Select Queries",sPane);
             tPane.setCollapsible(false);
-            tPane.setPrefSize(500,500);
-            tPane.setStyle("-fx-background-color: #ffebcd;");
+            tPane.setPrefSize(200,200);
+            tPane.setStyle("-fx-background-color: white;");
 
             dialog.setScene(new Scene(tPane));
             dialog.show();
