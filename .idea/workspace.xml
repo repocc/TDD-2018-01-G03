@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2941f309-49be-4226-9c54-e7632c794583" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tp2/src/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Controller/ViewObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Controller/Observer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Tests/EntregaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Tests/EntregaTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/TicketsDealer.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/TicketsDealer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Rule.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Rule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tp2/src/View/Main2.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/Main2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/View/QueriesdButton.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tp2/src/View/ViewDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/tp2/src/View/ViewDashboard.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/tp2/src/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,17 +38,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main2.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main2.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tp2/src/View/Main2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+            <state relative-caret-position="304">
+              <caret line="58" column="34" lean-forward="true" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3401#3402#0" expanded="true" />
-                <element signature="e#3454#3455#0" expanded="true" />
-                <element signature="e#3488#3489#0" expanded="true" />
-                <element signature="e#3528#3529#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rules.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/Model/MonitorSystem/rules.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-41" />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Rule.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Rule.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+              <folding>
+                <element signature="e#391#392#0" expanded="true" />
+                <element signature="e#412#413#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -70,8 +82,8 @@
       <file leaf-file-name="AdminStageController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="18" selection-start-column="18" selection-end-column="18" />
+            <state relative-caret-position="1380">
+              <caret line="92" column="41" lean-forward="true" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -97,37 +109,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tp2/src/Controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+            <state relative-caret-position="1860">
+              <caret line="155" column="42" selection-start-line="155" selection-start-column="42" selection-end-line="155" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewDashboard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/View/ViewDashboard.java">
+      <file leaf-file-name="AdminView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/View/AdminView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="390">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CountView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tp2/src/View/CountView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+      <file leaf-file-name="addicon.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tp2/src/View/images/addicon.png">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
     </leaf>
@@ -166,8 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tp2/src/Controlador/EliminarDashboard.java" />
-        <option value="$PROJECT_DIR$/tp2/src/Controlador/EditarDashboard.java" />
         <option value="$PROJECT_DIR$/tp2/src/Vista/VistaNuevoDashboard.java" />
         <option value="$PROJECT_DIR$/tp2/src/Controlador/CrearDashboard.java" />
         <option value="$PROJECT_DIR$/tp2/src/Controlador/AgregarDashboard.java" />
@@ -214,9 +214,11 @@
         <option value="$PROJECT_DIR$/tp2/src/Controller2/UserController.java" />
         <option value="$PROJECT_DIR$/tp2/src/Controller/Observer.java" />
         <option value="$PROJECT_DIR$/tp2/src/Controller/LoginController.java" />
-        <option value="$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java" />
         <option value="$PROJECT_DIR$/tp2/src/View/ViewDashboard.java" />
+        <option value="$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Rule.java" />
         <option value="$PROJECT_DIR$/tp2/src/Controller/UserController.java" />
+        <option value="$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java" />
+        <option value="$PROJECT_DIR$/tp2/src/View/Main2.java" />
       </list>
     </option>
   </component>
@@ -227,7 +229,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/TicketSystem/SistemaTickets/package.json" />
+    </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="65" />
@@ -254,6 +258,11 @@
             <path>
               <item name="TDD-2018-01-G03" type="b2602c69:ProjectViewProjectNode" />
               <item name="TDD-2018-01-G03" type="462c0819:PsiDirectoryNode" />
+              <item name="tp1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TDD-2018-01-G03" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TDD-2018-01-G03" type="462c0819:PsiDirectoryNode" />
               <item name="tp2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -267,7 +276,15 @@
               <item name="TDD-2018-01-G03" type="462c0819:PsiDirectoryNode" />
               <item name="tp2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TDD-2018-01-G03" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TDD-2018-01-G03" type="462c0819:PsiDirectoryNode" />
+              <item name="tp2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="MonitorSystem" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TDD-2018-01-G03" type="b2602c69:ProjectViewProjectNode" />
@@ -590,7 +607,7 @@
       <workItem from="1527378871979" duration="48990000" />
       <workItem from="1527948063619" duration="41443000" />
       <workItem from="1528047210262" duration="10636000" />
-      <workItem from="1528064493443" duration="5032000" />
+      <workItem from="1528064493443" duration="6503000" />
     </task>
     <task id="LOCAL-00001" summary="Update celar children de dashboards">
       <created>1528048660542</created>
@@ -613,7 +630,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528067583507</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="refactor">
+      <created>1528069618629</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1528069618629</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -631,7 +655,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112055000" />
+    <option name="totallyTimeSpent" value="113526000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1377" height="912" extended-state="6" />
@@ -647,13 +671,13 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3199498" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.26390687" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.26390687" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32988358" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49935317" visible="true" weight="0.2069225" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49935317" visible="true" weight="0.2069225" />
       <window_info anchor="right" id="Database" order="3" weight="0.3295711" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32988358" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32988358" />
       <window_info id="Structure" order="1" sideWeight="0.5006468" side_tool="true" weight="0.25733635" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -707,7 +731,8 @@
     <MESSAGE value="Update celar children de dashboards" />
     <MESSAGE value="Modifico Associated Controler para que funcione" />
     <MESSAGE value="borre clases viejas que no se usaban" />
-    <option name="LAST_COMMIT_MESSAGE" value="borre clases viejas que no se usaban" />
+    <MESSAGE value="refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -738,41 +763,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/Object.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/util/AbstractMap.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/util/HashMap.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/jfxrt.jar!/javafx/scene/CssStyleHelper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="263" selection-start-line="263" selection-end-line="263" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/jfxrt.jar!/javafx/beans/property/ObjectPropertyBase.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/jfxrt.jar!/javafx/scene/Scene.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -835,9 +825,6 @@
           <caret line="9" column="18" lean-forward="true" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/View/images/editar.jpg">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/tp2/src/Controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1024,20 +1011,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/View/Main2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3401#3402#0" expanded="true" />
-            <element signature="e#3454#3455#0" expanded="true" />
-            <element signature="e#3488#3489#0" expanded="true" />
-            <element signature="e#3528#3529#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tp2/src/Controller/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1045,31 +1018,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/View/AdminView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/View/UserView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tp2/src/Controller/PopupController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/QueryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1090,16 +1042,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" selection-start-column="18" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tp2/src/View/ViewDashboard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -1110,10 +1052,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/images/addicon.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/images/login.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/images/edit.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/images/editar.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/AdminView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Model/MonitorSystem/Rule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+          <folding>
+            <element signature="e#391#392#0" expanded="true" />
+            <element signature="e#412#413#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/UserView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/AdminStageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1380">
+          <caret line="92" column="41" lean-forward="true" selection-start-line="92" selection-start-column="41" selection-end-line="92" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Controller/QueryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tp2/src/Controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+        <state relative-caret-position="1860">
+          <caret line="155" column="42" selection-start-line="155" selection-start-column="42" selection-end-line="155" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/Model/MonitorSystem/rules.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-41" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tp2/src/View/Main2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="58" column="34" lean-forward="true" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

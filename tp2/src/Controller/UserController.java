@@ -142,8 +142,8 @@ public abstract class UserController extends Controller {
 
     public void updateCheckBoxList(){
         queriesCheckBox = new HashMap<String,CheckBox>();
-        for(int i=0;i<main.queries.size();i++){
-            String name = main.queries.get(i).getName();
+        for(int i=0;i<main.rules.size();i++){
+            String name = main.rules.get(i).getName();
             CheckBox checkbox = new CheckBox(name);
             checkbox.setMinWidth(500);
             checkbox.setStyle("-fx-background-color:  #ffebcd");
@@ -152,8 +152,8 @@ public abstract class UserController extends Controller {
     }
 
     public void deselectedAllQueries(){
-        for(int i=0;i<main.queries.size();i++) {
-            queriesCheckBox.get(main.queries.get(i).getName()).setSelected(false);
+        for(int i=0;i<main.rules.size();i++) {
+            queriesCheckBox.get(main.rules.get(i).getName()).setSelected(false);
         }
     }
 

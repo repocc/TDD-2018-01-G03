@@ -12,4 +12,8 @@ public class Rule {
         this.condition = condition;
         this.params = params;
     }
+
+    public String getName() {
+        return this.name;
+    }
 }
