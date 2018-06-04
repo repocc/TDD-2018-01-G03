@@ -96,16 +96,14 @@ public abstract class UserController extends Controller {
 
     private void updateChart(Query query) {
         lineChart.getData().clear();
-        this.lineChart.getXAxis().setLabel("TimeLine");
         this.lineChart.getYAxis().setLabel("Query Value");
-
-        lineChart.setTitle(query.getName());
-
+//        lineChart.setTitle(query.getName());
         XYChart.Series series = new XYChart.Series();
         series.setName(query.getName());
 
         for (Result result: query.getResults()) {
-            series.getData().add(new XYChart.Data(String.valueOf(result.dateTimeRecorded.getMinute()), result.value));
+            String date = result.dateTimeRecorded.getHour() + ":" + result.dateTimeRecorded.getMinute() + ":"+ result.dateTimeRecorded.getSecond();
+            series.getData().add(new XYChart.Data(date, result.value));
         }
 
         lineChart.getData().add(series);
