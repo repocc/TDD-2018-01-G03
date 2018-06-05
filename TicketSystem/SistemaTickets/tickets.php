@@ -98,6 +98,10 @@
     border-radius: .25em;
 }
 
+.list-group {
+    max-height: 300px;
+    overflow-y: auto;
+}
   </style>
 </head>
 <input type="hidden" id="project_id" value="<? if ($_GET['id']!=''){echo $_GET['id']; }else{echo '';} ?>"/>

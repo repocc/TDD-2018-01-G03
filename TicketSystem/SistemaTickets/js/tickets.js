@@ -302,7 +302,8 @@ function save_new_comment(){
               }
         });
         request.done(function( registros ) {
-       
+         get_comments(id_ticket_comment);
+          $("#new_comment_text").val("");
         });
               
         request.fail(function( jqXHR, textStatus ) {
