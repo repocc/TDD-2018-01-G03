@@ -1,5 +1,6 @@
 $( document ).ready(function() {
 var id_user = $("#user_id").val();
+var id_ticket_comment;
 var id_ticket;
 var id_ticket_state;
 get_tickets();
@@ -73,11 +74,7 @@ var request = $.ajax({
 
                 }
               
-
-
-
-                $("#ticket_table_body").append('<tr><td>'+ticket.NAME+'</td><td>'+ticket.DESCRIPTION+'</td><td>'+label_state+'</td><td><button type="button" class="btn btn-success" onclick="change_state('+ticket.ID_TICKET+')";> <span class="fa fa-edit"></span></button><button type="button" class="btn btn-info"><span class="fa fa-align-center"></span></button></td></tr>')    
-
+                $("#ticket_table_body").append('<tr><td>'+ticket.NAME+'</td><td>'+ticket.DESCRIPTION+'</td><td>'+label_state+'</td><td align="center"><button type="button" class="btn btn-success" onclick="change_state('+ticket.ID_TICKET+')";> <span class="fa fa-edit"></span></button><button onclick="view_comment('+ticket.ID_TICKET+');" type="button" class="btn btn-info"><span class="fa fa-comment"></span></button></td></tr>')    
                 });
                 $("#ticket_table").DataTable( {"pageLength": 5});
 
@@ -129,14 +126,13 @@ function save_new_ticket() {
 
 function save_comment(){
   last_ticket_id();
-
   var request = $.ajax({
           url: "PROJECT_BG.PHP",
           async:false,
           method: "POST",
           data: { case: "ADD_COMMENT",
                 ticket_id : id_ticket,
-                ticket_comment : $("#ticket_description").val(),
+                ticket_comment : $("#ticket_comment").val(),
                 user_id : $("#user_id").val()
                
                   
@@ -144,14 +140,11 @@ function save_comment(){
         });
         request.done(function( registros ) {
        
-
         });
               
         request.fail(function( jqXHR, textStatus ) {
           alert( "Request failed: " + textStatus );
         });
-
-
 
 }
 
@@ -184,8 +177,8 @@ function send_new_ticket(id) {
 
 function connect_server(state_name){
 
+var state = state_name.replace(" ", "+");
 var obj = JSON.parse('{ "'+state_name+'":"*"}');
-  console.log(obj);
         $.ajax({
 
             type : "POST",
@@ -203,25 +196,21 @@ var obj = JSON.parse('{ "'+state_name+'":"*"}');
 }
 
 function last_ticket_id(){
-  var request = $.ajax({
+
+var request = $.ajax({
           url: "PROJECT_BG.PHP",
           async:false,
           method: "POST",
           data: { case: "LAST_TICKET_ID"                
-              }
+                }
         });
 
-        request.done(function( registros ) {
-        
+        request.done(function( registros ) {   
           var register = JSON.parse(registros);
                 $.each(register, function (index, ticket) {
-
                  id_ticket= ticket.id_ticket;
-              //  add_user_to_project() ;  
                 });
-
         });
-          
        
         request.fail(function( jqXHR, textStatus ) {
           alert( "Request failed: " + textStatus );
@@ -231,7 +220,7 @@ function last_ticket_id(){
 function edit_state(){
 
 
-  var request = $.ajax({
+var request = $.ajax({
           url: "PROJECT_BG.PHP",
           async:false,
           method: "POST",
@@ -241,16 +230,81 @@ function edit_state(){
               }
         });
 
-        request.done(function( registros ) {
-        
+        request.done(function( registros ) {    
           $("#ticket_table").DataTable().destroy();
           get_tickets();
           send_new_ticket($("#select_state").val() );
-
-              
+          $("#modal_state").modal('hide');
+        });                
+        request.fail(function( jqXHR, textStatus ) {
+          alert( "Request failed: " + textStatus );
         });
-          
+
+}
+
+
+function view_comment(id_ticket){
+  id_ticket_comment = id_ticket;
+  get_comments(id_ticket);
+  $("#comment_modal").modal('toggle');
+}
+
+
+
+function get_comments(id){
+
+  $("#comments").empty();
+  var request = $.ajax({
+          url: "PROJECT_BG.PHP",
+          async:false,
+          method: "POST",
+          data: { case: "GET_COMMENTS",
+                  id_ticket : id                
+              }
+        });
+
+        request.done(function( registros ) {
+        var register = JSON.parse(registros);
+          $.each(register, function (index, comment) {
+
+                 $("#comments").append(' <a class="list-group-item list-group-item-action" >\
+                <div class="media">\
+                  <img class="d-flex mr-3 rounded-circle" src="user-2.png" width="40px" height="40px" alt="">\
+                  <div class="media-body">\
+                    <strong>'+comment.NAME+'</strong> '+comment.DATE+'\
+                    <div class="text-muted smaller">'+comment.COMMENT+'</div>\
+                  </div>\
+                </div>\
+              </a>');
+
+                });
+
+        });
+                
+        request.fail(function( jqXHR, textStatus ) {
+          alert( "Request failed: " + textStatus );
+        });
+
+}
+
+function save_new_comment(){
+  
+  var request = $.ajax({
+          url: "PROJECT_BG.PHP",
+          async:false,
+          method: "POST",
+          data: { case: "ADD_COMMENT",
+                ticket_id : id_ticket_comment,
+                ticket_comment : $("#new_comment_text").val(),
+                user_id : $("#user_id").val()
+               
+                  
+              }
+        });
+        request.done(function( registros ) {
        
+        });
+              
         request.fail(function( jqXHR, textStatus ) {
           alert( "Request failed: " + textStatus );
         });

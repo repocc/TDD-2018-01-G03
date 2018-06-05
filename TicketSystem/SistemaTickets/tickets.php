@@ -188,7 +188,7 @@
                   <th>Description</th>
                  
                   <th>State</th>
-                  <th>Commets</th>              
+                  <th>Action</th>              
                 </tr>
               </thead>
              
@@ -264,10 +264,10 @@
        <div class="row">
             <div class="col-lg-6">   
           
-         <label>State:</label>
+         
          </div>
                 <div class="col-lg-6">   
-         <input id="ticket_state" value="1" type="" name="" disabled="" placeholder="OPEN">
+         <input id="ticket_state" value="1" type="" name="" disabled="" placeholder="OPEN" hidden="">
          </div>
        </div>
           <div class="row">
@@ -321,6 +321,41 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" onclick="edit_state();">Guardar</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="comment_modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+     
+      <div class="modal-body">
+    
+<div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-comment"></i> Comments</div>
+            <div class="list-group list-group-flush small" id="comments">
+          
+             </div>
+
+</div>
+<div class="card mb-3">
+            <div class="card-header">
+              Leave a comment</div>
+            <div class="list-group list-group-flush small" >
+           
+            <textarea id="new_comment_text"></textarea>
+
+
+             </div>
+
+</div>
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="save_new_comment()">Send comment</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

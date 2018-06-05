@@ -90,7 +90,7 @@ switch($_REQUEST['case'])
 	case "ADD_COMMENT":
 	$AltaF = new cnnMySql;
 			$AltaF->Procedimiento  = "ADD_COMMENT";
-			$AltaF->parametros = array($_REQUEST['ticket_id'],$_REQUEST['ticket_comment'],$_REQUEST['user_id']);
+			$AltaF->parametros = array($_REQUEST['user_id'],$_REQUEST['ticket_comment'],$_REQUEST['ticket_id']);
 			$AltaF->procesarPro();
 			$AltaF->datosObjeto= true;
 			print_r(json_encode($AltaF->registros));
@@ -166,5 +166,13 @@ switch($_REQUEST['case'])
 			$AltaF->datosObjeto= true;
 			print_r(json_encode($AltaF->registros));
 	break;	
+	case "GET_COMMENTS":
+	$AltaF = new cnnMySql;
+			$AltaF->Procedimiento  = "GET_COMMENTS";
+			$AltaF->parametros = array($_REQUEST['id_ticket']);
+			$AltaF->procesarPro();
+			$AltaF->datosObjeto= true;
+			print_r(json_encode($AltaF->registros));
+	break;		
 }
 ?>

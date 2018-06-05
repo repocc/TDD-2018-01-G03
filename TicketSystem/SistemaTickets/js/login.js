@@ -9,7 +9,7 @@ function log_in(){
           async:false,
           method: "POST",
           data: { case: "GET_USER_ID" ,
-          		  user_name :  $("#user_name").val()           
+          		  user_name : $("#user_name").val()           
               }
         });
 
