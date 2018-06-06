@@ -30,7 +30,7 @@ public class EngineTest extends TestCase {
         rules.add(rule0);
         rules.add(rule1);
         rules.add(rule2);
-        System.out.println(engine.sendRules(rules));
+        System.out.println(engine.sendRules(rules)); //TODO assert
     }
 
     public ArrayList<Ticket> getListTicketsMock(){
