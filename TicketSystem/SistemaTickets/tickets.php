@@ -125,7 +125,7 @@
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
           <a class="nav-link" href="">
-            <i class="fa fa-fw fa-table"></i>
+            <i class="fa fa-fw fa-ticket"></i>
             <span class="nav-link-text">Tickets<span>
           </a>
         </li>
@@ -150,10 +150,13 @@
       
         </li>
         <li class="nav-item">
-          
+         <a class="nav-link" id="user_loged_in">          
+            <i class="fa fa-fw fa-user" ></i> </a>
+        
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">          
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
         </li>
       </ul>
@@ -166,13 +169,13 @@
         <li class="breadcrumb-item">
           <a class= "mylinks">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Proyectos + nombre</li>
+        <li class="breadcrumb-item active"  id="current_project_name">Project name: </li>
       </ol>
      
       <!-- Area Chart Example-->
        <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-user"></i> Tickets</div>
+          <i class="fa fa-cogs"></i> Options</div>
         <div class="card-body">
         <button type="button" class="btn btn-success" onclick="new_ticket();">Add Ticket</button> 
       
@@ -182,7 +185,7 @@
 
             <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-user"></i> Tickets</div>
+          <i class="fa fa-ticket"></i> Tickets</div>
         <div class="card-body">
 
         <table class="table table-bordered" id="ticket_table" width="100%" cellspacing="0">
@@ -379,13 +382,10 @@
     <!-- <script src="js/sb-admin-datatables.min.js"></script>
       <script src="js/sb-admin-charts.min.js"></script> -->
     <script src="js/tickets.js"></script>
+    <script src="js/project_info.js"></script>
 
   </div>
-<script type="text/javascript">
-  
 
-  console.log("esto es el projec " + $("#project_id").val());
-</script>
 </body>
 
 </html>

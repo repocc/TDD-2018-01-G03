@@ -173,6 +173,23 @@ switch($_REQUEST['case'])
 			$AltaF->procesarPro();
 			$AltaF->datosObjeto= true;
 			print_r(json_encode($AltaF->registros));
-	break;		
+	break;
+
+	case "GET_USER_NAME":
+	$AltaF = new cnnMySql;
+			$AltaF->Procedimiento  = "GET_USER_NAME";
+			$AltaF->parametros = array($_REQUEST['id_user']);
+			$AltaF->procesarPro();
+			$AltaF->datosObjeto= true;
+			print_r(json_encode($AltaF->registros));
+	break;	
+	case "GET_PROJECT_NAME":
+	$AltaF = new cnnMySql;
+			$AltaF->Procedimiento  = "GET_PROJECT_NAME";
+			$AltaF->parametros = array($_REQUEST['id_project']);
+			$AltaF->procesarPro();
+			$AltaF->datosObjeto= true;
+			print_r(json_encode($AltaF->registros));
+	break;
 }
 ?>

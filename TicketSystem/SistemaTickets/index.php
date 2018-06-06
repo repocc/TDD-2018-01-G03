@@ -51,9 +51,11 @@
         <li class="nav-item dropdown">
       
         </li>
-        <li class="nav-item">
-          
-        </li>
+         <li class="nav-item">
+         <a class="nav-link" id="user_loged_in">          
+            <i class="fa fa-fw fa-user" ></i> </a>
+        
+        </li>        
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
@@ -179,6 +181,7 @@
     <script src="js/sb-admin-datatables.min.js"></script>
     <script src="js/sb-admin-charts.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/project_info.js"></script>
 
 
   

@@ -60,7 +60,9 @@
       
         </li>
         <li class="nav-item">
-          
+         <a class="nav-link" id="user_loged_in">          
+            <i class="fa fa-fw fa-user" ></i> </a>
+        
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
@@ -76,7 +78,7 @@
         <li class="breadcrumb-item">
           <a class="mydash">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Proyectos + nombre</li>
+        <li class="breadcrumb-item active" id="current_project_name">Project name: </li>
       </ol>
      
       <!-- Area Chart Example-->
@@ -236,17 +238,12 @@
     <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
-    <!-- Custom scripts for this page-->
-    <!-- <script src="js/sb-admin-datatables.min.js"></script>
-      <script src="js/sb-admin-charts.min.js"></script> -->
+  
     <script src="js/users.js"></script>
+    <script src="js/project_info.js"></script>
 
   </div>
-<script type="text/javascript">
-  
 
-  console.log("esto es el projec " + $("#project_id").val());
-</script>
 </body>
 
 </html>

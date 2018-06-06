@@ -115,7 +115,7 @@ function create_project(){
         
         last_id_project();     
         add_user_to_project();    
-        $('#new_project').modal('close');
+        $('#new_project').modal('hide');
  
       
         });
