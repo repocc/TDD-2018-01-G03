@@ -5,7 +5,7 @@ import tp2.src.Model.MonitorSystem.User;
 
 public class AdminView extends UserView{
 
-    public AdminView(Main2 main) {
+    public AdminView(Main main) {
         super(main);
     }
 

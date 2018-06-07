@@ -13,7 +13,7 @@ import tp2.src.Model.MonitorSystem.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Main2 extends Application {
+public class Main extends Application {
 
     public Stage stage;
     public MonitorSystem monitorSystem;

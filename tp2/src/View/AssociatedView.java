@@ -7,7 +7,7 @@ public class AssociatedView extends UserView {
 
 
 
-    public AssociatedView(Main2 main){
+    public AssociatedView(Main main){
         super(main);
     }
 

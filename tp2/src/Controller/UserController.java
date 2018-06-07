@@ -12,7 +12,7 @@ import tp2.src.Model.MonitorSystem.Dashboard;
 import tp2.src.Model.MonitorSystem.Query;
 import tp2.src.Model.MonitorSystem.Result;
 import tp2.src.Model.MonitorSystem.Rule;
-import tp2.src.View.Main2;
+import tp2.src.View.Main;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public abstract class UserController extends Controller {
 
 
     @Override
-    public void setMain(Main2 main) {
+    public void setMain(Main main) {
         super.setMain(main);
         main.ticketsDealer.setUserController(this);
     }

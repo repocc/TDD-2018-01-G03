@@ -4,9 +4,9 @@ import tp2.src.Model.MonitorSystem.User;
 
 public abstract class UserView {
 
-    public Main2 main;
+    public Main main;
 
-    public  UserView(Main2 main){
+    public  UserView(Main main){
         this.main = main;
     }
 

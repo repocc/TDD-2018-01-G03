@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import tp2.src.Model.MonitorSystem.Admin;
 import tp2.src.Model.MonitorSystem.Dashboard;
 import tp2.src.Model.MonitorSystem.Rule;
-import tp2.src.View.Main2;
+import tp2.src.View.Main;
 
 import java.io.IOException;
 
@@ -23,7 +23,7 @@ public class  AdminStageController extends UserController {
     private Admin admin;
 
     @Override
-    public void setMain(Main2 main) {
+    public void setMain(Main main) {
         super.setMain(main);
         updateCheckBoxList();
         admin = (Admin) main.actualUser;
