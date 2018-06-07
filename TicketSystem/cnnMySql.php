@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors', 0);
-error_reporting(E_ERROR | E_WARNING | E_PARSE); 	
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 	class cnnMySql
 	{
@@ -8,26 +8,26 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 		|CLASE PARA REALIZAR LAS CONEXIONES CON UN SERVIDOR MYSQL DESDE PHP|
 		\******************************************************************/
 		/*******************************************\
-		|DEFINO LAS PORPIEDADES PÚBLICAS DE LA CLASE|
+		|DEFINO LAS PORPIEDADES Pï¿½BLICAS DE LA CLASE|
 		\*******************************************/
 		/****************************************************************************\
 		|CONTIENE EL NOMBRE DEL SERVIDOR DE BASE DE DATOS AL QUE QUEREMOS CONECTARNOS|
 		\****************************************************************************/
 		private $servidor       = "localhost";
 		/**********************************************************************\
-		|CONTIENE EL NOMBRE DE USUARIO PARA LA CONEXIÓN CONTRA LA BASE DE DATOS|
+		|CONTIENE EL NOMBRE DE USUARIO PARA LA CONEXIï¿½N CONTRA LA BASE DE DATOS|
 		\**********************************************************************/
-		private $usuario        = "nahuel";
+		private $usuario        = "nahue";
 		/********************************************************************************\
-		|CONTIENE EL NOMBRE DE LA BASE DE DATOS A LA QUE APUNTAREMOS CON NUESTRA CONEXIÓN|
+		|CONTIENE EL NOMBRE DE LA BASE DE DATOS A LA QUE APUNTAREMOS CON NUESTRA CONEXIï¿½N|
 		\********************************************************************************/
 		private $baseDato       = "Ticket_system";
 		/****************************************************************************************\
-		|CONTIENE LA CLAVE DE LA BASE DE DATOS CORREPONDIENTE AL USUARIO UTILIZADO EN LA CONEXIÓN|
+		|CONTIENE LA CLAVE DE LA BASE DE DATOS CORREPONDIENTE AL USUARIO UTILIZADO EN LA CONEXIï¿½N|
 		\****************************************************************************************/
 		private $contrasena     = "1234";
 		/************************************************\
-		|CONTIENE EL ID DE CONEXIÓN DEVUELTO POR LA CLASE|
+		|CONTIENE EL ID DE CONEXIï¿½N DEVUELTO POR LA CLASE|
 		\************************************************/
 		private $idConexion     = "";
 		/************************************************************************************************\
@@ -44,20 +44,20 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 		\**************************************************************/
 		public $registros       = array();
 		/***********************************************************\
-		|CONTIENE EL CÓDIGO DE ERROR QUE RETORNÓ LA ULTIMA SENTENCIA|
+		|CONTIENE EL Cï¿½DIGO DE ERROR QUE RETORNï¿½ LA ULTIMA SENTENCIA|
 		\***********************************************************/
 		public $error           = "";
 		/*****************************************************************\
-		|CONTIENE LA DESCRIPCIÓN DEL ERROR QUE RETORNÓ LA ULTIMA SENTENCIA|
+		|CONTIENE LA DESCRIPCIï¿½N DEL ERROR QUE RETORNï¿½ LA ULTIMA SENTENCIA|
 		\*****************************************************************/
 		public $errno           = 0;
 		/****************************************************************\
-		|CONTIENE LA LISTA DE PARÁMETROS PAR EJECUTAR UN STORED PROCEDURE|
+		|CONTIENE LA LISTA DE PARï¿½METROS PAR EJECUTAR UN STORED PROCEDURE|
 		|SE ESPERA QUE EL ARRAY TRAIGA UNA COLUMNA CON LA CLAVE Y OTRA   |
 		|CON EL VALOR, [$parametros = array('CLAVE', 'VALOR')];          |
 		\****************************************************************/
 		public $parametros      = array();
-	
+
 		public $Procedimiento      = "";
 		/***********************************************\
 		|LA SIGUIENTE BANDERA ME DEFINE SI ES UN SP O NO|
@@ -67,9 +67,9 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 		|LA SIGUIENTE BANDERA ME DEFINE SI RETORNA DATOS COMO OBJETO O COMO UN ARRAY|
 		\***************************************************************************/
 		public $datosObjeto     = false;
-		
+
 		function __construct( $servidor='', $baseDato='', $usuario='', $contrasena='' ){
-			#   echo("Método: __construct");
+			#   echo("Mï¿½todo: __construct");
 			if($servidor != "" ){
 				$this->servidor   = $servidor;
 			}	#	if($servidor != "" ){
@@ -87,9 +87,9 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 		private function concectarMySql(){
 			/***************************************************************\
-			|ESTE MÉTODO PERMITE ESTABLECER LA CONEXIÓN CON LA BASE DE DATOS|
+			|ESTE Mï¿½TODO PERMITE ESTABLECER LA CONEXIï¿½N CON LA BASE DE DATOS|
 			\***************************************************************/
-			#    echo("Método: concectarMySql");
+			#    echo("Mï¿½todo: concectarMySql");
 			$this->idConexion = mysqli_connect( $this->servidor, $this->usuario, $this->contrasena );// or die( "Error al intentar conectar con el servidor de base de datos: " . mysql_connect_error( ) );
 			if(!$this->idConexion){
 				echo "Error al intentar conectar con el servidor de base de datos.";
@@ -98,7 +98,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 				$this->error = mysqli_connect_error( $this->idConexion );
 			}	//	if(!$conexion){
 			/***************************************************************\
-			|AL CONECTAR CON LA BASE DE DATOS ADEMÁS SETEO LA BASE CON CUAL |
+			|AL CONECTAR CON LA BASE DE DATOS ADEMï¿½S SETEO LA BASE CON CUAL |
 			|TRABAJAR                                                       |
 			\***************************************************************/
 			$this->seleccionarBaseDeDato();
@@ -106,10 +106,10 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 		function seleccionarBaseDeDato(){
 			/**********************************************************\
-			|ESTE MÉTODO PERMITE ESTABLECER LA LA BASE ACTIVA PARA ESTA|
-			|CONEXIÓN                                                  |
+			|ESTE Mï¿½TODO PERMITE ESTABLECER LA LA BASE ACTIVA PARA ESTA|
+			|CONEXIï¿½N                                                  |
 			\**********************************************************/
-			#    echo("Método: seleccionarBaseDeDato");
+			#    echo("Mï¿½todo: seleccionarBaseDeDato");
 			//mysqli_select_db( $this->baseDato, $this->idConexion ); //or die( "No fue posible seleccionar la Base de Datos." );
 			if (!mysqli_select_db($this->idConexion, $this->baseDato  )){
 				echo "Error seleccionando la base de datos.";
@@ -118,13 +118,13 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 				$this->error = mysqli_connect_error( $this->idConexion );
 			}	//	if (!mysqli_select_db("juanchos_SGE",$conexion)){
 		}	#	function SeleccionarBaseDeDato()
-        
+
 		function procesarSql(){
 			/**********************************************************\
 			|PROCESA UNA CONSULTA SQL Y PRETENDE OBTENER EL RESULTSET  |
-			|EN CASE QUE FUERA UNA CONSULTA DE SELECCIÓN               |
+			|EN CASE QUE FUERA UNA CONSULTA DE SELECCIï¿½N               |
 			\**********************************************************/
-			#   echo("Método: procesarSql");
+			#   echo("Mï¿½todo: procesarSql");
 			$this->idRegistros = mysqli_query( $this->idConexion,$this->spSql ) or die( "Error al intentar procesar la consulta sql: " . mysqli_connect_error( $this->idConexion ) );
 			$this->errno = mysqli_connect_errno( $this->idConexion );
 			$this->error =  mysqli_connect_error( $this->idConexion );
@@ -132,15 +132,15 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 				$this->cargarArrayObjetos();
 			}else{
 				$this->cargarArray();
-			}	#	if ( $datosObjeto ){	
+			}	#	if ( $datosObjeto ){
 		}	#	function procesarSql()
 		function procesarPro(){
 			/**********************************************************\
 			|PROCESA UNA PROCEDIMIENTO SQL Y PRETENDE OBTENER EL RESULTSET  |
-			|EN CASE QUE FUERA UNA CONSULTA DE SELECCIÓN               |
+			|EN CASE QUE FUERA UNA CONSULTA DE SELECCIï¿½N               |
 			\**********************************************************/
-			#   echo("Método: procesarSql");
-			
+			#   echo("Mï¿½todo: procesarSql");
+
 			$query="SET @USUARIO:= '".$_SESSION['usuario']."';";
 			$variables="";
 			$variables_devolucion="SELECT ";
@@ -150,15 +150,15 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 			{
 				if ($mayuscula == true)
 				{
-				$query.= "SET @p".$i."='".strtoupper($datos)."';";	
+				$query.= "SET @p".$i."='".strtoupper($datos)."';";
 				}
 				else
 				{
-				$query.= "SET @p".$i."='".$datos."';";		
+				$query.= "SET @p".$i."='".$datos."';";
 				}
 				$variables.="@p".$i.",";
-				
-				
+
+
 				if ($datos == '@')
 				{
 				$this->parametros[$i]='';
@@ -167,7 +167,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 				}
 				else
 				{
-				$variables_devolucion.=	" '".$datos.$i."',";	
+				$variables_devolucion.=	" '".$datos.$i."',";
 				}
 			$i++;
 
@@ -183,23 +183,23 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 			$this->idRegistros = mysqli_multi_query( $this->idConexion,$query ) or die( "Error al intentar procesar la consulta sql: " . mysqli_connect_error( $this->idConexion ) );
 			$this->errno = mysqli_connect_errno( $this->idConexion );
 			$this->error =  mysqli_connect_error( $this->idConexion );
-			
-				
-				
-			
+
+
+
+
 			if ( $this->datosObjeto ){
 				$this->cargarArrayObjetos();
 			}else{
 				$this->cargarArray();
 			}
-			
+
 			$m=0;
-					
+
 			if ($param_out)
 			{
 				foreach($this->registros[count($this->registros)-1][0] as $row)
 				{
-				$this->parametros[$m]= $row;	
+				$this->parametros[$m]= $row;
 				$m++;
 				}
 			}
@@ -210,34 +210,34 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 			else
 			{
 				$this->registros=array();
-			}			
-				#	if ( $datosObjeto ){	
+			}
+				#	if ( $datosObjeto ){
 		}	#	function procesarSql()
-        
+
 		function cerrarConexion(){
 			/****************************************************************\
-			|ESTE MÉTODO CIERRA LA CONEXIÓN CON LA BASE DE DATOS Y LIBERAR LA|
-			|MEMORIA UTILIZADA EN EL SERVIDOR POR DICHA CONEXIÓN             |
+			|ESTE Mï¿½TODO CIERRA LA CONEXIï¿½N CON LA BASE DE DATOS Y LIBERAR LA|
+			|MEMORIA UTILIZADA EN EL SERVIDOR POR DICHA CONEXIï¿½N             |
 			\****************************************************************/
 			/******************************\
 			|LIBERAR CONJUNTO DE RESULTADOS|
 			\******************************/
-			#    echo("Método: cerrarConexion");
+			#    echo("Mï¿½todo: cerrarConexion");
 			mysql_free_result( $this->idRegistros ) or die( "Error al intentar liberar el conjunto de resultados alojado en memoria: " . mysqli_connect_error( $this->idConexion ) );
 			$this->errno = mysqli_connect_errno( $this->idConexion );
 			$this->error = mysqli_connect_error( $this->idConexion );
 			/******************\
 			|CERRAR LA CONEXION|
 			\******************/
-			mysqli_close( $this->idConexion ) or die( "Error al intentar cerrar la conexión: " . mysqli_connect_error( $this->idConexion ) );
+			mysqli_close( $this->idConexion ) or die( "Error al intentar cerrar la conexiï¿½n: " . mysqli_connect_error( $this->idConexion ) );
 		}	#	function cerrarConexion()
 
 		private function cargarArrayObjetos(){
 			/***********************************************************\
-			|ESTE MÉTODO LEE EL ID DE LA CONSULTA Y RETORNA UN OBJETO EL| 
+			|ESTE Mï¿½TODO LEE EL ID DE LA CONSULTA Y RETORNA UN OBJETO EL|
 			|CUAL ASIGNO AL ARRAY DE SALIDA PARA PODER SER EXPLOTADO    |
 			\***********************************************************/
-			#    #    echo("Método: cargarArray");
+			#    #    echo("Mï¿½todo: cargarArray");
 			$j = 0;
 			while ( $row = mysqli_fetch_object( $this->idRegistros ) ){
 				$this->registros[$j]  = $row;
@@ -247,45 +247,45 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 		public function cargarArray(){
 			/***********************************************************\
-			|ESTE MÉTODO LEE EL ID DE LA CONSULTA Y RETORNA UN OBJETO EL| 
+			|ESTE Mï¿½TODO LEE EL ID DE LA CONSULTA Y RETORNA UN OBJETO EL|
 			|CUAL ASIGNO AL ARRAY DE SALIDA PARA PODER SER EXPLOTADO    |
 			\***********************************************************/
-			#    #    echo("Método: cargarArray");
+			#    #    echo("Mï¿½todo: cargarArray");
 			$k = 0;
 			$j = 0;
-			
+
 						if ($this->idRegistros) {
 		do {
-			
+
         /* almacenar primer juego de resultados */
         if ($result = mysqli_store_result( $this->idConexion)) {
-			
+
 			while ($row = mysqli_fetch_assoc($result)) {
 				$this->registros[$k][$j]  = $row;
 				$j++;
             }
             mysqli_free_result($result);
-        
+
 			$j=0;
 			$k++;
-		
+
 		}
-		
+
 
         /* mostrar divisor */
     } while (mysqli_next_result( $this->idConexion));
 }
 
-			
-			
+
+
 			/*while ( $row =  mysqli_fetch_array( $this->idRegistros ) ){
 				$this->registros[$j]  = $row;
 				$j++;*/
 			//}	#	while ( $row = mysql_fetch_array( $this->registros ) )
 		}	#	private function cargarArray()
-		
-	
-		
-		
+
+
+
+
 	}	#	class cnnMySql
 ?>

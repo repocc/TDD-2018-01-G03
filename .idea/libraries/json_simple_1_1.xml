@@ -1,9 +1,13 @@
 <component name="libraryTable">
   <library name="json-simple-1.1">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Descargas/json-simple-1.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/json-simple-1.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <excluded>
+      <root url="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/ant-javafx.jar!/" />
+      <root url="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home/lib/javafx-swt.jar!/" />
+    </excluded>
   </library>
 </component>
